@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "price": 250000
+  },
+  {
+    "title": "Design Patterns",
+    "author": "Erich Gamma",
+    "price": 300000
+  }
+]

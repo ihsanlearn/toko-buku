@@ -1,0 +1,14 @@
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.table-view {
+    border-color: #ccc;
+}

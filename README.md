@@ -32,19 +32,9 @@
 
 ## Struktur Proyek
 
-toko-buku/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/example/bookstore/
-│   │   │       ├── App.java
-│   │   │       └── Main.java
-│   │   └── resources/
-│   │       └── com/example/bookstore/
-│   │           ├── MainView.fxml
-│   │           └── style.css
-└── pom.xml
+
 
 ---
+
 
 

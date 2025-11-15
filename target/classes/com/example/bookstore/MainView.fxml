@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.bookstore.controller.MainController"
+            stylesheets="/com/example/bookstore/css/style.css">
+
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="20" styleClass="header-bar" fx:id="headerBar">
+            <Label text="ONLINE BOOK STORE" styleClass="header-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="categoryBox" promptText="Kategori" prefWidth="120" styleClass="combo-box"/>
+            <Button fx:id="btnLogin" text="Register / Login" styleClass="header-button"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENT -->
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+
+            <!-- SEARCH BAR -->
+            <HBox spacing="10">
+                <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="Search..." styleClass="search-field"/>
+                <Button text="Search" fx:id="btnSearch" styleClass="search-btn"/>
+            </HBox>
+
+            <Label text="Book List" styleClass="section-title"/>
+
+            <!-- SCROLL + PRODUCT GRID -->
+            <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+                <content>
+                    <FlowPane fx:id="productContainer"
+                              vgap="20" hgap="20"
+                              prefWidth="800"
+                              styleClass="product-container"/>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+</BorderPane>

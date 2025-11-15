@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="500" prefWidth="800" spacing="0" 
+        xmlns="http://javafx.com/javafx/25" 
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.example.bookstore.controller.LoginController">
+
+    <!-- LEFT (50%) -->
+    <VBox alignment="CENTER" spacing="15" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets bottom="40" left="40" right="40" top="40" />
+        </padding>
+
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Sign in" />
+
+        <TextField fx:id="usernameField" promptText="Username" style="-fx-background-radius: 8; -fx-padding: 10;" />
+
+        <PasswordField fx:id="passwordField" promptText="Password" style="-fx-background-radius: 8; -fx-padding: 10;" />
+
+        <HBox spacing="10" style="-fx-padding: 20 0 0 0;">
+            <Button fx:id="loginBtn" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;" text="Login" />
+
+            <Button fx:id="registerBtn" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;" text="Register" />
+        </HBox>
+    </VBox>
+
+    <!-- RIGHT (50%) -->
+    <VBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(to right, #0051ff, #002e99);" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets bottom="60" left="40" right="40" top="60" />
+        </padding>
+
+        <Label style="-fx-text-fill: white; -fx-font-size: 26px; -fx-font-weight: bold;" text="Welcome back!" />
+
+        <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Welcome back! We are so happy to have you here." wrapText="true" />
+    </VBox>
+
+</HBox>

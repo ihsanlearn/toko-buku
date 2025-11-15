@@ -1,12 +1,12 @@
-# Tugas Besar PBO - [Online Book Store]
+# Tugas Besar PBO - Online Book Store
 
 **Mata Kuliah**: Pemrograman Berbasis Objek (PBO)  
 **Dosen**: Arif Rohmadi  
-**Semester**: [Semester 3 / Tahun Ajaran 2025]  
+**Semester**: 3   
 **Kelompok / NIM**:  
-- [Berly Marcellino Suprapto - L0124045]  
-- [Nama 2 - NIM]  
-- [Nama 3 - NIM]  
+- Berly Marcellino Suprapto - L0124045 
+- Faris Syahrul Muhammad - 
+- Ihsan Restu Adi -   
 
 ---
 
@@ -25,10 +25,26 @@
 - **Bahasa Pemrograman**: Java   
 - **GUI Framework**: JavaFX 25  
 - **Build Tool**: Maven  
-- **Library Tambahan**: Jackson (untuk JSON), dll  
+- **Library Tambahan**:   
 - **IDE yang disarankan**: IntelliJ IDEA / Eclipse  
 
 ---
 
 ## Struktur Proyek
+
+toko-buku/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/bookstore/
+│   │   │       ├── App.java
+│   │   │       └── Main.java
+│   │   └── resources/
+│   │       └── com/example/bookstore/
+│   │           ├── MainView.fxml
+│   │           └── style.css
+└── pom.xml
+
+---
+
 

@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.bookstore.App;
+import com.example.bookstore.model.User;
 import com.example.bookstore.model.Product;
+import com.example.bookstore.session.SessionManager;
 
 public class MainController {
 
@@ -43,33 +46,55 @@ public class MainController {
     @FXML
     private Button btnLogin;
 
+    @FXML
+    private Label usernameLabel;
 
     @FXML
-    public void initialize() {
+public void initialize() {
 
-        // Dummy data
-        productList.add(new Product("Buku A", "Rp 50.000", "/com/example/bookstore/images/sample.jpeg"));
-        productList.add(new Product("Buku B", "Rp 70.000", "/com/example/bookstore/images/sample.jpeg"));
-        productList.add(new Product("Pemrograman Java", "Rp 125.000", "/com/example/bookstore/images/sample.jpeg"));
-        productList.add(new Product("Algoritma", "Rp 90.000", "/com/example/bookstore/images/sample.jpeg"));
-        productList.add(new Product("Database System", "Rp 105.000", "/com/example/bookstore/images/sample.jpeg"));
-        productList.add(new Product("Machine Learning", "Rp 150.000", "/com/example/bookstore/images/sample.jpeg"));
+    User currentUser = SessionManager.getCurrentUser();
+    
+    if (currentUser == null) {
+        btnLogin.setVisible(true);
+        btnLogin.setManaged(true);
 
-        categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
-        categoryBox.getSelectionModel().selectFirst();
+        usernameLabel.setVisible(false);
+        usernameLabel.setManaged(false);
+    } else {
+        usernameLabel.setText(currentUser.username);
 
-        loadProducts(productList);
+        usernameLabel.setVisible(true);
+        usernameLabel.setManaged(true);
 
-        btnSearch.setOnAction(e -> searchProducts());
-        btnLogin.setOnAction(e -> {
-            try {
-                goToLogin(e);
-            } catch (Exception e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-        });
+        btnLogin.setVisible(false);
+        btnLogin.setManaged(false);
     }
+
+    // 3. Dummy data
+    productList.add(new Product("Buku A", "Rp 50.000", "/com/example/bookstore/images/sample.jpeg"));
+    productList.add(new Product("Buku B", "Rp 70.000", "/com/example/bookstore/images/sample.jpeg"));
+    productList.add(new Product("Pemrograman Java", "Rp 125.000", "/com/example/bookstore/images/sample.jpeg"));
+    productList.add(new Product("Algoritma", "Rp 90.000", "/com/example/bookstore/images/sample.jpeg"));
+    productList.add(new Product("Database System", "Rp 105.000", "/com/example/bookstore/images/sample.jpeg"));
+    productList.add(new Product("Machine Learning", "Rp 150.000", "/com/example/bookstore/images/sample.jpeg"));
+
+    // 4. Category
+    categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
+    categoryBox.getSelectionModel().selectFirst();
+
+    loadProducts(productList);
+
+    // 5. Events
+    btnSearch.setOnAction(e -> searchProducts());
+    btnLogin.setOnAction(e -> {
+        try {
+            goToLogin(e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    });
+}
+
 
     private void loadProducts(List<Product> products) {
         productContainer.getChildren().clear();
@@ -108,22 +133,21 @@ public class MainController {
 
     private void goToLogin(ActionEvent event) throws Exception {
         try {
-            App.setRoot("loginView");
-
+            App.setRoot("LoginView");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void setAdminMode() {
-    btnLogin.setVisible(false);
-    btnLogin.setManaged(false);     
+        btnLogin.setVisible(false);
+        btnLogin.setManaged(false);     
 
-    Button addBookButton = new Button("Add Book");
-    addBookButton.setStyle("-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;");
-    addBookButton.setOnAction(e -> System.out.println("Add Book Clicked!"));
+        Button addBookButton = new Button("Add Book");
+        addBookButton.setStyle("-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;");
+        addBookButton.setOnAction(e -> System.out.println("Add Book Clicked!"));
 
-    headerBar.getChildren().add(addBookButton);
+        headerBar.getChildren().add(addBookButton);
     }
 
 

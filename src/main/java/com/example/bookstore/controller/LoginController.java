@@ -8,16 +8,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 import com.example.bookstore.App;
+import com.example.bookstore.service.AuthService;
+import com.example.bookstore.session.SessionManager;
+import com.example.bookstore.model.User;
 
 public class LoginController {
+
+    private AuthService authService = new AuthService();
 
     @FXML
     private TextField usernameField;
@@ -35,6 +42,9 @@ public class LoginController {
     private Label messageLabel;
 
     @FXML
+    private Hyperlink goToRegisterLink;
+
+    @FXML
     public void initialize() {
         loginBtn.setOnAction(arg0 -> {
             try {
@@ -44,17 +54,25 @@ public class LoginController {
                 e.printStackTrace();
             }
         });
+
+        goToRegisterLink.setOnAction(e -> {
+            try {
+                App.switchTo("RegisterView");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     // ---------------------
     // HANDLE LOGIN
     // ---------------------
     private void handleLogin(ActionEvent event) throws Exception {
-        String user = usernameField.getText();
-        String pass = passwordField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
         // Validasi input kosong
-        if (user.isEmpty() || pass.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Peringatan");
             alert.setHeaderText(null);
@@ -63,23 +81,23 @@ public class LoginController {
             return;
         }
 
-        // Login dummy
-        if (user.equals("admin") && pass.equals("123")) {
+        User loggedInUser = authService.login(username, password);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login Berhasil");
-            alert.setHeaderText(null);
-            alert.setContentText("Selamat datang, " + user + "!");
-            alert.showAndWait();
+        if (loggedInUser != null) {
+            SessionManager.setCurrentUser(loggedInUser);
+            if (loggedInUser != null && "admin".equals(loggedInUser.role)) {
+                try {
+                    App.setRoot("AdminDashboard");
+                    return;
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
 
-            goToMainPage(event); // pindah scene
-
+            goToMainPage(event);
         } else {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Gagal");
-            alert.setHeaderText(null);
-            alert.setContentText("Username atau password salah!");
+            alert.setContentText("username atau password salah");
             alert.show();
         }
     }
@@ -90,7 +108,7 @@ public class LoginController {
     private void goToMainPage(ActionEvent event) throws Exception {
         try {
             MainController controller = App.setRootWithController("MainView");
-            controller.setAdminMode();
+            
 
         } catch (IOException e) {
             e.printStackTrace();

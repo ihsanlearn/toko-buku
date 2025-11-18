@@ -1,5 +1,6 @@
 package com.example.bookstore;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,21 +15,29 @@ public class App {
         setRoot("MainView");
     }
 
+    /** Pindah scene tanpa perlu controller */
     public static void setRoot(String fxml) throws Exception {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/bookstore/" + fxml + ".fxml"));
-        Scene scene = new Scene(loader.load(), 800, 600);
+        FXMLLoader loader = new FXMLLoader(
+                App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")
+        );
+        Scene scene = new Scene(loader.load(), 1200, 900);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /** Untuk ambil controller setelah load */
+    /** Pindah scene & ambil controller */
     public static <T> T setRootWithController(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader(
                 App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")
         );
 
-        Scene scene = new Scene(loader.load(), 800, 600);
+        Scene scene = new Scene(loader.load(), 1200, 900);
         primaryStage.setScene(scene);
+        primaryStage.show();
         return loader.getController();
+    }
+
+    public static void switchTo(String fxml) throws Exception {
+        setRoot(fxml);
     }
 }

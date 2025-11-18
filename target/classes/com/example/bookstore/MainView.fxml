@@ -15,7 +15,8 @@
             <Label text="ONLINE BOOK STORE" styleClass="header-title"/>
             <Pane HBox.hgrow="ALWAYS"/>
             <ComboBox fx:id="categoryBox" promptText="Kategori" prefWidth="120" styleClass="combo-box"/>
-            <Button fx:id="btnLogin" text="Register / Login" styleClass="header-button"/>
+            <Button fx:id="btnLogin" text="Login" styleClass="header-button"/>
+            <Label fx:id="usernameLabel" text="Guest"/>
         </HBox>
     </top>
 

@@ -10,7 +10,10 @@
 
     <top>
         <HBox spacing="20">
-            <Label text="Manage Books" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Manage Books" style="-fx-font-size: 22px; 
+                                              -fx-text-fill: #00e1ff;
+                                              -fx-font-weight: bold;
+                                              -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.6), 15, 0.2, 0, 0);"/>
         </HBox>
     </top>
 

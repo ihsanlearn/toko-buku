@@ -9,6 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -43,7 +46,10 @@ public class MainController {
     private Button btnLogin;
 
     @FXML
-    private Label usernameLabel;
+    private MenuButton accountMenu;
+
+    @FXML
+    private MenuItem menuLogout;
 
     @FXML
 public void initialize() {
@@ -54,17 +60,25 @@ public void initialize() {
         btnLogin.setVisible(true);
         btnLogin.setManaged(true);
 
-        usernameLabel.setVisible(false);
-        usernameLabel.setManaged(false);
+        accountMenu.setVisible(false);
+        accountMenu.setManaged(false);
     } else {
-        usernameLabel.setText(currentUser.username);
-
-        usernameLabel.setVisible(true);
-        usernameLabel.setManaged(true);
-
         btnLogin.setVisible(false);
         btnLogin.setManaged(false);
+
+        accountMenu.setText(currentUser.username);
+        accountMenu.setVisible(true);
+        accountMenu.setManaged(true);
     }
+
+    menuLogout.setOnAction(e -> {
+        SessionManager.logout();
+        try {
+        App.setRoot("LoginView");
+        } catch (Exception e1) {
+        e1.printStackTrace();
+        }
+    });
 
     // 3. Dummy data
     productList.add(new Product("Buku A", "Rp 50.000", "/com/example/bookstore/images/sample.jpeg"));

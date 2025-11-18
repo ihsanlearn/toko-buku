@@ -16,7 +16,12 @@
             <Pane HBox.hgrow="ALWAYS"/>
             <ComboBox fx:id="categoryBox" promptText="Kategori" prefWidth="120" styleClass="combo-box"/>
             <Button fx:id="btnLogin" text="Login" styleClass="header-button"/>
-            <Label fx:id="usernameLabel" text="Guest"/>
+            <MenuButton text="User" fx:id="accountMenu" styleClass="userMenu">
+                <items>
+                    <MenuItem fx:id="menuTopup" text="Top Up"/>
+                    <MenuItem fx:id="menuLogout" text="Logout"/>
+                </items>
+            </MenuButton>
         </HBox>
     </top>
 

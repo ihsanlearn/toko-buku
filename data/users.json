@@ -13,6 +13,13 @@
       "password": "ihsan",
       "role": "user",
       "latestId": 0
+    },
+    {
+      "id": 3,
+      "username": "Mars",
+      "password": "mars",
+      "role": "user",
+      "latestId": 0
     }
   ]
 }

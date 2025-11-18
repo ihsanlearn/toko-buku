@@ -1,7 +1,6 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.App;
-import com.example.bookstore.model.User;
 import com.example.bookstore.service.UserService;
 
 import javafx.fxml.FXML;

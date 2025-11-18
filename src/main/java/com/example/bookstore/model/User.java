@@ -1,7 +1,5 @@
 package com.example.bookstore.model;
 
-import com.example.bookstore.repository.UserRepository;
-
 public class User {
   public int id;
   public String username;

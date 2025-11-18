@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox spacing="20"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      style="-fx-padding: 25;">
+
+    <Label text="Reports"
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="15">
+        <Label text="Report Type:"/>
+        <ComboBox fx:id="comboReportType" prefWidth="200">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Top Selling Books"/>
+                    <String fx:value="Low Stock Books"/>
+                    <String fx:value="User Registrations"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Button fx:id="btnGenerate" text="Generate Report"/>
+    </HBox>
+
+    <BarChart fx:id="chartReport"
+              prefHeight="400"
+              animated="false">
+        <xAxis>
+            <CategoryAxis label="Category"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Value"/>
+        </yAxis>
+    </BarChart>
+
+</VBox>

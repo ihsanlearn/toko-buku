@@ -30,10 +30,14 @@ public class ProductCardController {
         this.product = product;
 
         productName.setText(product.getName());
-        productPrice.setText(product.getPrice());
+        productPrice.setText(String.valueOf(product.getPrice()));
 
         try {
-            productImage.setImage(new Image(product.getImagePath()));
+            if (product.getImagePath() == null || product.getImagePath().isEmpty()) {
+                productImage.setImage(new Image("com/example/bookstore/images/sample.jpeg"));
+            } else {
+                productImage.setImage(new Image(product.getImagePath()));
+            }
         } catch (Exception e) {
             System.out.println("Image not found.");
         }

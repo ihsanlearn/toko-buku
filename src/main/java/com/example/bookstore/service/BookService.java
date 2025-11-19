@@ -13,15 +13,13 @@ public class BookService {
 
     public BookService() {
         this.repo = new BookRepository();
-        this.cache = repo.getAll();   // always non-null from repo
+        this.cache = repo.getAll();
     }
 
-    // Return a safe copy
     public List<Book> getAllBooks() {
         return new ArrayList<>(cache);
     }
 
-    // Add
     public void addBook(Book book) {
         validateBook(book);
 
@@ -31,7 +29,6 @@ public class BookService {
         repo.saveAll(cache);
     }
 
-    // Update
     public void updateBook(Book updatedBook) {
         validateBook(updatedBook);
 
@@ -40,7 +37,6 @@ public class BookService {
             throw new IllegalArgumentException("Book not found with id: " + updatedBook.getId());
         }
 
-        // Update fields
         existing.setTitle(updatedBook.getTitle());
         existing.setAuthor(updatedBook.getAuthor());
         existing.setPrice(updatedBook.getPrice());
@@ -50,7 +46,6 @@ public class BookService {
         repo.saveAll(cache);
     }
 
-    // Delete
     public void deleteBook(int id) {
         boolean removed = cache.removeIf(b -> b.getId() == id);
 
@@ -61,7 +56,6 @@ public class BookService {
         repo.saveAll(cache);
     }
 
-    // Get by ID
     public Book getById(int id) {
         return cache.stream()
                 .filter(b -> b.getId() == id)
@@ -69,7 +63,6 @@ public class BookService {
                 .orElse(null);
     }
 
-    // Generate next ID (business logic → belongs here)
     private int generateNextId() {
         return cache.stream()
                 .mapToInt(Book::getId)
@@ -77,22 +70,21 @@ public class BookService {
                 .orElse(0) + 1;
     }
 
-    // Validation
     private void validateBook(Book book) {
         if (book.getTitle() == null || book.getTitle().isBlank()) {
-            throw new IllegalArgumentException("Title cannot be empty");
+            throw new IllegalArgumentException("judul gaboleh kosong");
         }
 
         if (book.getAuthor() == null || book.getAuthor().isBlank()) {
-            throw new IllegalArgumentException("Author cannot be empty");
+            throw new IllegalArgumentException("penulis gaboleh kosong");
         }
 
         if (book.getPrice() < 0) {
-            throw new IllegalArgumentException("Price cannot be negative");
+            throw new IllegalArgumentException("harga gabisa negatif");
         }
 
         if (book.getStock() < 0) {
-            throw new IllegalArgumentException("Stock cannot be negative");
+            throw new IllegalArgumentException("stok gabisa negatif");
         }
     }
 }

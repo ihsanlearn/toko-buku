@@ -48,8 +48,8 @@
             <Label text="Stock"/>
             <TextField fx:id="inputStock"/>
 
-            <Label text="Image Path"/>
-            <TextField fx:id="inputImgPath"/>
+            <Label text="Image Title"/>
+            <TextField fx:id="inputImgTitle"/>
 
             <HBox spacing="10">
                 <Button fx:id="btnAdd" text="Add"

@@ -29,7 +29,7 @@ public class ManageBooksController {
     @FXML private TextField inputAuthor;
     @FXML private TextField inputPrice;
     @FXML private TextField inputStock;
-    @FXML private TextField inputImgPath;
+    @FXML private TextField inputImgTitle;
 
     private ObservableList<Book> bookList;
 
@@ -58,7 +58,7 @@ public class ManageBooksController {
         inputAuthor.setText(b.getAuthor());
         inputPrice.setText(String.valueOf(b.getPrice()));
         inputStock.setText(String.valueOf(b.getStock()));
-        inputImgPath.setText(b.getImgPath());
+        inputImgTitle.setText(extractFileName(b.getImgPath()));
     }
 
     @FXML private void handleAdd() {
@@ -67,7 +67,7 @@ public class ManageBooksController {
             String author = inputAuthor.getText();
             int price = Integer.parseInt(inputPrice.getText());
             int stock = Integer.parseInt(inputStock.getText());
-            String imgPath = inputImgPath.getText();
+            String imgPath = "com/example/bookstore/images/" + inputImgTitle.getText();
 
             Book newBook = new Book(title, author, price, stock, imgPath);
 
@@ -93,7 +93,7 @@ public class ManageBooksController {
             selected.setAuthor(inputAuthor.getText());
             selected.setPrice(Integer.parseInt(inputPrice.getText()));
             selected.setStock(Integer.parseInt(inputStock.getText()));
-            selected.setImgPath(inputImgPath.getText());
+            selected.setImgPath("com/example/bookstore/images/" + inputImgTitle.getText());
 
             bookService.updateBook(selected);
 
@@ -133,7 +133,7 @@ public class ManageBooksController {
         inputAuthor.clear();
         inputPrice.clear();
         inputStock.clear();
-        inputImgPath.clear();
+        inputImgTitle.clear();
         tableBooks.getSelectionModel().clearSelection();
     }
 
@@ -145,5 +145,10 @@ public class ManageBooksController {
         a.showAndWait();
     }
 
-
+    private String extractFileName(String path) {
+        if (path == null || path.isBlank()) return "";
+        int idx = path.lastIndexOf('/');
+        if (idx == -1) return path;
+        return path.substring(idx + 1);
+    }
 }

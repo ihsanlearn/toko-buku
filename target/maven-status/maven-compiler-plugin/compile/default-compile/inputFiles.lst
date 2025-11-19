@@ -1,5 +1,6 @@
 /home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/repository/UserRepository.java
 /home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/controller/LoginController.java
+/home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/controller/ManageBooksController.java
 /home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/model/Book.java
 /home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/controller/ProductCardController.java
 /home/iihsannlearn/programming/java/toko-buku/src/main/java/com/example/bookstore/repository/BookRepository.java

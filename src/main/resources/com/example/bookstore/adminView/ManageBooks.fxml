@@ -26,6 +26,7 @@
                 <TableColumn fx:id="colAuthor" text="Author" prefWidth="150"/>
                 <TableColumn fx:id="colPrice" text="Price" prefWidth="80"/>
                 <TableColumn fx:id="colStock" text="Stock" prefWidth="80"/>
+                <TableColumn fx:id="colImgPath" text="Image Path" prefWidth="80"/>
             </columns>
         </TableView>
     </center>
@@ -47,17 +48,27 @@
             <Label text="Stock"/>
             <TextField fx:id="inputStock"/>
 
+            <Label text="Image Path"/>
+            <TextField fx:id="inputImgPath"/>
+
             <HBox spacing="10">
-                <Button fx:id="btnAdd" text="Add" style="-fx-background-color: #4caf50; -fx-text-fill: white;"/>
-                <Button fx:id="btnUpdate" text="Update" style="-fx-background-color: #2196f3; -fx-text-fill: white;"/>
+                <Button fx:id="btnAdd" text="Add"
+                        style="-fx-background-color: #4caf50; -fx-text-fill: white;"
+                        onAction="#handleAdd"/>
+
+                <Button fx:id="btnUpdate" text="Update"
+                        style="-fx-background-color: #2196f3; -fx-text-fill: white;"
+                        onAction="#handleUpdate"/>
             </HBox>
 
-            <Button fx:id="btnDelete" text="Delete" style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+            <Button fx:id="btnDelete" text="Delete"
+                    style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                    onAction="#handleDelete"/>
 
             <Separator/>
 
-            <Button fx:id="btnClear" text="Clear Form"/>
-
+            <Button fx:id="btnClear" text="Clear Form"
+                    onAction="#handleClear"/>
         </VBox>
     </right>
 

@@ -19,20 +19,4 @@ public class BookRepository {
     data.books = books;
     JsonUtil.save(data, PATH);
   }
-
-  public int getNextId() {
-    List<Book> books = getAll();
-    if (books == null || books.isEmpty()) {
-      return 1;
-    }
-
-    int maxId = 0;
-    for (Book b : books) {
-      if (b.getId() > maxId) {
-        maxId = b.getId();
-      }
-    }
-
-    return maxId + 1;
-  }
 }

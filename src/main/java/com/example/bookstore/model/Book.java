@@ -1,65 +1,74 @@
-package com.example.bookstore.model;
+    package com.example.bookstore.model;
 
-public class Book {
+    public class Book {
 
-    private int id;
-    private String title;
-    private String author;
-    private int price;
-    private int stock;
+        private int id;
+        private String title;
+        private String author;
+        private int price;
+        private int stock;
+        private String imgPath;
 
-    // Constructor
-    public Book(int id, String title, String author, int price, int stock) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        this.stock = stock;
+        // Constructor
+        public Book(String title, String author, int price, int stock, String imgPath) {
+            this.title = title;
+            this.author = author;
+            this.price = price;
+            this.stock = stock;
+            this.imgPath = imgPath;
+        }
+
+        // Getter & Setter
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getImgPath() {
+            return this.imgPath;
+        }
+
+        public void setImgPath(String imgPath) {
+            this.imgPath = imgPath;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
+
+        public int getStock() {
+            return stock;
+        }
+
+        public void setStock(int stock) {
+            this.stock = stock;
+        }
+
+        @Override
+        public String toString() {
+            return title + " - " + author;
+        }
     }
-
-    // Getter & Setter
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    @Override
-    public String toString() {
-        return title + " - " + author;
-    }
-}

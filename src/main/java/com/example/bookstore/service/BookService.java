@@ -9,54 +9,59 @@ import java.util.List;
 public class BookService {
 
     private final BookRepository repo;
-    private List<Book> cache;  // local cache
+    private List<Book> cache;
 
     public BookService() {
         this.repo = new BookRepository();
-        this.cache = repo.getAll();
-
-        if (this.cache == null) {
-            this.cache = new ArrayList<>();
-        }
+        this.cache = repo.getAll();   // always non-null from repo
     }
 
+    // Return a safe copy
     public List<Book> getAllBooks() {
-        return new ArrayList<>(cache); // return copy for safety
+        return new ArrayList<>(cache);
     }
 
+    // Add
     public void addBook(Book book) {
         validateBook(book);
 
-        book.setId(repo.getNextId());
+        book.setId(generateNextId());
 
         cache.add(book);
         repo.saveAll(cache);
     }
 
+    // Update
     public void updateBook(Book updatedBook) {
         validateBook(updatedBook);
 
-        for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getId() == updatedBook.getId()) {
-                cache.set(i, updatedBook);
-                repo.saveAll(cache);
-                return;
-            }
+        Book existing = getById(updatedBook.getId());
+        if (existing == null) {
+            throw new IllegalArgumentException("Book not found with id: " + updatedBook.getId());
         }
 
-        throw new IllegalArgumentException("Book not found with id: " + updatedBook.getId());
+        // Update fields
+        existing.setTitle(updatedBook.getTitle());
+        existing.setAuthor(updatedBook.getAuthor());
+        existing.setPrice(updatedBook.getPrice());
+        existing.setStock(updatedBook.getStock());
+        existing.setImgPath(updatedBook.getImgPath());
+
+        repo.saveAll(cache);
     }
 
+    // Delete
     public void deleteBook(int id) {
         boolean removed = cache.removeIf(b -> b.getId() == id);
 
         if (!removed) {
-            throw new IllegalArgumentException("Book not found: " + id);
+            throw new IllegalArgumentException("Book not found with id: " + id);
         }
 
         repo.saveAll(cache);
     }
 
+    // Get by ID
     public Book getById(int id) {
         return cache.stream()
                 .filter(b -> b.getId() == id)
@@ -64,15 +69,30 @@ public class BookService {
                 .orElse(null);
     }
 
+    // Generate next ID (business logic → belongs here)
+    private int generateNextId() {
+        return cache.stream()
+                .mapToInt(Book::getId)
+                .max()
+                .orElse(0) + 1;
+    }
+
+    // Validation
     private void validateBook(Book book) {
-        if (book.getTitle() == null || book.getTitle().isBlank())
+        if (book.getTitle() == null || book.getTitle().isBlank()) {
             throw new IllegalArgumentException("Title cannot be empty");
-        if (book.getAuthor() == null || book.getAuthor().isBlank())
+        }
+
+        if (book.getAuthor() == null || book.getAuthor().isBlank()) {
             throw new IllegalArgumentException("Author cannot be empty");
-        if (book.getPrice() < 0)
+        }
+
+        if (book.getPrice() < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
-        if (book.getStock() < 0)
+        }
+
+        if (book.getStock() < 0) {
             throw new IllegalArgumentException("Stock cannot be negative");
+        }
     }
 }
-

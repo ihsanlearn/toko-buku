@@ -19,7 +19,7 @@ public class App {
         FXMLLoader loader = new FXMLLoader(
                 App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")
         );
-        Scene scene = new Scene(loader.load(), 1200, 900);
+        Scene scene = new Scene(loader.load(), 1500, 1000);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -30,7 +30,7 @@ public class App {
                 App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")
         );
 
-        Scene scene = new Scene(loader.load(), 1200, 900);
+        Scene scene = new Scene(loader.load(), 1500, 1000);
         primaryStage.setScene(scene);
         primaryStage.show();
         return loader.getController();

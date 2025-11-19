@@ -5,70 +5,88 @@
       "title": "Clean Code",
       "author": "Robert C. Martin",
       "price": 180000,
-      "stock": 12
+      "stock": 12,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 2,
       "title": "The Pragmatic Programmer",
-      "author": "Andrew Hunt & David Thomas",
+      "author": "Andrew Hunt \u0026 David Thomas",
       "price": 210000,
-      "stock": 8
+      "stock": 8,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 3,
       "title": "Design Patterns",
       "author": "Erich Gamma et al.",
       "price": 250000,
-      "stock": 5
+      "stock": 5,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 4,
       "title": "Refactoring",
       "author": "Martin Fowler",
       "price": 230000,
-      "stock": 7
+      "stock": 7,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 5,
       "title": "Introduction to Algorithms",
       "author": "Thomas H. Cormen",
       "price": 300000,
-      "stock": 4
+      "stock": 4,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 6,
       "title": "Java Concurrency in Practice",
       "author": "Brian Goetz",
       "price": 190000,
-      "stock": 6
+      "stock": 6,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 7,
-      "title": "You Don't Know JS",
+      "title": "You Don\u0027t Know JS",
       "author": "Kyle Simpson",
       "price": 150000,
-      "stock": 10
+      "stock": 10,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 8,
       "title": "Effective Java",
       "author": "Joshua Bloch",
       "price": 220000,
-      "stock": 9
+      "stock": 9,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 9,
       "title": "Head First Design Patterns",
       "author": "Eric Freeman",
       "price": 175000,
-      "stock": 11
+      "stock": 11,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
       "id": 10,
       "title": "Clean Architecture",
       "author": "Robert C. Martin",
       "price": 185000,
-      "stock": 6
+      "stock": 6,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
+    },
+    {
+      "id": 11,
+      "title": "Seonggok Daging Panjang",
+      "author": "Pakubumi X",
+      "price": 90000,
+      "stock": 3,
+      "imgPath": "com/example/bookstore/images/sample.jpeg"
     }
   ]
 }

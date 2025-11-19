@@ -14,7 +14,6 @@ public class App {
         setRoot("MainView");
     }
 
-    /** Pindah scene tanpa perlu controller */
     public static void setRoot(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader(
                 App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")
@@ -24,7 +23,6 @@ public class App {
         primaryStage.show();
     }
 
-    /** Pindah scene & ambil controller */
     public static <T> T setRootWithController(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader(
                 App.class.getResource("/com/example/bookstore/" + fxml + ".fxml")

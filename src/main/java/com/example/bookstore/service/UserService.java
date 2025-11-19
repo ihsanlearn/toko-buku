@@ -17,20 +17,16 @@ public class UserService {
     public boolean register(String username, String password) {
         List<User> users = repo.getAll();
 
-        // cek username duplikat
         for (User u : users) {
             if (u.username.equalsIgnoreCase(username)) {
                 return false;
             }
         }
 
-        // generate id
         int id = repo.getNextId();
 
-        // create user baru
         User newUser = new User(id, username, password);
 
-        // simpan
         users.add(newUser);
         repo.saveAll(users);
 

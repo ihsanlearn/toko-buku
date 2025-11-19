@@ -8,10 +8,10 @@ public class AuthService {
 
     public User login(String username, String password) {
         for (User u : userRepo.getAll()) {
-          System.out.println(u);
-          if (u.username.equals(username) && u.password.equals(password)) {
-              return u;
-          }
+            System.out.println(u);
+            if (u.username.equals(username) && u.password.equals(password)) {
+                return u;
+            }
         }
 
         return null;

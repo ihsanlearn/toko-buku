@@ -9,7 +9,6 @@
         private int stock;
         private String imgPath;
 
-        // Constructor
         public Book(String title, String author, int price, int stock, String imgPath) {
             this.title = title;
             this.author = author;
@@ -18,7 +17,6 @@
             this.imgPath = imgPath;
         }
 
-        // Getter & Setter
         public int getId() {
             return id;
         }

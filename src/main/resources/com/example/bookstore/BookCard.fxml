@@ -6,13 +6,13 @@
 <VBox fx:id="cardRoot"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.bookstore.controller.ProductCardController"
+      fx:controller="com.example.bookstore.controller.BookCardController"
       alignment="CENTER"
       spacing="10"
       styleClass="product-card">
 
-    <ImageView fx:id="productImage" fitWidth="120" fitHeight="160" styleClass="product-image"/>
-    <Label fx:id="productName" text="Nama Produk" styleClass="product-name"/>
-    <Label fx:id="productPrice" text="Harga" styleClass="product-price"/>
+    <ImageView fx:id="bookImage" fitWidth="120" fitHeight="160" styleClass="product-image"/>
+    <Label fx:id="bookTitle" text="Nama Produk" styleClass="product-name"/>
+    <Label fx:id="bookPrice" text="Harga" styleClass="product-price"/>
 
 </VBox>

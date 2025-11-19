@@ -18,15 +18,14 @@ import java.util.List;
 
 import com.example.bookstore.App;
 import com.example.bookstore.model.User;
-import com.example.bookstore.repository.BookRepository;
+import com.example.bookstore.service.BookService;
 import com.example.bookstore.model.Book;
-import com.example.bookstore.model.Product;
 import com.example.bookstore.session.SessionManager;
 
 public class MainController {
 
     @FXML private HBox headerBar;
-    @FXML private FlowPane productContainer;
+    @FXML private FlowPane bookContainer;
     @FXML private TextField searchField;
     @FXML private Button btnSearch;
     @FXML private ComboBox<String> categoryBox;
@@ -34,82 +33,67 @@ public class MainController {
     @FXML private MenuButton accountMenu;
     @FXML private MenuItem menuLogout;
 
-    private List<Product> productList = new ArrayList<>();
+    private final BookService bookService = new BookService();
+    private List<Book> books;
 
     @FXML public void initialize() {
+        User currentUser = SessionManager.getCurrentUser();
+        
+        if (currentUser == null) {
+            btnLogin.setVisible(true);
+            btnLogin.setManaged(true);
 
-    User currentUser = SessionManager.getCurrentUser();
-    
-    if (currentUser == null) {
-        btnLogin.setVisible(true);
-        btnLogin.setManaged(true);
+            accountMenu.setVisible(false);
+            accountMenu.setManaged(false);
+        } else {
+            btnLogin.setVisible(false);
+            btnLogin.setManaged(false);
 
-        accountMenu.setVisible(false);
-        accountMenu.setManaged(false);
-    } else {
-        btnLogin.setVisible(false);
-        btnLogin.setManaged(false);
-
-        accountMenu.setText(currentUser.username);
-        accountMenu.setVisible(true);
-        accountMenu.setManaged(true);
-    }
-
-    menuLogout.getStyleClass().add("danger-item");
-
-    menuLogout.setOnAction(e -> {
-        try {
-            SessionManager.logout();
-            App.setRoot("MainView");
-        } catch (Exception e1) {
-            e1.printStackTrace();
+            accountMenu.setText(currentUser.username);
+            accountMenu.setVisible(true);
+            accountMenu.setManaged(true);
         }
-    });
 
-    List<Book> books = new BookRepository().getAll();
+        menuLogout.getStyleClass().add("danger-item");
 
-    productList = new ArrayList<>();
-
-    for (Book b : books) {
-        Product p = new Product(
-            b.getTitle(),
-            b.getPrice(),
-            null
-        );
-
-        productList.add(p);
-    }
-
-    
-    categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
-    categoryBox.getSelectionModel().selectFirst();
-
-    loadProducts(productList);
-
-    btnSearch.setOnAction(e -> searchProducts());
-    btnLogin.setOnAction(e -> {
-        try {
-            goToLogin(e);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    });
-}
-
-
-    private void loadProducts(List<Product> products) {
-        productContainer.getChildren().clear();
-
-        for (Product p : products) {
+        menuLogout.setOnAction(e -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/ProductCard.fxml"));
+                SessionManager.logout();
+                App.setRoot("MainView");
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
+
+        books = bookService.getAllBooks();
+
+        categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
+        categoryBox.getSelectionModel().selectFirst();
+
+        loadBooks(books);
+
+        btnSearch.setOnAction(e -> searchProducts());
+        btnLogin.setOnAction(e -> {
+            try {
+                goToLogin(e);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    private void loadBooks(List<Book> books) {
+        bookContainer.getChildren().clear();
+
+        for (Book b : books) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/BookCard.fxml"));
                 VBox card = loader.load();
 
-                ProductCardController controller = loader.getController();
-                controller.setData(p);
+                BookCardController controller = loader.getController();
+                controller.setData(b);
 
-                productContainer.getChildren().add(card);
-
+                bookContainer.getChildren().add(card);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -119,15 +103,15 @@ public class MainController {
     private void searchProducts() {
         String keyword = searchField.getText().toLowerCase();
 
-        List<Product> filtered = new ArrayList<>();
+        List<Book> filtered = new ArrayList<>();
 
-        for (Product p : productList) {
-            if (p.getName().toLowerCase().contains(keyword)) {
-                filtered.add(p);
+        for (Book b : books) {
+            if (b.getTitle().toLowerCase().contains(keyword)) {
+                filtered.add(b);
             }
         }
 
-        loadProducts(filtered);
+        loadBooks(filtered);
         searchField.clear();
         searchField.requestFocus();
     }
@@ -140,16 +124,14 @@ public class MainController {
         }
     }
 
-    public void setAdminMode() {
-        btnLogin.setVisible(false);
-        btnLogin.setManaged(false);     
+    // public void setAdminMode() {
+    //     btnLogin.setVisible(false);
+    //     btnLogin.setManaged(false);     
 
-        Button addBookButton = new Button("Add Book");
-        addBookButton.setStyle("-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;");
-        addBookButton.setOnAction(e -> System.out.println("Add Book Clicked!"));
+    //     Button addBookButton = new Button("Add Book");
+    //     addBookButton.setStyle("-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;");
+    //     addBookButton.setOnAction(e -> System.out.println("Add Book Clicked!"));
 
-        headerBar.getChildren().add(addBookButton);
-    }
-
-
+    //     headerBar.getChildren().add(addBookButton);
+    // }
 }

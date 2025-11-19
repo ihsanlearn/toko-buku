@@ -40,7 +40,7 @@
             <!-- SCROLL + PRODUCT GRID -->
             <ScrollPane fitToWidth="true" styleClass="scroll-pane">
                 <content>
-                    <FlowPane fx:id="productContainer"
+                    <FlowPane fx:id="bookContainer"
                               vgap="20" hgap="20"
                               prefWidth="800"
                               styleClass="product-container"/>

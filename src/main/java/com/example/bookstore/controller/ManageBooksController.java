@@ -17,7 +17,6 @@ import java.util.List;
 public class ManageBooksController {
 
     @FXML private TableView<Book> tableBooks;
-
     @FXML private TableColumn<Book, Integer> colId;
     @FXML private TableColumn<Book, String> colTitle;
     @FXML private TableColumn<Book, String> colAuthor;
@@ -32,7 +31,6 @@ public class ManageBooksController {
     @FXML private TextField inputImgTitle;
 
     private ObservableList<Book> bookList;
-
     private final BookService bookService = new BookService();
 
     public void initialize() {
@@ -50,15 +48,6 @@ public class ManageBooksController {
         tableBooks.setItems(bookList);
 
         tableBooks.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> fillForm(newVal));
-    }
-
-    private void fillForm(Book b) {
-        if (b == null) return;
-        inputTitle.setText(b.getTitle());
-        inputAuthor.setText(b.getAuthor());
-        inputPrice.setText(String.valueOf(b.getPrice()));
-        inputStock.setText(String.valueOf(b.getStock()));
-        inputImgTitle.setText(extractFileName(b.getImgPath()));
     }
 
     @FXML private void handleAdd() {
@@ -80,8 +69,7 @@ public class ManageBooksController {
         }
     }
 
-    @FXML
-    private void handleUpdate() {
+    @FXML private void handleUpdate() {
         Book selected = tableBooks.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert("Warning", "pilih buku buat diupdate");
@@ -107,8 +95,7 @@ public class ManageBooksController {
         }
     }
 
-    @FXML
-    private void handleDelete() {
+    @FXML private void handleDelete() {
         Book selected = tableBooks.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert("Warning", "pilih buku yang mau dihapus");
@@ -123,8 +110,7 @@ public class ManageBooksController {
         showAlert("Success", "Book deleted successfully!");
     }
 
-    @FXML
-    private void handleClear() {
+    @FXML private void handleClear() {
         clearForm();
     }
 
@@ -150,5 +136,14 @@ public class ManageBooksController {
         int idx = path.lastIndexOf('/');
         if (idx == -1) return path;
         return path.substring(idx + 1);
+    }
+
+    private void fillForm(Book b) {
+        if (b == null) return;
+        inputTitle.setText(b.getTitle());
+        inputAuthor.setText(b.getAuthor());
+        inputPrice.setText(String.valueOf(b.getPrice()));
+        inputStock.setText(String.valueOf(b.getStock()));
+        inputImgTitle.setText(extractFileName(b.getImgPath()));
     }
 }

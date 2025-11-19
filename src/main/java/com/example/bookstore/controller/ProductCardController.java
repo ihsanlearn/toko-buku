@@ -12,17 +12,10 @@ import javafx.scene.layout.VBox;
 
 public class ProductCardController {
 
-    @FXML
-    private VBox cardRoot;
-
-    @FXML
-    private ImageView productImage;
-
-    @FXML
-    private Label productName;
-
-    @FXML
-    private Label productPrice;
+    @FXML private VBox cardRoot;
+    @FXML private ImageView productImage;
+    @FXML private Label productName;
+    @FXML private Label productPrice;
 
     private Product product;
 

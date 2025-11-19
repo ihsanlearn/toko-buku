@@ -9,30 +9,17 @@ import javafx.event.ActionEvent;
 
 public class RegisterController {
 
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private PasswordField confirmPasswordField;
-
-    @FXML
-    private Button registerBtn;
-
-    @FXML
-    private Hyperlink backToLogin;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmPasswordField;
+    @FXML private Button registerBtn;
+    @FXML private Hyperlink backToLogin;
 
     private UserService userService = new UserService();
 
-    @FXML
-    public void initialize() {
-
-        // Event tombol daftar
+    @FXML public void initialize() {
         registerBtn.setOnAction(e -> handleRegister(e));
 
-        // Event kembali ke login
         backToLogin.setOnAction(e -> {
             try {
                 App.setRoot("loginView");

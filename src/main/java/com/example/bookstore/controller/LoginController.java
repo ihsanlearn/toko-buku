@@ -18,33 +18,20 @@ import com.example.bookstore.model.User;
 
 public class LoginController {
 
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Button loginBtn;
+    @FXML private Button btnBack;
+    @FXML private Label messageLabel;
+    @FXML private Hyperlink goToRegisterLink;
+    
     private AuthService authService = new AuthService();
 
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private Button loginBtn;
-
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Label messageLabel;
-
-    @FXML
-    private Hyperlink goToRegisterLink;
-
-    @FXML
-    public void initialize() {
+    @FXML public void initialize() {
         loginBtn.setOnAction(arg0 -> {
             try {
                 handleLogin(arg0);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
@@ -58,14 +45,10 @@ public class LoginController {
         });
     }
 
-    // ---------------------
-    // HANDLE LOGIN
-    // ---------------------
     private void handleLogin(ActionEvent event) throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Validasi input kosong
         if (username.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Peringatan");
@@ -96,9 +79,6 @@ public class LoginController {
         }
     }
 
-    // ---------------------
-    // METHOD UNTUK GANTI SCENE
-    // ---------------------
     private void goToMainPage(ActionEvent event) throws Exception {
         try {
             App.setRoot("MainView");

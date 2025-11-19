@@ -25,34 +25,18 @@ import com.example.bookstore.session.SessionManager;
 
 public class MainController {
 
-    @FXML
-    private HBox headerBar;
-
-    @FXML
-    private FlowPane productContainer;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private Button btnSearch;
-
-    @FXML
-    private ComboBox<String> categoryBox;
+    @FXML private HBox headerBar;
+    @FXML private FlowPane productContainer;
+    @FXML private TextField searchField;
+    @FXML private Button btnSearch;
+    @FXML private ComboBox<String> categoryBox;
+    @FXML private Button btnLogin;
+    @FXML private MenuButton accountMenu;
+    @FXML private MenuItem menuLogout;
 
     private List<Product> productList = new ArrayList<>();
 
-    @FXML
-    private Button btnLogin;
-
-    @FXML
-    private MenuButton accountMenu;
-
-    @FXML
-    private MenuItem menuLogout;
-
-    @FXML
-public void initialize() {
+    @FXML public void initialize() {
 
     User currentUser = SessionManager.getCurrentUser();
     

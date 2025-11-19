@@ -72,11 +72,11 @@ public void initialize() {
     }
 
     menuLogout.setOnAction(e -> {
-        SessionManager.logout();
         try {
-        App.setRoot("LoginView");
+            SessionManager.logout();
+            App.setRoot("MainView");
         } catch (Exception e1) {
-        e1.printStackTrace();
+            e1.printStackTrace();
         }
     });
 

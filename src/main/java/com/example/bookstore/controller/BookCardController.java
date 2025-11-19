@@ -1,14 +1,19 @@
 package com.example.bookstore.controller;
 
+import com.example.bookstore.App;
 import com.example.bookstore.model.Book;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class BookCardController {
     @FXML private VBox cardRoot;
@@ -34,14 +39,32 @@ public class BookCardController {
             System.out.println("Image not found.");
         }
 
-        cardRoot.setOnMouseClicked(this::onClick);
+        cardRoot.setOnMouseClicked(arg0 -> {
+            try {
+                onClick(arg0);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
     }
 
-    private void onClick(MouseEvent event) {
-        System.out.println("Clicked: " + book.getTitle());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(book.getTitle());
-        alert.setContentText("Harga: " + book.getPrice());
-        alert.show();
+    private void onClick(MouseEvent event) throws Exception {
+        // Load FXML BookDetail
+        FXMLLoader loader = App.loadFXML("BookDetail");
+        Parent root = loader.load();
+
+        // Ambil controller detail
+        BookDetailController controller = loader.getController();
+
+        // Kirim data Book sebelum window ditampilkan
+        controller.setBookData(book);
+
+        // Tampilkan window baru
+        Stage stage = new Stage();
+        stage.setTitle(book.getTitle());
+        stage.setScene(new Scene(root));
+        stage.initOwner(cardRoot.getScene().getWindow()); // parent window
+        stage.show();
     }
 }

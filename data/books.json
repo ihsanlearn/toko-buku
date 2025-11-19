@@ -79,14 +79,6 @@
       "price": 185000,
       "stock": 6,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
-    },
-    {
-      "id": 11,
-      "title": "Seonggok Daging Panjang",
-      "author": "Pakubumi X",
-      "price": 90000,
-      "stock": 3,
-      "imgPath": "com/example/bookstore/images/sample.jpeg"
     }
   ]
 }

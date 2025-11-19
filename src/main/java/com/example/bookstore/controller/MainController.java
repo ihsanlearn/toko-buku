@@ -66,29 +66,26 @@ public class MainController {
         }
     });
 
-    // 3. data
-     List<Book> books = new BookRepository().getAll();
+    List<Book> books = new BookRepository().getAll();
 
     productList = new ArrayList<>();
 
     for (Book b : books) {
         Product p = new Product(
-            b.getTitle(),                    // name
-            b.getPrice(),                    // price
-            null                    // imagePath default
+            b.getTitle(),
+            b.getPrice(),
+            null
         );
 
         productList.add(p);
     }
 
     
-    // 4. Category
     categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
     categoryBox.getSelectionModel().selectFirst();
 
     loadProducts(productList);
 
-    // 5. Events
     btnSearch.setOnAction(e -> searchProducts());
     btnLogin.setOnAction(e -> {
         try {

@@ -20,6 +20,13 @@
       "password": "mars",
       "role": "user",
       "latestId": 0
+    },
+    {
+      "id": 4,
+      "username": "faris",
+      "password": "daris",
+      "role": "user",
+      "latestId": 0
     }
   ]
 }

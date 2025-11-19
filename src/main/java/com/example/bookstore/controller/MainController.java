@@ -18,6 +18,8 @@ import java.util.List;
 
 import com.example.bookstore.App;
 import com.example.bookstore.model.User;
+import com.example.bookstore.repository.BookRepository;
+import com.example.bookstore.model.Book;
 import com.example.bookstore.model.Product;
 import com.example.bookstore.session.SessionManager;
 
@@ -69,6 +71,8 @@ public void initialize() {
         accountMenu.setManaged(true);
     }
 
+    menuLogout.getStyleClass().add("danger-item");
+
     menuLogout.setOnAction(e -> {
         try {
             SessionManager.logout();
@@ -78,14 +82,22 @@ public void initialize() {
         }
     });
 
-    // 3. Dummy data
-    productList.add(new Product("Buku A", "Rp 50.000", "/com/example/bookstore/images/sample.jpeg"));
-    productList.add(new Product("Buku B", "Rp 70.000", "/com/example/bookstore/images/sample.jpeg"));
-    productList.add(new Product("Pemrograman Java", "Rp 125.000", "/com/example/bookstore/images/sample.jpeg"));
-    productList.add(new Product("Algoritma", "Rp 90.000", "/com/example/bookstore/images/sample.jpeg"));
-    productList.add(new Product("Database System", "Rp 105.000", "/com/example/bookstore/images/sample.jpeg"));
-    productList.add(new Product("Machine Learning", "Rp 150.000", "/com/example/bookstore/images/sample.jpeg"));
+    // 3. data
+     List<Book> books = new BookRepository().getAll();
 
+    productList = new ArrayList<>();
+
+    for (Book b : books) {
+        Product p = new Product(
+            b.getTitle(),                    // name
+            b.getPrice(),                    // price
+            null                    // imagePath default
+        );
+
+        productList.add(p);
+    }
+
+    
     // 4. Category
     categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
     categoryBox.getSelectionModel().selectFirst();

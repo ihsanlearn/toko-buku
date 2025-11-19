@@ -28,7 +28,7 @@
 
         <!-- Title -->
         <VBox alignment="CENTER" spacing="8">
-            <Label styleClass="title" text="Welcome Back" />
+            <Label styleClass="title" text="Welcome Back, Agent" />
             <Label styleClass="subtitle" text="Please enter your credentials to continue" />
         </VBox>
 
@@ -50,7 +50,6 @@
 
         <!-- Login Button -->
         <Button fx:id="loginBtn" prefHeight="48" prefWidth="340" styleClass="login-button" text="Sign In" />
-
         <Region prefHeight="5" />
 
         <!-- Register Link -->

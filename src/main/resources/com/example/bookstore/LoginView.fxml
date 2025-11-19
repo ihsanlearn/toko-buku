@@ -1,58 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<HBox prefHeight="500" prefWidth="800" spacing="0" 
-      xmlns="http://javafx.com/javafx/25" 
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.bookstore.controller.LoginController">
+<HBox prefHeight="600" prefWidth="900" spacing="0" styleClass="root" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookstore.controller.LoginController">
 
-    <!-- LEFT (FORM) -->
-    <VBox alignment="CENTER" spacing="15" HBox.hgrow="ALWAYS">
+    <!-- LEFT SIDE (FORM) -->
+    <VBox alignment="CENTER" prefHeight="601.0" prefWidth="319.0" spacing="20" styleClass="form-container" HBox.hgrow="ALWAYS">
         <padding>
-            <Insets top="40" right="40" bottom="40" left="40"/>
+            <Insets bottom="60" left="50" right="50" top="60" />
         </padding>
 
-        <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Sign in"/>
+        <!-- Logo/Icon Circle -->
+        <StackPane>
+            <Circle radius="35" styleClass="logo-circle" />
+            <Label styleClass="logo-icon" text="📚" />
+        </StackPane>
 
-        <TextField fx:id="usernameField" promptText="Username"
-                   style="-fx-background-radius: 8; -fx-padding: 10;"/>
+        <!-- Title -->
+        <VBox alignment="CENTER" spacing="8">
+            <Label styleClass="title" text="Welcome Back" />
+            <Label styleClass="subtitle" text="Please enter your credentials to continue" />
+        </VBox>
 
-        <PasswordField fx:id="passwordField" promptText="Password"
-                       style="-fx-background-radius: 8; -fx-padding: 10;"/>
+        <Region prefHeight="10" />
 
-        <Button fx:id="loginBtn"
-                prefHeight="26" prefWidth="82"
-                style="-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;"
-                text="Login"/>
+        <!-- Username Field -->
+        <VBox prefWidth="340" spacing="8">
+            <Label styleClass="field-label" text="Username" />
+            <TextField fx:id="usernameField" prefHeight="45" promptText="Enter your username" styleClass="input-field" />
+        </VBox>
 
-        <!-- Text "Belum punya akun?" -->
-        <HBox alignment="CENTER">
-            <Label text="Belum punya akun?" style="-fx-font-size: 12px;"/>
-            <Hyperlink fx:id="goToRegisterLink"
-                       text="Register"
-                       style="-fx-font-size: 12px; -fx-text-fill: #0051ff;"/>
+        <!-- Password Field -->
+        <VBox prefWidth="340" spacing="8">
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="field-label" text="Password" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <PasswordField fx:id="passwordField" prefHeight="45" promptText="Enter your password" styleClass="input-field" />
+        </VBox>
+
+        <!-- Login Button -->
+        <Button fx:id="loginBtn" prefHeight="48" prefWidth="340" styleClass="login-button" text="Sign In" />
+
+        <Region prefHeight="5" />
+
+        <!-- Register Link -->
+        <HBox alignment="CENTER" spacing="5">
+            <Label styleClass="register-text" text="Don't have an account?" textFill="WHITE" />
+            <Hyperlink fx:id="goToRegisterLink" styleClass="register-link" text="Create Account" />
         </HBox>
 
     </VBox>
 
-    <!-- RIGHT SIDE -->
-    <VBox alignment="CENTER" spacing="20"
-          style="-fx-background-color: linear-gradient(to right, #0051ff, #002e99);"
-          HBox.hgrow="ALWAYS">
+    <!-- RIGHT SIDE (GRADIENT) -->
+    <VBox alignment="CENTER" spacing="25" styleClass="welcome-container" HBox.hgrow="ALWAYS">
 
         <padding>
-            <Insets top="60" right="40" bottom="60" left="40"/>
+            <Insets bottom="80" left="60" right="60" top="80" />
         </padding>
 
-        <Label text="Welcome back!"
-               style="-fx-text-fill: white; -fx-font-size: 26px; -fx-font-weight: bold;"/>
+        <!-- Decorative Elements -->
+        <StackPane>
+            <Circle radius="80" styleClass="deco-circle-outer" />
+            <Circle radius="60" styleClass="deco-circle-inner" />
+            <Label styleClass="deco-icon" text="📖" />
+        </StackPane>
 
-        <Label text="Welcome back! We are so happy to have you here."
-               wrapText="true"
-               style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+        <VBox alignment="CENTER" maxWidth="380" spacing="15">
+            <Label styleClass="welcome-title" text="FBI Books &amp; Co." textAlignment="CENTER" wrapText="true" />
+
+            <Label styleClass="welcome-subtitle" text="&quot;Finding Best Ideas&quot;" textAlignment="CENTER" wrapText="true" />
+        </VBox>
+
+        <Region prefHeight="20" />
+
+        <!-- Feature List -->
+        <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="15" styleClass="feature-list">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <StackPane>
+                    <Circle radius="18" styleClass="feature-circle" />
+                    <Label styleClass="feature-check" text="✓" />
+                </StackPane>
+                <Label styleClass="feature-text" text="Unlimited book access" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <StackPane>
+                    <Circle radius="18" styleClass="feature-circle" />
+                    <Label styleClass="feature-check" text="✓" />
+                </StackPane>
+                <Label styleClass="feature-text" text="Personalized recommendations" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <StackPane>
+                    <Circle radius="18" styleClass="feature-circle" />
+                    <Label styleClass="feature-check" text="✓" />
+                </StackPane>
+                <Label styleClass="feature-text" text="Sync across all devices" />
+            </HBox>
+        </VBox>
+
     </VBox>
 
 </HBox>

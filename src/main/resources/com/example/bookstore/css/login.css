@@ -1,0 +1,158 @@
+/* ======================================
+   GLOBAL — selaras tema dashboard
+====================================== */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #0a0f1f, #111827, #0d1220);
+    -fx-font-family: "Segoe UI", Roboto, Arial;
+}
+
+/* ======================================
+   FORM AREA (LEFT SIDE)
+====================================== */
+.form-container {
+    -fx-background-color: rgba(20, 28, 48, 0.35);
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(0, 225, 255, 0.18);
+    -fx-border-width: 1.2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.09), 25, 0.3, 0, 0);
+}
+
+/* Logo Circle */
+.logo-circle {
+    -fx-fill: rgba(0, 225, 255, 0.12);
+    -fx-stroke: rgba(0, 225, 255, 0.35);
+    -fx-stroke-width: 1.8;
+}
+
+.logo-icon {
+    -fx-font-size: 32px;
+    -fx-text-fill: #c8faff;
+}
+
+/* Titles */
+.title {
+    -fx-text-fill: #a8eaff;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-text-fill: rgba(200, 220, 240, 0.75);
+    -fx-font-size: 14px;
+}
+
+/* ======================================
+   INPUTS
+====================================== */
+.field-label {
+    -fx-text-fill: #9bd6ee;
+    -fx-font-size: 14px;
+}
+
+.input-field {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-text-fill: #eafaff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(0, 225, 255, 0.22);
+    -fx-border-width: 1.2;
+    -fx-padding: 0 14 0 14;
+}
+
+.input-field:focused {
+    -fx-border-color: #00e1ff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.4), 16, 0.2, 0, 0);
+}
+
+/* Hyperlinks */
+.forgot-link,
+.register-link {
+    -fx-text-fill: #7fd5ff;
+}
+
+.forgot-link:hover,
+.register-link:hover {
+    -fx-text-fill: #c8f1ff;
+}
+
+/* ======================================
+   LOGIN BUTTON
+====================================== */
+.login-button {
+    -fx-background-color: linear-gradient(to right,
+        rgba(0, 225, 255, 0.55),
+        rgba(140, 200, 255, 0.65)
+    );
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-text-fill: #0a0f18;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.25), 20, 0.3, 0, 0);
+}
+
+.login-button:hover {
+    -fx-background-color: linear-gradient(to right,
+        rgba(0, 225, 255, 0.75),
+        rgba(150, 215, 255, 0.85)
+    );
+}
+
+.login-button:pressed {
+    -fx-background-color: rgba(0, 225, 255, 0.55);
+}
+
+/* ======================================
+   RIGHT PANEL (WELCOME SECTION)
+====================================== */
+.welcome-container {
+    -fx-background-color: linear-gradient(to bottom right,
+        #101522,
+        #0c111d,
+        #0b101b
+    );
+    -fx-effect: innershadow(gaussian, rgba(0, 225, 255, 0.10), 25, 0.25, 0, 0);
+}
+
+/* Decoration Circles */
+.deco-circle-outer {
+    -fx-fill: rgba(0, 225, 255, 0.12);
+    -fx-stroke: rgba(0, 225, 255, 0.25);
+}
+
+.deco-circle-inner {
+    -fx-fill: rgba(140, 200, 255, 0.12);
+    -fx-stroke: rgba(180, 230, 255, 0.25);
+}
+
+.deco-icon {
+    -fx-font-size: 48px;
+    -fx-text-fill: #b0eaff;
+}
+
+/* Welcome Text */
+.welcome-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #bfeaff;
+}
+
+.welcome-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(200, 225, 245, 0.8);
+}
+
+/* Features */
+.feature-circle {
+    -fx-fill: rgba(255,255,255,0.06);
+    -fx-stroke: rgba(255,255,255,0.12);
+}
+
+.feature-check {
+    -fx-text-fill: #a8eaff;
+}
+
+.feature-text {
+    -fx-text-fill: rgba(220,240,255,0.85);
+}

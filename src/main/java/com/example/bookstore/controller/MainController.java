@@ -6,10 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -32,6 +35,7 @@ public class MainController {
     @FXML private Button btnLogin;
     @FXML private MenuButton accountMenu;
     @FXML private MenuItem menuLogout;
+    @FXML private MenuItem menuTopup;
 
     private final BookService bookService = new BookService();
     private List<Book> books;
@@ -54,8 +58,22 @@ public class MainController {
             accountMenu.setManaged(true);
         }
 
-        menuLogout.getStyleClass().add("danger-item");
+        // Top Up Menu Item Action
+        menuTopup.setOnAction(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
+                Parent topUpRoot = loader.load();
 
+                Stage topUpStage = new Stage();
+                topUpStage.setTitle("Top Up Saldo");
+                topUpStage.setScene(new Scene(topUpRoot));
+                topUpStage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        menuLogout.getStyleClass().add("danger-item");
         menuLogout.setOnAction(e -> {
             try {
                 SessionManager.logout();

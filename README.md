@@ -4,7 +4,7 @@
 **Dosen**: Arif Rohmadi  
 **Semester**: 3   
 **Kelompok / NIM**:  
-- Berly Marcellino Suprapto - L0124045 (github.com/IMars-kun)
+- <a href="https://github.com/IMars-kun" target="_blank">Berly Marcellino Suprapto</a> - L0124045
 - Faris Syahrul Muhammad - 
 - Ihsan Restu Adi -   
 
@@ -35,6 +35,7 @@
 
 
 ---
+
 
 
 

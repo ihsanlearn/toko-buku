@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" prefHeight="397.0" prefWidth="420" spacing="20" styleClass="root-container" stylesheets="@css/topup.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookstore.controller.TopUpController">
+
+    <children>
+
+        <!-- Spacer -->
+        <Region prefHeight="40" />
+
+        <!-- Balance Section -->
+        <VBox alignment="CENTER" spacing="6">
+            <Label styleClass="balance-label" text="Your Balance" />
+            <TextField fx:id="balanceField" editable="false" styleClass="balance-field" text="Rp 0" />
+        </VBox>
+
+        <!-- Input Amount -->
+        <VBox alignment="CENTER" spacing="6">
+            <Label styleClass="title-label" text="Set Amount" />
+            <TextField fx:id="amountField" promptText="Enter amount" styleClass="input-field" />
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox alignment="CENTER" spacing="20">
+            <Button fx:id="topupButton" styleClass="btn-primary" text="Top Up" />
+            <Button fx:id="withdrawButton" styleClass="btn-secondary" text="Withdraw" />
+        </HBox>
+
+    </children>
+</VBox>

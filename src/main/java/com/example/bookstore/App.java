@@ -1,5 +1,7 @@
 package com.example.bookstore;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -37,4 +39,10 @@ public class App {
     public static void switchTo(String fxml) throws Exception {
         setRoot(fxml);
     }
+
+    public static FXMLLoader loadFXML(String fxml) throws IOException {
+        return new FXMLLoader(App.class.getResource("/com/example/bookstore/" + fxml + ".fxml"));
+    }
+
+
 }

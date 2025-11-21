@@ -29,6 +29,7 @@ public class AdminController {
       });
 
       setPage("Dashboard", "Dashboard Overview");
+      btnDashboard.setOnAction(e -> setPage("Dashboard", "Dashboard Overview"));
       btnManageBooks.setOnAction(e -> setPage("ManageBooks", "Manage Books"));
       btnManageUsers.setOnAction(e -> setPage("ManageUsers", "Manage Users"));
       btnReports.setOnAction(e -> setPage("Reports", "Reports"));

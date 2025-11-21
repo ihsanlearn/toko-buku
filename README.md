@@ -6,7 +6,7 @@
 **Kelompok / NIM**:  
 - <a href="https://github.com/IMars-kun" target="_blank">Berly Marcellino Suprapto</a> - L0124045
 - Faris Syahrul Muhammad - 
-- Ihsan Restu Adi -   
+- Ihsan Restu Adi - L0124058
 
 ---
 

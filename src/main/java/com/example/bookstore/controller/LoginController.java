@@ -62,7 +62,7 @@ public class LoginController {
 
         if (loggedInUser != null) {
             SessionManager.setCurrentUser(loggedInUser);
-            if (loggedInUser != null && "admin".equals(loggedInUser.role)) {
+            if (loggedInUser != null && "admin".equals(loggedInUser.getRole())) {
                 try {
                     App.setRoot("AdminDashboard");
                     return;

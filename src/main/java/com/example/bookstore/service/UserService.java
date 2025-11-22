@@ -11,14 +11,14 @@ public class UserService {
 
     public boolean isUsernameTaken(String username) {
         List<User> users = repo.getAll();
-        return users.stream().anyMatch(u -> u.username.equals(username));
+        return users.stream().anyMatch(u -> u.getUsername().equals(username));
     }
 
     public boolean register(String username, String password) {
         List<User> users = repo.getAll();
 
         for (User u : users) {
-            if (u.username.equalsIgnoreCase(username)) {
+            if (u.getUsername().equalsIgnoreCase(username)) {
                 return false;
             }
         }

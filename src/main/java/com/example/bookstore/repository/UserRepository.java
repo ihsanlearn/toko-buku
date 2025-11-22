@@ -28,8 +28,8 @@ public class UserRepository {
 
         int maxId = 0;
         for (User u : users) {
-            if (u.id > maxId) {
-                maxId = u.id;
+            if (u.getId() > maxId) {
+                maxId = u.getId();
             }
         }
 

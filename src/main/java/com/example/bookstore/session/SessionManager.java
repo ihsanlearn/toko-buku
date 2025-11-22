@@ -6,7 +6,7 @@ public class SessionManager {
     public static User currentUser;
 
     public static boolean isAdmin() {
-        return currentUser != null && currentUser.role.equals("admin");
+        return currentUser != null && currentUser.getRole().equals("admin");
     }
 
     public static void setCurrentUser(User user) { currentUser = user; }

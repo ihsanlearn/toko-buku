@@ -9,7 +9,7 @@ public class AuthService {
     public User login(String username, String password) {
         for (User u : userRepo.getAll()) {
             System.out.println(u);
-            if (u.username.equals(username) && u.password.equals(password)) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 return u;
             }
         }

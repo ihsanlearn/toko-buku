@@ -1,5 +1,8 @@
 package com.example.bookstore.controller.user;
 
+import com.example.bookstore.model.User;
+import com.example.bookstore.session.SessionManager;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -13,15 +16,16 @@ public class SettingsController {
     @FXML private PasswordField txtNewPassword;
     @FXML private PasswordField txtConfirmPassword;
 
-    @FXML
-    public void initialize() {
-        // Load data user dari database nanti di sini
+    User currentUser = SessionManager.getCurrentUser();
+
+    @FXML public void initialize() {
+        txtUsername.setText(currentUser.getUsername());
+        txtEmail.setText(currentUser.getUsername() + "@gmail.com");
+        txtOldPassword.setText(currentUser.getPassword());
     }
 
     @FXML
     private void handleSave() {
-        // Logic menyimpan perubahan user
-        // Validasi password
-        // Update database
+        
     }
 }

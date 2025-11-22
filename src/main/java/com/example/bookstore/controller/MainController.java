@@ -54,7 +54,7 @@ public class MainController {
             btnLogin.setVisible(false);
             btnLogin.setManaged(false);
 
-            accountMenu.setText(currentUser.username);
+            accountMenu.setText(currentUser.getUsername());
             accountMenu.setVisible(true);
             accountMenu.setManaged(true);
         }

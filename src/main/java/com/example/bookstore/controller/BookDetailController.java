@@ -89,7 +89,7 @@ public class BookDetailController {
                 return;
             }
 
-            String correctPassword = currentUser.password;
+            String correctPassword = currentUser.getPassword();
 
             if (input.equals(correctPassword)) {
                 Alert success = new Alert(Alert.AlertType.INFORMATION);

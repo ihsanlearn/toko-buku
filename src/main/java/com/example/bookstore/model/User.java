@@ -36,16 +36,11 @@ public class User {
         this.password = password;
     }
 
-    // Constructor minimal (ketika register)
     public User(int id, String username, String password) {
         this(id, null, username, null, null,
                 null, null, null,
                 null, "user", password);
     }
-
-    // ============================
-    // GETTERS & SETTERS
-    // ============================
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

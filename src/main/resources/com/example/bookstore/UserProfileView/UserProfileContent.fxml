@@ -7,25 +7,86 @@
 <VBox xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.bookstore.controller.user.UserProfileContentController"
-      spacing="15"
+      spacing="20"
       style="-fx-padding: 30;">
 
-    <Label text="User Profile" style="-fx-font-size: 18px;"/>
+    <!-- HEADER -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="👤" style="-fx-font-size: 40;" />
+        <VBox>
+            <Label text="Customer Profile" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Manage your personal information" style="-fx-font-size: 12px; -fx-text-fill: gray;" />
+        </VBox>
+    </HBox>
 
-    <Label text="Full Name"/>
-    <TextField fx:id="txtFullName"/>
+    <!-- BASIC INFORMATION -->
+    <TitledPane text="Basic Information" expanded="true">
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Full Name"/>
+            <TextField fx:id="txtFullName"/>
 
-    <Label text="Email"/>
-    <TextField fx:id="txtEmail"/>
+            <Label text="Username"/>
+            <TextField fx:id="txtUsername"/>
+        </VBox>
+    </TitledPane>
 
-    <Label text="Phone"/>
-    <TextField fx:id="txtPhone"/>
+    <!-- CONTACT INFORMATION -->
+    <TitledPane text="Contact Information" expanded="true">
+        <VBox spacing="10" style="-fx-padding: 10;">
 
-    <Label text="Address"/>
-    <TextField fx:id="txtAddress"/>
+            <Label text="Email"/>
+            <TextField fx:id="txtEmail"/>
 
+            <Label text="Phone Number"/>
+            <TextField fx:id="txtPhone"/>
+
+        </VBox>
+    </TitledPane>
+
+    <!-- SHIPPING ADDRESS -->
+    <TitledPane text="Shipping Address" expanded="true">
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Address Line"/>
+            <TextField fx:id="txtAddress"/>
+
+            <Label text="City"/>
+            <TextField fx:id="txtCity"/>
+
+            <Label text="Postal Code"/>
+            <TextField fx:id="txtPostalCode"/>
+        </VBox>
+    </TitledPane>
+
+    <!-- READING PREFERENCES -->
+    <TitledPane text="Reading Preferences" expanded="false">
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Favorite Genres"/>
+            <ChoiceBox fx:id="cbFavoriteGenre">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Fiction"/>
+                        <String fx:value="Non-fiction"/>
+                        <String fx:value="Romance"/>
+                        <String fx:value="Horror"/>
+                        <String fx:value="Sci-Fi"/>
+                        <String fx:value="Fantasy"/>
+                        <String fx:value="Thriller"/>
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+        </VBox>
+    </TitledPane>
+
+    <!-- SAVE BUTTON -->
     <Button fx:id="btnSaveProfile"
             text="Save Profile"
-            style="-fx-padding: 10 20; -fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;"/>
+            style="
+                -fx-padding: 12 26;
+                -fx-background-color: #1565C0;
+                -fx-text-fill: white;
+                -fx-background-radius: 8;
+                -fx-font-size: 14px;
+                -fx-font-weight: bold;
+            "/>
 
 </VBox>

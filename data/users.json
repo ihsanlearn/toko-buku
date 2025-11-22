@@ -3,30 +3,21 @@
     {
       "id": 1,
       "username": "admin",
-      "password": "admin",
       "role": "admin",
-      "latestId": 0
+      "password": "admin"
     },
     {
       "id": 2,
-      "username": "ihsan",
-      "password": "ihsan",
+      "fullName": "Ihsan Goat",
+      "username": "ihsangoat",
+      "email": "ihsangoat@gmail.com",
+      "phone": "087730301987",
+      "address": "Jl. Baron Km.8 Karangasem",
+      "city": "Wonosari",
+      "postalCode": "55851",
+      "favoriteGenre": "Fantasy",
       "role": "user",
-      "latestId": 0
-    },
-    {
-      "id": 3,
-      "username": "Mars",
-      "password": "mars",
-      "role": "user",
-      "latestId": 0
-    },
-    {
-      "id": 4,
-      "username": "faris",
-      "password": "daris",
-      "role": "user",
-      "latestId": 0
+      "password": "ihsangoat"
     }
   ]
 }

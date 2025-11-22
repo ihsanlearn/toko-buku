@@ -32,4 +32,57 @@ public class UserService {
 
         return true;
     }
+
+    public boolean update(
+        int id,
+        String fullName,
+        String username,
+        String email,
+        String phone,
+        String address,
+        String city,
+        String postalCode,
+        String favoriteGenre
+    ) {
+        List<User> users = repo.getAll();
+
+        boolean usernameUsed = users.stream()
+                .anyMatch(u -> u.getUsername().equalsIgnoreCase(username) && u.getId() != id);
+
+        if (usernameUsed) {
+            System.out.println("username dah digunakan");
+            return false;
+        }
+
+        boolean emailUsed = users.stream()
+        .anyMatch(u -> email != null &&
+                u.getEmail() != null &&
+                u.getEmail().equalsIgnoreCase(email) &&
+                u.getId() != id);
+
+        if (emailUsed) {
+            System.out.println("email dah digunakan");
+            return false;
+        }
+
+        for (User u : users) {
+            if (u.getId() == id) {
+
+                u.setFullName(fullName);
+                u.setUsername(username);
+                u.setEmail(email);
+                u.setPhone(phone);
+                u.setAddress(address);
+                u.setCity(city);
+                u.setPostalCode(postalCode);
+                u.setFavoriteGenre(favoriteGenre);
+
+                repo.saveAll(users);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -48,8 +48,14 @@
             <Label text="Stock"/>
             <TextField fx:id="inputStock"/>
 
-            <Label text="Image Title"/>
-            <TextField fx:id="inputImgTitle"/>
+            <!-- <Label text="Image Title"/>
+            <TextField fx:id="inputImgTitle"/> -->
+
+            <Label text="Book Image"/>
+            <HBox spacing="10">
+                <Button fx:id="btnUpload" text="Upload Image" onAction="#handleUploadImage"/>
+                <Label fx:id="labelImgName" text="No file selected"/>
+            </HBox>
 
             <HBox spacing="10">
                 <Button fx:id="btnAdd" text="Add"

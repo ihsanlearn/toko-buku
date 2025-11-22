@@ -79,6 +79,22 @@
       "price": 185000,
       "stock": 6,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
+    },
+    {
+      "id": 11,
+      "title": "Pahlawan Amba",
+      "author": "ihsangk",
+      "price": 200000,
+      "stock": 12,
+      "imgPath": "com/example/bookstore/images/pahlawan_amba.jpeg"
+    },
+    {
+      "id": 12,
+      "title": "Muwani Amba",
+      "author": "ihsangk",
+      "price": 100000,
+      "stock": 12,
+      "imgPath": "com/example/bookstore/images/muwani_amba.jpeg"
     }
   ]
 }

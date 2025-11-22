@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.bookstore.controller.user.UserProfileContentController"
+      spacing="15"
+      style="-fx-padding: 30;">
+
+    <Label text="User Profile" style="-fx-font-size: 18px;"/>
+
+    <Label text="Full Name"/>
+    <TextField fx:id="txtFullName"/>
+
+    <Label text="Email"/>
+    <TextField fx:id="txtEmail"/>
+
+    <Label text="Phone"/>
+    <TextField fx:id="txtPhone"/>
+
+    <Label text="Address"/>
+    <TextField fx:id="txtAddress"/>
+
+    <Button fx:id="btnSaveProfile"
+            text="Save Profile"
+            style="-fx-padding: 10 20; -fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;"/>
+
+</VBox>

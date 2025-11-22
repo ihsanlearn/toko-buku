@@ -36,6 +36,7 @@ public class MainController {
     @FXML private MenuButton accountMenu;
     @FXML private MenuItem menuLogout;
     @FXML private MenuItem menuTopup;
+    @FXML private MenuItem menuProfile;
 
     private final BookService bookService = new BookService();
     private List<Book> books;
@@ -58,7 +59,6 @@ public class MainController {
             accountMenu.setManaged(true);
         }
 
-        // Top Up Menu Item Action
         menuTopup.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
@@ -69,6 +69,14 @@ public class MainController {
                 topUpStage.setScene(new Scene(topUpRoot));
                 topUpStage.show();
             } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        menuProfile.setOnAction(e -> {
+            try {
+                goTo(e, "UserProfile");;
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
@@ -93,7 +101,7 @@ public class MainController {
         btnSearch.setOnAction(e -> searchProducts());
         btnLogin.setOnAction(e -> {
             try {
-                goToLogin(e);
+                goTo(e, "LoginView");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -134,9 +142,9 @@ public class MainController {
         searchField.requestFocus();
     }
 
-    private void goToLogin(ActionEvent event) throws Exception {
+    private void goTo(ActionEvent event, String fxml) throws Exception {
         try {
-            App.setRoot("LoginView");
+            App.setRoot(fxml);
         } catch (IOException e) {
             e.printStackTrace();
         }

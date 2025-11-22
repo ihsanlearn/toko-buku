@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.bookstore.controller.UserProfileController"
+            stylesheets="@css/user.css">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox spacing="18" prefWidth="220" styleClass="sidebar">
+            <padding>
+                <Insets top="25" bottom="20" left="20" right="20"/>
+            </padding>
+
+            <Label text="User Menu" styleClass="title"/>
+            <Separator/>
+
+            <!-- Profile -->
+            <Button fx:id="btnProfile"
+                    text="👤  Profile"
+                    maxWidth="Infinity"
+                    styleClass="sidebar-button"/>
+
+            <!-- Orders -->
+            <Button fx:id="btnOrders"
+                    text="📦  My Orders"
+                    maxWidth="Infinity"
+                    styleClass="sidebar-button"/>
+
+            <!-- Settings -->
+            <Button fx:id="btnSettings"
+                    text="⚙️  Settings"
+                    maxWidth="Infinity"
+                    styleClass="sidebar-button"/>
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Logout -->
+            <Button fx:id="btnLogout"
+                    text="🚪  Logout"
+                    maxWidth="Infinity"
+                    styleClass="sidebar-button"/>
+
+        </VBox>
+    </left>
+
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="header">
+            <padding>
+                <Insets top="15" bottom="15" left="20" right="20"/>
+            </padding>
+            <Label fx:id="pageTitle" text="User Profile"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENT -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content"/>
+    </center>
+
+</BorderPane>

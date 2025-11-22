@@ -1,0 +1,29 @@
+.sidebar {
+    -fx-background-color: #2b2d42;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #3f4159;
+}
+
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.header {
+    -fx-background-color: #edf2f4;
+    -fx-font-size: 18px;
+}
+
+.content {
+    -fx-padding: 20;
+}

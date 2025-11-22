@@ -3,6 +3,7 @@ package com.example.bookstore.controller.user;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class UserProfileContentController {
@@ -14,9 +15,22 @@ public class UserProfileContentController {
 
     @FXML private Button btnSaveProfile;
 
-    @FXML
-    public void initialize() {
+    @FXML private ChoiceBox<String> cbFavoriteGenre;
+
+    @FXML public void initialize() {
         btnSaveProfile.setOnAction(e -> saveProfile());
+
+            cbFavoriteGenre.getItems().addAll(
+            "Fiction",
+            "Romance",
+            "Horror",
+            "Sci-Fi",
+            "Fantasy",
+            "Mystery",
+            "Non-fiction"
+        );
+
+        cbFavoriteGenre.setValue("Fiction");
     }
 
     private void saveProfile() {

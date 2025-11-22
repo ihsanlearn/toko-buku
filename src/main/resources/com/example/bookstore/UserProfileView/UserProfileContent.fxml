@@ -33,13 +33,11 @@
     <!-- CONTACT INFORMATION -->
     <TitledPane text="Contact Information" expanded="true">
         <VBox spacing="10" style="-fx-padding: 10;">
-
             <Label text="Email"/>
             <TextField fx:id="txtEmail"/>
 
             <Label text="Phone Number"/>
             <TextField fx:id="txtPhone"/>
-
         </VBox>
     </TitledPane>
 
@@ -60,20 +58,8 @@
     <!-- READING PREFERENCES -->
     <TitledPane text="Reading Preferences" expanded="false">
         <VBox spacing="10" style="-fx-padding: 10;">
-            <Label text="Favorite Genres"/>
-            <ChoiceBox fx:id="cbFavoriteGenre">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Fiction"/>
-                        <String fx:value="Non-fiction"/>
-                        <String fx:value="Romance"/>
-                        <String fx:value="Horror"/>
-                        <String fx:value="Sci-Fi"/>
-                        <String fx:value="Fantasy"/>
-                        <String fx:value="Thriller"/>
-                    </FXCollections>
-                </items>
-            </ChoiceBox>
+            <Label text="Favorite Genre"/>
+            <ChoiceBox fx:id="cbFavoriteGenre" />
         </VBox>
     </TitledPane>
 

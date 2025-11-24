@@ -1,29 +1,105 @@
-.sidebar {
-    -fx-background-color: #2b2d42;
+/* =====================================
+   GLOBAL
+===================================== */
+* {
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 
+/* Background keseluruhan */
+BorderPane {
+    -fx-background-color: #0d1117;
+}
+
+/* =====================================
+   SIDEBAR
+===================================== */
+.sidebar {
+    -fx-background-color: #111827; /* biru gelap soft */
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: rgba(0, 255, 255, 0.15);
+    -fx-effect: dropshadow(gaussian, rgba(0,255,255,0.06), 10, 0.3, 0, 0);
+}
+
+.sidebar .title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00eaff; /* neon soft */
+}
+
+/* Tombol Sidebar */
 .sidebar-button {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-text-fill: #d0d7de;
+    -fx-font-size: 15px;
+    -fx-padding: 10;
     -fx-alignment: CENTER_LEFT;
+
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+
+    -fx-transition: 0.2s;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #3f4159;
+    -fx-background-color: rgba(0, 255, 255, 0.10);
+    -fx-text-fill: #00eaff;
 }
 
-.title {
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
+.sidebar-button:focused {
+    -fx-background-color: rgba(0, 255, 255, 0.18);
+    -fx-text-fill: #00eaff;
 }
 
+/* =====================================
+   HEADER
+===================================== */
 .header {
-    -fx-background-color: #edf2f4;
-    -fx-font-size: 18px;
+    -fx-background-color: rgba(17, 24, 39, 0.7);
+    -fx-border-color: rgba(0, 255, 255, 0.18);
+    -fx-border-width: 0 0 1 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,255,255,0.05), 8, 0.25, 0, 2);
 }
 
-.content {
+.header Label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e2e8f0;
+}
+
+/* =====================================
+   CONTENT AREA
+===================================== */
+/* .content {
+    -fx-background-color: #0d1117;
+    -fx-padding: 25;
+} */
+
+/* Panel di dalam content */
+
+/* .content Card,
+.content VBox,
+.content HBox,
+.content Pane {
+    -fx-background-color: #111827;
+    -fx-background-radius: 10;
     -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,255,255,0.06), 10, 0.3, 0, 0);
+} */
+
+/* =====================================
+   BUTTON UMUM (Jika nanti ditambah)
+===================================== */
+.button {
+    -fx-background-color: rgba(0, 255, 255, 0.15);
+    -fx-text-fill: #e2e8f0;
+    -fx-background-radius: 6;
+    -fx-padding: 8 14;
+}
+
+.button:hover {
+    -fx-background-color: rgba(0, 255, 255, 0.25);
+}
+
+.button:pressed {
+    -fx-background-color: rgba(0, 255, 255, 0.35);
 }

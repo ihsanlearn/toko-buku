@@ -1,67 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.bookstore.controller.UserProfileController"
-            stylesheets="@css/user.css">
+<BorderPane stylesheets="@css/user.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookstore.controller.UserProfileController">
 
     <!-- SIDEBAR -->
     <left>
-        <VBox spacing="18" prefWidth="220" styleClass="sidebar">
+        <VBox prefWidth="220" spacing="18" styleClass="sidebar">
             <padding>
-                <Insets top="25" bottom="20" left="20" right="20"/>
+                <Insets bottom="20" left="20" right="20" top="25" />
             </padding>
 
-            <Label text="User Menu" styleClass="title"/>
-            <Separator/>
+            <Label styleClass="title" text="User Menu" />
+            <Separator />
 
             <!-- Profile -->
-            <Button fx:id="btnProfile"
-                    text="👤  Profile"
-                    maxWidth="Infinity"
-                    styleClass="sidebar-button"/>
+            <Button fx:id="btnProfile" maxWidth="Infinity" styleClass="sidebar-button" text="👤  Profile" />
 
             <!-- Orders -->
-            <Button fx:id="btnOrders"
-                    text="📦  My Orders"
-                    maxWidth="Infinity"
-                    styleClass="sidebar-button"/>
+            <Button fx:id="btnOrders" maxWidth="Infinity" styleClass="sidebar-button" text="📦  My Orders" />
 
             <!-- Settings -->
-            <Button fx:id="btnSettings"
-                    text="⚙️  Settings"
-                    maxWidth="Infinity"
-                    styleClass="sidebar-button"/>
+            <Button fx:id="btnSettings" maxWidth="Infinity" styleClass="sidebar-button" text="⚙️  Settings" />
 
             <!-- Spacer -->
-            <Region VBox.vgrow="ALWAYS"/>
+            <Region VBox.vgrow="ALWAYS" />
 
             <!-- Logout -->
-            <Button fx:id="btnLogout"
-                    text="🚪  Logout"
-                    maxWidth="Infinity"
-                    styleClass="sidebar-button"/>
+            <Button fx:id="btnLogout" maxWidth="Infinity" styleClass="sidebar-button" text="🚪  Back" />
 
         </VBox>
     </left>
 
     <!-- HEADER -->
     <top>
-        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="header">
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
             <padding>
-                <Insets top="15" bottom="15" left="20" right="20"/>
+                <Insets bottom="15" left="20" right="20" top="15" />
             </padding>
-            <Label fx:id="pageTitle" text="User Profile"/>
+            <Label fx:id="pageTitle" text="User Profile" />
         </HBox>
     </top>
 
     <!-- CONTENT -->
     <center>
-        <StackPane fx:id="contentArea" styleClass="content"/>
+        <StackPane fx:id="contentArea" styleClass="content" />
     </center>
 
 </BorderPane>

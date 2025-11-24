@@ -48,7 +48,7 @@ public class BookDetailController {
 
         try {
             Image img = book.getImgPath() != null
-                    ? new Image(getClass().getResourceAsStream(book.getImgPath()))
+                    ? new Image(getClass().getResourceAsStream("/" + book.getImgPath()))
                     : new Image(getClass().getResourceAsStream("/com/example/bookstore/images/sample.jpeg"));
             bookImage.setImage(img);
         } catch (Exception e) {

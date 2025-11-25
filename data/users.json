@@ -18,6 +18,12 @@
       "favoriteGenre": "Fantasy",
       "role": "user",
       "password": "ihsangoat"
+    },
+    {
+      "id": 3,
+      "username": "Mars",
+      "role": "user",
+      "password": "mars"
     }
   ]
 }

@@ -8,6 +8,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.control.Label;
 import java.io.IOException;
 
+import com.example.bookstore.App;
+
 public class UserProfileController {
 
     @FXML private StackPane contentArea;
@@ -23,7 +25,7 @@ public class UserProfileController {
         btnProfile.setOnAction(e -> setPage("UserProfileContent.fxml", "User Profile"));
         btnOrders.setOnAction(e -> setPage("UserOrders.fxml", "My Orders"));
         btnSettings.setOnAction(e -> setPage("UserSettings.fxml", "Settings"));
-        btnLogout.setOnAction(e -> System.out.println("Logging out..."));
+        btnLogout.setOnAction(e -> backButton());
 
         setPage("UserProfileContent.fxml", "User Profile");
     }
@@ -42,5 +44,14 @@ public class UserProfileController {
       } catch (IOException e) {
           e.printStackTrace();
       }
-  }
+    }
+
+    private void backButton(){
+        try {
+            App.setRoot("MainView");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

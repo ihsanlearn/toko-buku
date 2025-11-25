@@ -1,6 +1,5 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.App;
 import com.example.bookstore.model.User;
 import com.example.bookstore.service.UserService;
 import com.example.bookstore.session.SessionManager;

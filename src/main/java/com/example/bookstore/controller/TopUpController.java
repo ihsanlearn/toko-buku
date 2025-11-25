@@ -1,5 +1,10 @@
 package com.example.bookstore.controller;
 
+import com.example.bookstore.App;
+import com.example.bookstore.model.User;
+import com.example.bookstore.service.UserService;
+import com.example.bookstore.session.SessionManager;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,15 +24,15 @@ public class TopUpController {
     @FXML
     private Button withdrawButton;
 
-    // Dummy balance variable
-    private int balance = 0;
+    private User currentUser;
+    private UserService userService = new UserService();
 
     @FXML
     private void initialize() {
-        // Set balance awal ke textfield
+        currentUser = SessionManager.getCurrentUser();
+
         updateBalanceField();
 
-        // Pasang event handler
         topupButton.setOnAction(event -> topUp());
         withdrawButton.setOnAction(event -> withdraw());
     }
@@ -36,8 +41,11 @@ public class TopUpController {
         Integer amount = getAmount();
         if (amount == null) return;
 
-        balance += amount;
+        userService.updateBalance(currentUser.getId(), amount);
+        currentUser = userService.getUserById(currentUser.getId());
+
         updateBalanceField();
+
         showAlert("Success", "Top up berhasil sebesar: Rp " + amount);
     }
 
@@ -45,15 +53,21 @@ public class TopUpController {
         Integer amount = getAmount();
         if (amount == null) return;
 
-        if (amount > balance) {
+        int currentBalance = currentUser.getBalance();
+
+        if (amount > currentBalance) {
             showAlert("Error", "Balance tidak cukup!");
             return;
         }
 
-        balance -= amount;
+        userService.updateBalance(currentUser.getId(), -amount);
+
+        currentUser = userService.getUserById(currentUser.getId());
+
         updateBalanceField();
         showAlert("Success", "Withdraw berhasil sebesar: Rp " + amount);
     }
+
 
     private Integer getAmount() {
         String text = amountField.getText();
@@ -77,7 +91,7 @@ public class TopUpController {
     }
 
     private void updateBalanceField() {
-        balanceField.setText("Rp " + balance);
+        balanceField.setText(Integer.toString(currentUser.getBalance()));;
     }
 
     private void showAlert(String title, String message) {

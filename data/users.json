@@ -4,7 +4,8 @@
       "id": 1,
       "username": "admin",
       "role": "admin",
-      "password": "admin"
+      "password": "admin",
+      "balance": 0
     },
     {
       "id": 2,
@@ -17,13 +18,22 @@
       "postalCode": "55851",
       "favoriteGenre": "Fantasy",
       "role": "user",
-      "password": "ihsangoat"
+      "password": "ihsangoat",
+      "balance": 0
     },
     {
       "id": 3,
       "username": "Mars",
       "role": "user",
-      "password": "mars"
+      "password": "mars",
+      "balance": 0
+    },
+    {
+      "id": 4,
+      "username": "ihsangk",
+      "role": "user",
+      "password": "ihsangk",
+      "balance": 70000
     }
   ]
 }

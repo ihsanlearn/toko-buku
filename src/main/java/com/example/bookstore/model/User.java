@@ -16,10 +16,11 @@ public class User {
     private String role;
 
     private String password;
+    private int balance;
 
     public User(int id, String fullName, String username, String email, String phone,
                 String address, String city, String postalCode,
-                String favoriteGenre, String role, String password) {
+                String favoriteGenre, String role, String password, int balance) {
 
         this.id = id;
         this.fullName = fullName;
@@ -34,12 +35,13 @@ public class User {
         this.favoriteGenre = favoriteGenre;
         this.role = role != null ? role : "user";
         this.password = password;
+        this.balance = balance;
     }
 
     public User(int id, String username, String password) {
         this(id, null, username, null, null,
                 null, null, null,
-                null, "user", password);
+                null, "user", password, 0);
     }
 
     public int getId() { return id; }
@@ -74,4 +76,7 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public int getBalance() {return balance; }
+    public void setBalance(int balance) {this.balance = balance; }
 }

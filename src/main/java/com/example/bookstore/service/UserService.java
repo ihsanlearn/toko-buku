@@ -85,4 +85,28 @@ public class UserService {
         return false;
     }
 
+    public boolean updateBalance(int id, int balance) {
+        List<User> users = repo.getAll();
+        for (User u : users) {
+            if (u.getId() == id) {
+                u.setBalance(u.getBalance() + balance);
+                repo.saveAll(users);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public User getUserById(int id) {
+        List<User> users = repo.getAll();
+        for (User u : users) {
+            if (u.getId() == id) {
+                return u;
+            }
+        }
+
+        return null;
+    }
+
 }

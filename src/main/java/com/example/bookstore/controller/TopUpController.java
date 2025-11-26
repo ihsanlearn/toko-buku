@@ -21,6 +21,7 @@ public class TopUpController {
     @FXML private Button withdrawButton;
 
     private Runnable onTopUpSuccess;
+    private Runnable onWithdrawSuccess;
 
     private User currentUser;
     private UserService userService = new UserService();
@@ -37,6 +38,10 @@ public class TopUpController {
 
     public void setOnTopUpSuccess(Runnable callback) {
         this.onTopUpSuccess = callback;
+    }
+
+    public void setOnWithdrawSuccess(Runnable callback) {
+        this.onWithdrawSuccess = callback;
     }
 
     private void topUp() {
@@ -76,6 +81,8 @@ public class TopUpController {
         updateBalanceField();
 
         showAlert("Success", "Withdraw berhasil sebesar: Rp " + amount);
+
+        if (onWithdrawSuccess != null) onWithdrawSuccess.run();
 
         Stage stage = (Stage) topupButton.getScene().getWindow();
         stage.close();

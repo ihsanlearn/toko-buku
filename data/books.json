@@ -21,7 +21,7 @@
       "title": "Design Patterns",
       "author": "Erich Gamma et al.",
       "price": 250000,
-      "stock": 1,
+      "stock": 0,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {

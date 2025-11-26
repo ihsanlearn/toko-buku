@@ -101,7 +101,7 @@ public class CheckoutController {
 
             int newBalance = currentUser.getBalance() - totalPrice;
             currentUser.setBalance(newBalance);
-            userService.updateBalance(currentUser.getId(), newBalance);
+            userService.updateBalance(currentUser.getId(), -totalPrice);
             SessionManager.setCurrentUser(currentUser);
 
             showAlert(Alert.AlertType.INFORMATION, "Berhasil",

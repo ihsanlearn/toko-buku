@@ -59,24 +59,28 @@ public class MainController {
             accountMenu.setManaged(true);
         }
 
-    menuTopup.setOnAction(e -> {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
-            Parent topUpRoot = loader.load();
+        menuTopup.setOnAction(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
+                Parent topUpRoot = loader.load();
 
-            TopUpController ctrl = loader.getController();
-            ctrl.setOnTopUpSuccess(() -> {
-                refreshView();
-            });
+                TopUpController ctrl = loader.getController();
+                ctrl.setOnTopUpSuccess(() -> {
+                    refreshView();
+                });
+                
+                ctrl.setOnWithdrawSuccess(() -> {
+                    refreshView();
+                });
 
-            Stage topUpStage = new Stage();
-            topUpStage.setTitle("Top Up Saldo");
-            topUpStage.setScene(new Scene(topUpRoot));
-            topUpStage.show();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    });
+                Stage topUpStage = new Stage();
+                topUpStage.setTitle("Top Up Saldo");
+                topUpStage.setScene(new Scene(topUpRoot));
+                topUpStage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         menuProfile.setOnAction(e -> {
             try {

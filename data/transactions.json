@@ -21,6 +21,17 @@
       "status": "Dikemas",
       "shippingAddress": "dsafdsfadfa",
       "courier": "POS"
+    },
+    {
+      "transactionId": 3,
+      "userId": 4,
+      "bookId": 3,
+      "quantity": 1,
+      "totalPrice": 250000.0,
+      "purchaseDate": "2025-11-27T06:51:50.04270395",
+      "status": "Dikemas",
+      "shippingAddress": "Osaka Jwpang",
+      "courier": "TIKI"
     }
   ]
 }

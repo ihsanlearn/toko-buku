@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.bookstore.controller.CheckoutController"
+            stylesheets="@css/checkout.css">
+
+    <center>
+        <HBox spacing="25" alignment="TOP_CENTER" styleClass="checkout-root">
+
+            <VBox spacing="18" alignment="TOP_LEFT" prefWidth="450" styleClass="card">
+                <Label text="Checkout" styleClass="title" />
+
+                <Label text="Alamat Pengiriman" styleClass="label"/>
+                <TextArea fx:id="addressField" styleClass="text-area" prefRowCount="4" wrapText="true"/>
+
+                <Label text="Jasa Pengiriman" styleClass="label"/>
+                <ComboBox fx:id="courierCombo" prefWidth="300" styleClass="combo"/>
+
+                <Label text="Voucher / Diskon" styleClass="label"/>
+                <ComboBox fx:id="discountCombo" prefWidth="300" styleClass="combo"
+                          promptText="Pilih voucher (opsional)" />
+            </VBox>
+
+            <VBox spacing="15" alignment="TOP_LEFT" prefWidth="350" styleClass="card">
+                <Label text="Ringkasan Pembayaran" styleClass="title"/>
+
+                <Label fx:id="summaryLabel" styleClass="summary"/>
+
+                <Separator/>
+
+                <HBox spacing="10">
+                    <Button fx:id="cancelBtn" text="Batal" styleClass="btn-cancel" prefWidth="130"/>
+                    <Button fx:id="confirmBtn" text="Konfirmasi Pembelian" styleClass="btn-confirm" prefWidth="190"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

@@ -1,4 +1,26 @@
 {
-  "transactions": []
+  "transactions": [
+    {
+      "transactionId": 1,
+      "userId": 4,
+      "bookId": 2,
+      "quantity": 3,
+      "totalPrice": 630000.0,
+      "purchaseDate": "2025-11-26T18:28:15.743560416",
+      "status": "Dikemas",
+      "shippingAddress": "Jl baron karangasem",
+      "courier": "JNE"
+    },
+    {
+      "transactionId": 2,
+      "userId": 4,
+      "bookId": 3,
+      "quantity": 1,
+      "totalPrice": 250000.0,
+      "purchaseDate": "2025-11-26T19:09:48.916668591",
+      "status": "Dikemas",
+      "shippingAddress": "dsafdsfadfa",
+      "courier": "POS"
+    }
+  ]
 }
-

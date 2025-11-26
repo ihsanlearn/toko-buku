@@ -13,7 +13,7 @@
       "title": "The Pragmatic Programmer",
       "author": "Andrew Hunt \u0026 David Thomas",
       "price": 210000,
-      "stock": 8,
+      "stock": 5,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
@@ -21,7 +21,7 @@
       "title": "Design Patterns",
       "author": "Erich Gamma et al.",
       "price": 250000,
-      "stock": 5,
+      "stock": 1,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
@@ -85,7 +85,7 @@
       "title": "Pahlawan Amba",
       "author": "ihsangk",
       "price": 200000,
-      "stock": 12,
+      "stock": 9,
       "imgPath": "com/example/bookstore/images/pahlawan_amba.jpeg"
     },
     {

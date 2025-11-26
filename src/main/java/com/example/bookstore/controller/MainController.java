@@ -54,24 +54,29 @@ public class MainController {
             btnLogin.setVisible(false);
             btnLogin.setManaged(false);
 
-            accountMenu.setText(currentUser.getUsername());
+            accountMenu.setText(currentUser.getUsername() + " | Balance Rp" + currentUser.getBalance());
             accountMenu.setVisible(true);
             accountMenu.setManaged(true);
         }
 
-        menuTopup.setOnAction(e -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
-                Parent topUpRoot = loader.load();
+    menuTopup.setOnAction(e -> {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/TopUp.fxml"));
+            Parent topUpRoot = loader.load();
 
-                Stage topUpStage = new Stage();
-                topUpStage.setTitle("Top Up Saldo");
-                topUpStage.setScene(new Scene(topUpRoot));
-                topUpStage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+            TopUpController ctrl = loader.getController();
+            ctrl.setOnTopUpSuccess(() -> {
+                refreshView();
+            });
+
+            Stage topUpStage = new Stage();
+            topUpStage.setTitle("Top Up Saldo");
+            topUpStage.setScene(new Scene(topUpRoot));
+            topUpStage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    });
 
         menuProfile.setOnAction(e -> {
             try {
@@ -150,14 +155,11 @@ public class MainController {
         }
     }
 
-    // public void setAdminMode() {
-    //     btnLogin.setVisible(false);
-    //     btnLogin.setManaged(false);     
+    private void refreshView() {
+        User currentUser = SessionManager.getCurrentUser();
+        accountMenu.setText(currentUser.getUsername() + " | Saldo: " + currentUser.getBalance());
 
-    //     Button addBookButton = new Button("Add Book");
-    //     addBookButton.setStyle("-fx-background-color: #0051ff; -fx-text-fill: white; -fx-background-radius: 6;");
-    //     addBookButton.setOnAction(e -> System.out.println("Add Book Clicked!"));
-
-    //     headerBar.getChildren().add(addBookButton);
-    // }
+        books = bookService.getAllBooks();
+        loadBooks(books);
+    }
 }

@@ -91,11 +91,11 @@ mvn javafx:run
 
 ## 📊 GitHub Repository Stats
 
-![Stars](https://img.shields.io/github/stars/ihsanlearn/toko-buku?style=tokyo-night)
-![Forks](https://img.shields.io/github/forks/ihsanlearn/toko-buku?style=tokyo-night)
-![Issues](https://img.shields.io/github/issues/ihsanlearn/toko-buku?style=tokyo-night)
-![License](https://img.shields.io/github/license/ihsanlearn/toko-buku?style=tokyo-night)
-![Contributors](https://img.shields.io/github/contributors/ihsanlearn/toko-buku?style=tokyo-night)
+![Stars](https://img.shields.io/github/stars/ihsanlearn/toko-buku?style=yellow)
+![Forks](https://img.shields.io/github/forks/ihsanlearn/toko-buku?style=blue)
+![Issues](https://img.shields.io/github/issues/ihsanlearn/toko-buku?style=red)
+![License](https://img.shields.io/github/license/ihsanlearn/toko-buku?style=green)
+![Contributors](https://img.shields.io/github/contributors/ihsanlearn/toko-buku?style=pink)
 
 ---
 
@@ -117,7 +117,7 @@ Contributions are welcome. Please open an issue or submit a pull request for dis
 For inquiries, suggestions, or collaboration, reach out:
 
 ```
-Author : Ihsan Restu Adi, Berly Marcellino Suprapto, Faris Syahrul Muhammad
+Contributor : Ihsan Restu Adi, Berly Marcellino Suprapto, Faris Syahrul Muhammad
 ```
 
 ---

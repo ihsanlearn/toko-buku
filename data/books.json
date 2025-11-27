@@ -77,7 +77,7 @@
       "title": "Clean Architecture",
       "author": "Robert C. Martin",
       "price": 185000,
-      "stock": 6,
+      "stock": 5,
       "imgPath": "com/example/bookstore/images/sample.jpeg"
     },
     {
@@ -85,7 +85,7 @@
       "title": "Pahlawan Amba",
       "author": "ihsangk",
       "price": 200000,
-      "stock": 9,
+      "stock": 3,
       "imgPath": "com/example/bookstore/images/pahlawan_amba.jpeg"
     },
     {
@@ -93,7 +93,7 @@
       "title": "Muwani Amba",
       "author": "ihsangk",
       "price": 100000,
-      "stock": 12,
+      "stock": 11,
       "imgPath": "com/example/bookstore/images/muwani_amba.jpeg"
     }
   ]

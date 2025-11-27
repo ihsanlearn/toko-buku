@@ -48,7 +48,7 @@
                 <!-- Scrollable description -->
                 <ScrollPane fitToWidth="true" prefHeight="220" style="-fx-background: transparent; -fx-background-color: transparent;">
                     <TextArea fx:id="descriptionArea" wrapText="true" editable="false"
-                              style="-fx-control-inner-background: transparent; -fx-text-fill: #e6eef8; -fx-font-size: 13px;"
+                              style="-fx-control-inner-background: transparent; -fx-text-fill: #000000ff; -fx-font-size: 13px;"
                               prefRowCount="10" />
                 </ScrollPane>
 

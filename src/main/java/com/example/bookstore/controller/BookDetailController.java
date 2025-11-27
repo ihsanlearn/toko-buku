@@ -40,6 +40,7 @@ public class BookDetailController {
         titleLabel.setText(book.getTitle());
         authorLabel.setText("Penulis: " + book.getAuthor());
         priceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
+        descriptionArea.setText("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet dolorum ad blanditiis, rerum maiores et nobis est fugiat voluptatum. Reprehenderit totam, assumenda quidem quos magni, voluptatem earum porro, consequuntur suscipit nostrum distinctio ipsam voluptatibus omnis. Rerum maxime ratione ducimus, mollitia quasi veniam, quis animi at labore, recusandae porro vitae corporis? Tempora illum est ducimus optio, illo expedita dicta, ipsam nostrum veritatis perferendis, nulla voluptatem dignissimos labore officia. Unde fugit aliquid dolore optio in accusamus, quaerat maxime impedit rem sint animi voluptas corrupti quas laboriosam voluptatibus totam quasi enim dicta iste eligendi! Praesentium harum dolorum ab voluptate soluta, sed distinctio reiciendis?");
         stockLabel.setText(book.getStock() > 0 ? "Stok: " + book.getStock() : "Habis");
         isbnLabel.setText("ISBN: " + book.getId());
 

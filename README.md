@@ -116,10 +116,6 @@ Contributions are welcome. Please open an issue or submit a pull request for dis
 
 For inquiries, suggestions, or collaboration, reach out:
 
-```
-Contributor : Ihsan Restu Adi, Berly Marcellino Suprapto, Faris Syahrul Muhammad
-```
-
 ---
 
 ## ⭐ Support This Project
@@ -131,3 +127,7 @@ If you find this project helpful, consider supporting by giving a star.
 ```
 
 ---
+
+## Contributor
+<a href="https://github.com/ihsanlearn"><img src="https://avatars.githubusercontent.com/u/22318055?v=4" width="50" height="50" alt="" style="max-width: 100%;"></a>
+<a href="https://github.com/ihsanlearn"><img src="https://github.com/ihsanlearn.png" width="50" height="50" alt="" style="max-width: 100%;"></a>

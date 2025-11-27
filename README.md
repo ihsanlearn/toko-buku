@@ -82,8 +82,6 @@ mvn javafx:run
 
 ## 🧪 Screenshots (Placeholder)
 
-> Add your UI screenshots here
-
 ```
 ![Login Page](https://via.placeholder.com/1000x500?text=Login+Page)
 ![Dashboard](https://via.placeholder.com/1000x500?text=Dashboard)

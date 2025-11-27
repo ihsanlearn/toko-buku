@@ -1,42 +1,135 @@
-# Tugas Besar PBO - Online Book Store
+# 📚 Online Book Store
 
-**Mata Kuliah**: Pemrograman Berbasis Objek (PBO)  
-**Dosen**: Arif Rohmadi  
-**Semester**: 3   
-**Kelompok / NIM**:  
-- <a href="https://github.com/IMars-kun" target="_blank">Berly Marcellino Suprapto</a> - L0124045
-- Faris Syahrul Muhammad - 
-- Ihsan Restu Adi - L0124058
+A modern and scalable **Online Book Store** application built using **Java**, **JavaFX**, and **Maven**.  
+Designed to provide an intuitive user experience for purchasing books online, managing inventory, handling transactions, and ensuring secure user authentication.
 
 ---
 
-## Deskripsi Proyek
+## 🏆 Key Features
 
-
----
-
-## Fitur
-
-
----
-
-## Teknologi & Tools
-
-- **Bahasa Pemrograman**: Java   
-- **GUI Framework**: JavaFX 25  
-- **Build Tool**: Maven  
-- **Library Tambahan**:   
-- **IDE yang disarankan**: IntelliJ IDEA / Eclipse  
+- 🔐 User Authentication & Role Management (Customer & Admin)
+- 📖 Browse and Search Books by category, title, or author
+- 🛒 Shopping Cart and Checkout workflow
+- 💳 Top-Up and Balance Management
+- 📦 Order Tracking & Transaction History
+- 🗃 Local Database integration with efficient CRUD operations
+- 🎨 Clean JavaFX GUI with responsive user interface
+- 🧰 Modular code architecture following MVC pattern
 
 ---
 
-## Struktur Proyek
+## 🛠 Tech Stack
 
-
+| Component | Technology |
+|-----------|------------|
+| Language | Java SE |
+| Framework / UI | JavaFX |
+| Build Tool | Maven |
+| Database | MySQL / SQLite |
+| Pattern | MVC Architecture |
+| IDE | IntelliJ IDEA / NetBeans / VS Code |
+| Version Control | Git & GitHub |
 
 ---
 
+## 📂 Project Structure
 
 
+Online-Book-Store/
+├── src/main/java/com/example/bookstore
+│   ├── controller
+│   ├── model
+│   ├── repository
+│   ├── service
+│   ├── util
+│   └── App.java
+├── src/main/resources
+│   ├── fxml
+│   ├── css
+│   └── images
+└── pom.xml
 
+---
 
+## 🚀 Installation & Usage
+
+### Prerequisites
+- Java 17 or later
+- Maven 3.9+
+- JavaFX SDK configured
+- MySQL / SQLite installed
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/online-book-store.git
+cd online-book-store
+```
+
+### Build the Project
+
+```bash
+mvn clean install
+```
+
+### Run the Application
+
+```bash
+mvn javafx:run
+```
+
+---
+
+## 🧪 Screenshots (Placeholder)
+
+> Add your UI screenshots here
+
+```
+![Login Page](https://via.placeholder.com/1000x500?text=Login+Page)
+![Dashboard](https://via.placeholder.com/1000x500?text=Dashboard)
+```
+
+---
+
+## 📊 GitHub Repository Stats
+
+![Stars](https://img.shields.io/github/stars/yourusername/online-book-store?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/yourusername/online-book-store?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/yourusername/online-book-store?style=for-the-badge)
+![License](https://img.shields.io/github/license/yourusername/online-book-store?style=for-the-badge)
+![Contributors](https://img.shields.io/github/contributors/yourusername/online-book-store?style=for-the-badge)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+Feel free to modify and enhance the project as needed.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Please open an issue or submit a pull request for discussion.
+
+---
+
+## 📬 Contact
+
+For inquiries, suggestions, or collaboration, reach out:
+
+```
+Author : Ihsan Restu Adi, Berly Marcellino Suprapto, Faris Syahrul Muhammad
+```
+
+---
+
+## ⭐ Support This Project
+
+If you find this project helpful, consider supporting by giving a star.
+
+```
+⭐ Star this repository to inspire future development!
+```
+
+---

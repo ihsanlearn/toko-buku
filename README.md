@@ -34,7 +34,7 @@ Designed to provide an intuitive user experience for purchasing books online, ma
 
 ## 📂 Project Structure
 
-
+```
 Online-Book-Store/
 ├── src/main/java/com/example/bookstore
 │   ├── controller
@@ -48,7 +48,7 @@ Online-Book-Store/
 │   ├── css
 │   └── images
 └── pom.xml
-
+```
 ---
 
 ## 🚀 Installation & Usage
@@ -93,11 +93,11 @@ mvn javafx:run
 
 ## 📊 GitHub Repository Stats
 
-![Stars](https://img.shields.io/github/stars/yourusername/online-book-store?style=for-the-badge)
-![Forks](https://img.shields.io/github/forks/yourusername/online-book-store?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues/yourusername/online-book-store?style=for-the-badge)
-![License](https://img.shields.io/github/license/yourusername/online-book-store?style=for-the-badge)
-![Contributors](https://img.shields.io/github/contributors/yourusername/online-book-store?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/ihsanlearn/toko-buku?style=tokyo-night)
+![Forks](https://img.shields.io/github/forks/ihsanlearn/toko-buku?style=tokyo-night)
+![Issues](https://img.shields.io/github/issues/ihsanlearn/toko-buku?style=tokyo-night)
+![License](https://img.shields.io/github/license/ihsanlearn/toko-buku?style=tokyo-night)
+![Contributors](https://img.shields.io/github/contributors/ihsanlearn/toko-buku?style=tokyo-night)
 
 ---
 

@@ -76,6 +76,17 @@
       "status": "Dikemas",
       "shippingAddress": "Gunungkidul",
       "courier": "JNE"
+    },
+    {
+      "transactionId": 8,
+      "userId": 4,
+      "bookId": 11,
+      "quantity": 1,
+      "totalPrice": 200000.0,
+      "purchaseDate": "2025-11-27T16:03:01.479493296",
+      "status": "Dikemas",
+      "shippingAddress": "nagasaki openheimer",
+      "courier": "TIKI"
     }
   ]
 }

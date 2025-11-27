@@ -62,7 +62,7 @@ Online-Book-Store/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/online-book-store.git
+git clone https://github.com/ihsanlearn/toko-buku.git
 cd online-book-store
 ```
 

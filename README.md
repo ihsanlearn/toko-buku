@@ -32,25 +32,6 @@ Designed to provide an intuitive user experience for purchasing books online, ma
 
 ---
 
-## 📂 Project Structure
-
-```
-Online-Book-Store/
-├── src/main/java/com/example/bookstore
-│   ├── controller
-│   ├── model
-│   ├── repository
-│   ├── service
-│   ├── util
-│   └── App.java
-├── src/main/resources
-│   ├── fxml
-│   ├── css
-│   └── images
-└── pom.xml
-```
----
-
 ## 🚀 Installation & Usage
 
 ### Prerequisites

@@ -15,16 +15,11 @@ import java.time.LocalDateTime;
 
 public class OrdersController {
 
-    @FXML
-    private TableView<Transaction> tableOrders;
-    @FXML
-    private TableColumn<Transaction, Integer> colOrderId;
-    @FXML
-    private TableColumn<Transaction, Integer> colBook;
-    @FXML
-    private TableColumn<Transaction, LocalDateTime> colDate;
-    @FXML
-    private TableColumn<Transaction, String> colStatus;
+    @FXML private TableView<Transaction> tableOrders;
+    @FXML private TableColumn<Transaction, Integer> colOrderId;
+    @FXML private TableColumn<Transaction, Integer> colBook;
+    @FXML private TableColumn<Transaction, LocalDateTime> colDate;
+    @FXML private TableColumn<Transaction, String> colStatus;
 
     private TransactionService transactionService = new TransactionService();
 
@@ -41,6 +36,6 @@ public class OrdersController {
         colDate.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        tableOrders.getItems().setAll(currentUserTransaction);
+        tableOrders.getItems().setAll(currentUserTransaction); 
     }
 }

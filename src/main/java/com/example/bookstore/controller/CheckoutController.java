@@ -6,19 +6,24 @@ import com.example.bookstore.service.BookService;
 import com.example.bookstore.service.TransactionService;
 import com.example.bookstore.service.UserService;
 import com.example.bookstore.session.SessionManager;
+import com.example.bookstore.util.PasswordUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 public class CheckoutController {
 
-    @FXML private TextArea addressField;
-    @FXML private ComboBox<String> courierCombo;
-    @FXML private ComboBox<String> discountCombo;
-    @FXML private Label summaryLabel;
-    @FXML private Button cancelBtn;
-    @FXML private Button confirmBtn;
+    @FXML
+    private TextArea addressField;
+    @FXML
+    private ComboBox<String> courierCombo;
+
+    @FXML
+    private Label summaryLabel;
+    @FXML
+    private Button cancelBtn;
+    @FXML
+    private Button confirmBtn;
 
     private Book selectedBook;
     private int quantity;
@@ -32,20 +37,27 @@ public class CheckoutController {
     public void setOrderData(Book book, int qty) {
         this.selectedBook = book;
         this.quantity = qty;
-        this.totalPrice = book.getPrice() * qty;
+        double pricePerUnit = book.getPrice();
+        if (book.getDiscount() > 0) {
+            pricePerUnit = book.getPrice() * (100 - book.getDiscount()) / 100.0;
+        }
+        this.totalPrice = (int) (pricePerUnit * qty);
         this.currentUser = SessionManager.getCurrentUser();
+
+        String priceDetails = "Harga Satuan: Rp " + String.format("%,d", book.getPrice()).replace(',', '.');
+        if (book.getDiscount() > 0) {
+            priceDetails += " (Disc " + book.getDiscount() + "%) -> Rp "
+                    + String.format("%,d", (int) pricePerUnit).replace(',', '.');
+        }
 
         summaryLabel.setText(
                 "Ringkasan Pesanan\n\n" +
-                "Judul Buku: " + book.getTitle() + "\n" +
-                "Jumlah: " + qty + "\n" +
-                "Harga Satuan: Rp " + String.format("%,d", book.getPrice()).replace(',', '.') + "\n" +
-                "Total: Rp " + String.format("%,d", totalPrice).replace(',', '.')
-        );
+                        "Judul Buku: " + book.getTitle() + "\n" +
+                        "Jumlah: " + qty + "\n" +
+                        priceDetails + "\n" +
+                        "Total: Rp " + String.format("%,d", totalPrice).replace(',', '.'));
 
         courierCombo.getItems().addAll("JNE", "TIKI", "POS", "SiCepat", "AnterAja");
-        discountCombo.getItems().addAll("Tidak ada diskon", "Voucher 10%", "Voucher 25%");
-        discountCombo.getSelectionModel().selectFirst();
 
         confirmBtn.setOnAction(e -> handleConfirm());
         cancelBtn.setOnAction(e -> closeCheckoutPage());
@@ -86,9 +98,10 @@ public class CheckoutController {
         });
 
         String inputPassword = dialog.showAndWait().orElse(null);
-        if (inputPassword == null) return;
+        if (inputPassword == null)
+            return;
 
-        if (!inputPassword.equals(currentUser.getPassword())) {
+        if (!PasswordUtil.verifyPassword(inputPassword, currentUser.getPassword())) {
             showAlert(Alert.AlertType.ERROR, "Password Salah", "Password tidak sesuai");
             return;
         }
@@ -120,8 +133,7 @@ public class CheckoutController {
     }
 
     private void closeCheckoutPage() {
-        Stage stage = (Stage) confirmBtn.getScene().getWindow();
-        stage.close();
+        MainController.getInstance().showDashboard();
     }
 
     private void showAlert(Alert.AlertType type, String title, String msg) {

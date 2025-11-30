@@ -2,6 +2,7 @@ package com.example.bookstore.service;
 
 import com.example.bookstore.model.User;
 import com.example.bookstore.repository.UserRepository;
+import com.example.bookstore.util.PasswordUtil;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class UserService {
 
         int id = repo.getNextId();
 
-        User newUser = new User(id, username, password);
+        User newUser = new User(id, username, PasswordUtil.hashPassword(password));
 
         users.add(newUser);
         repo.saveAll(users);
@@ -126,7 +127,7 @@ public class UserService {
         for (User u : users) {
             if (u.getId() == id) {
                 u.setUsername(username);
-                u.setPassword(password);
+                u.setPassword(PasswordUtil.hashPassword(password));
                 u.setRole(role);
                 repo.saveAll(users);
                 return true;

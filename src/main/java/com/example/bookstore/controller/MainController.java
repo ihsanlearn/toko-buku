@@ -53,8 +53,24 @@ public class MainController {
     private final BookService bookService = new BookService();
     private List<Book> books;
 
+    private static MainController instance;
+
+    public static MainController getInstance() {
+        return instance;
+    }
+
     @FXML
     public void initialize() {
+        instance = this;
+        // Capture original center after layout pass or just assume it's set?
+        // It's safer to capture it later or just assume the FXML structure.
+        // But we can't easily get "center" property here if it's not injected.
+        // Actually, we can't inject the root BorderPane easily if it doesn't have an
+        // ID.
+        // Let's add an ID to BorderPane in FXML or just use a workaround.
+
+        // Workaround: We'll capture it when we first switch away.
+
         User currentUser = SessionManager.getCurrentUser();
 
         if (currentUser == null) {
@@ -232,4 +248,62 @@ public class MainController {
             }
         }
     }
+
+    public void showCheckoutPage(Book book, int quantity) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/CheckoutView.fxml"));
+            Parent checkoutView = loader.load();
+
+            CheckoutController controller = loader.getController();
+            controller.setOrderData(book, quantity);
+
+            // Replace the center content with checkout view
+            // We need to access the BorderPane. Since MainController is the controller for
+            // the BorderPane,
+            // we can get the scene's root, but better if we had a reference to the root.
+            // However, MainController is set on the BorderPane in FXML.
+            // Let's assume the root of the scene is the BorderPane.
+
+            if (headerBar.getScene().getRoot() instanceof javafx.scene.layout.BorderPane) {
+                javafx.scene.layout.BorderPane root = (javafx.scene.layout.BorderPane) headerBar.getScene().getRoot();
+                if (originalCenter == null) {
+                    originalCenter = root.getCenter();
+                }
+                root.setCenter(checkoutView);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showDashboard() {
+        try {
+            // Re-load the dashboard content (ScrollPane with VBox)
+            // Since we don't have it saved, we might need to reload it or keep a reference.
+            // For simplicity, let's reload the MainView's center part or just reset the
+            // root?
+            // Resetting root is easier but might lose state.
+            // Better: Keep a reference to the original center.
+
+            // Actually, let's just reload the MainView completely for now to be safe,
+            // OR better: Extract the dashboard content into a separate FXML
+            // (Dashboard.fxml)
+            // but that's a bigger refactor.
+
+            // Let's try to restore the original center.
+            // We can store the original center in initialize.
+
+            if (originalCenter != null && headerBar.getScene().getRoot() instanceof javafx.scene.layout.BorderPane) {
+                javafx.scene.layout.BorderPane root = (javafx.scene.layout.BorderPane) headerBar.getScene().getRoot();
+                root.setCenter(originalCenter);
+                refreshView(); // Refresh data
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private javafx.scene.Node originalCenter;
 }

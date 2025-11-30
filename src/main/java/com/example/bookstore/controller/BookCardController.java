@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +25,7 @@ public class BookCardController {
     @FXML
     private Label bookPrice;
     @FXML
-    private Label originalPrice;
+    private Text originalPrice;
     @FXML
     private Label discountBadge;
     @FXML
@@ -39,18 +40,18 @@ public class BookCardController {
 
         if (book.getDiscount() > 0) {
             double discountedPrice = book.getPrice() * (100 - book.getDiscount()) / 100.0;
-            originalPrice.setText("Rp " + book.getPrice());
+            originalPrice.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
             originalPrice.setVisible(true);
             originalPrice.setManaged(true);
 
-            bookPrice.setText("Rp " + (int) discountedPrice);
+            bookPrice.setText("Rp " + String.format("%,d", (int) discountedPrice).replace(',', '.'));
 
             discountBadge.setText(book.getDiscount() + "% OFF");
             discountBadge.setVisible(true);
         } else {
             originalPrice.setVisible(false);
             originalPrice.setManaged(false);
-            bookPrice.setText("Rp " + book.getPrice());
+            bookPrice.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
             discountBadge.setVisible(false);
         }
 

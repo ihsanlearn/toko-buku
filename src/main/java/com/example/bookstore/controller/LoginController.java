@@ -18,16 +18,23 @@ import com.example.bookstore.model.User;
 
 public class LoginController {
 
-    @FXML private TextField usernameField;
-    @FXML private PasswordField passwordField;
-    @FXML private Button loginBtn;
-    @FXML private Button btnBack;
-    @FXML private Label messageLabel;
-    @FXML private Hyperlink goToRegisterLink;
-    
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Button loginBtn;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private Hyperlink goToRegisterLink;
+
     private AuthService authService = new AuthService();
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
         loginBtn.setOnAction(arg0 -> {
             try {
                 handleLogin(arg0);
@@ -43,6 +50,16 @@ public class LoginController {
                 ex.printStackTrace();
             }
         });
+
+        if (btnBack != null) {
+            btnBack.setOnAction(e -> {
+                try {
+                    App.setRoot("MainView");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
     }
 
     private void handleLogin(ActionEvent event) throws Exception {

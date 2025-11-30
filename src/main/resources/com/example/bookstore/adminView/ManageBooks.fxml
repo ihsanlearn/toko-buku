@@ -27,6 +27,7 @@
                 <TableColumn fx:id="colPrice" text="Price" prefWidth="80"/>
                 <TableColumn fx:id="colStock" text="Stock" prefWidth="80"/>
                 <TableColumn fx:id="colCategory" text="Category" prefWidth="100"/>
+                <TableColumn fx:id="colDiscount" text="Discount (%)" prefWidth="80"/>
                 <TableColumn fx:id="colImgPath" text="Image Path" prefWidth="80"/>
             </columns>
         </TableView>
@@ -48,6 +49,9 @@
 
             <Label text="Stock"/>
             <TextField fx:id="inputStock"/>
+
+            <Label text="Discount (%)"/>
+            <TextField fx:id="inputDiscount"/>
 
             <Label text="Category"/>
             <ComboBox fx:id="inputCategory" prefWidth="260"/>

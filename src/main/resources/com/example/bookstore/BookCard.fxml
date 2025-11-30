@@ -11,8 +11,15 @@
       spacing="10"
       styleClass="product-card">
 
-    <ImageView fx:id="bookImage" fitWidth="120" fitHeight="160" styleClass="product-image"/>
+    <StackPane>
+        <ImageView fx:id="bookImage" fitWidth="120" fitHeight="160" styleClass="product-image"/>
+        <Label fx:id="discountBadge" text="20% OFF" styleClass="discount-badge" visible="false" StackPane.alignment="TOP_RIGHT"/>
+    </StackPane>
     <Label fx:id="bookTitle" text="Nama Produk" styleClass="product-name"/>
-    <Label fx:id="bookPrice" text="Harga" styleClass="product-price"/>
+    <VBox alignment="CENTER" spacing="2">
+        <Label fx:id="originalPrice" text="Rp 100.000" styleClass="original-price" visible="false"/>
+        <Label fx:id="bookPrice" text="Harga" styleClass="product-price"/>
+        <Label fx:id="soldCountLabel" text="Terjual: 0" style="-fx-font-size: 10px; -fx-text-fill: #7f8c8d;"/>
+    </VBox>
 
 </VBox>

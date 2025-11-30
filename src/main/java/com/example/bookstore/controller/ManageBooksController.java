@@ -8,9 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
@@ -25,20 +27,38 @@ import java.util.List;
 
 public class ManageBooksController {
 
-    @FXML private TableView<Book> tableBooks;
-    @FXML private TableColumn<Book, Integer> colId;
-    @FXML private TableColumn<Book, String> colTitle;
-    @FXML private TableColumn<Book, String> colAuthor;
-    @FXML private TableColumn<Book, Double> colPrice;
-    @FXML private TableColumn<Book, Integer> colStock;
-    @FXML private TableColumn<Book, String> colImgPath;
+    @FXML
+    private TableView<Book> tableBooks;
+    @FXML
+    private TableColumn<Book, Integer> colId;
+    @FXML
+    private TableColumn<Book, String> colTitle;
+    @FXML
+    private TableColumn<Book, String> colAuthor;
+    @FXML
+    private TableColumn<Book, Double> colPrice;
+    @FXML
+    private TableColumn<Book, Integer> colStock;
+    @FXML
+    private TableColumn<Book, String> colCategory;
+    @FXML
+    private TableColumn<Book, String> colImgPath;
 
-    @FXML private TextField inputTitle;
-    @FXML private TextField inputAuthor;
-    @FXML private TextField inputPrice;
-    @FXML private TextField inputStock;
+    @FXML
+    private TextField inputTitle;
+    @FXML
+    private TextField inputAuthor;
+    @FXML
+    private TextField inputPrice;
+    @FXML
+    private TextField inputStock;
+    @FXML
+    private ComboBox<String> inputCategory;
+    @FXML
+    private TextArea inputDescription;
 
-    @FXML private Label labelImgName;
+    @FXML
+    private Label labelImgName;
 
     private ObservableList<Book> bookList;
     private final BookService bookService = new BookService();
@@ -53,7 +73,10 @@ public class ManageBooksController {
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colImgPath.setCellValueFactory(new PropertyValueFactory<>("imgPath"));
+
+        inputCategory.getItems().addAll("Novel", "Komik", "Teknologi", "Pelajaran", "Lainnya");
 
         List<Book> books = bookService.getAllBooks();
 
@@ -63,17 +86,29 @@ public class ManageBooksController {
         tableBooks.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> fillForm(newVal));
     }
 
-    @FXML private void handleAdd() {
+    @FXML
+    private void handleAdd() {
         try {
             String title = inputTitle.getText();
             String author = inputAuthor.getText();
             int price = Integer.parseInt(inputPrice.getText());
             int stock = Integer.parseInt(inputStock.getText());
+            String category = inputCategory.getValue();
+            if (category == null)
+                category = "Lainnya";
+
+            String description = inputDescription.getText();
+            if (description == null)
+                description = "";
+
             String imgFileName = saveImageToFolder(title);
 
-            Book newBook = new Book(title, author, price, stock, "com/example/bookstore/images/" + imgFileName);
+            Book newBook = new Book(title, author, price, stock, "com/example/bookstore/images/" + imgFileName,
+                    category, description);
 
-            bookService.addBook(newBook);;
+            bookService.addBook(newBook);
+            ;
+            ;
             bookList.add(newBook);
 
             showAlert("Success", "sipp buku dah ditambahin syg.");
@@ -82,7 +117,8 @@ public class ManageBooksController {
         }
     }
 
-    @FXML private void handleUpdate() {
+    @FXML
+    private void handleUpdate() {
         Book selected = tableBooks.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert("Warning", "pilih buku buat diupdate");
@@ -90,9 +126,9 @@ public class ManageBooksController {
         }
 
         try {
-            String oldImgPath = selected.getImgPath();       
-            String newTitle = inputTitle.getText();    
-            String newImg = oldImgPath;                 
+            String oldImgPath = selected.getImgPath();
+            String newTitle = inputTitle.getText();
+            String newImg = oldImgPath;
 
             if (selectedImageFile != null) {
                 String ext = selectedImageFile.getName().substring(selectedImageFile.getName().lastIndexOf("."));
@@ -101,13 +137,13 @@ public class ManageBooksController {
                 if (!newFileName.equals(extractFileName(oldImgPath))) {
                     if (extractFileName(oldImgPath) != null && !extractFileName(oldImgPath).isEmpty()) {
                         deleteOldImage(extractFileName(oldImgPath));
-                    }      
+                    }
 
                     newImg = saveImageToFolder(newFileName, selectedImageFile);
                 }
             } else if (existingImageFile != null) {
 
-                String ext = oldImgPath.substring(oldImgPath.lastIndexOf("."));  
+                String ext = oldImgPath.substring(oldImgPath.lastIndexOf("."));
                 String expectedNewName = newTitle.replace(" ", "_").toLowerCase() + ext;
 
                 if (!expectedNewName.equals(extractFileName(oldImgPath))) {
@@ -121,6 +157,12 @@ public class ManageBooksController {
             selected.setStock(Integer.parseInt(inputStock.getText()));
             selected.setImgPath(newImg);
 
+            String cat = inputCategory.getValue();
+            if (cat != null)
+                selected.setCategory(cat);
+
+            selected.setDescription(inputDescription.getText());
+
             bookService.updateBook(selected);
 
             tableBooks.refresh();
@@ -133,7 +175,8 @@ public class ManageBooksController {
         }
     }
 
-    @FXML private void handleDelete() {
+    @FXML
+    private void handleDelete() {
         Book selected = tableBooks.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert("Warning", "pilih buku yang mau dihapus");
@@ -149,16 +192,17 @@ public class ManageBooksController {
         showAlert("Success", "Book deleted successfully!");
     }
 
-    @FXML private void handleClear() {
+    @FXML
+    private void handleClear() {
         clearForm();
     }
 
-    @FXML private void handleUploadImage(ActionEvent event) {
+    @FXML
+    private void handleUploadImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Book Image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
 
         File file = fileChooser.showOpenDialog(null);
 
@@ -171,7 +215,8 @@ public class ManageBooksController {
     }
 
     private String saveImageToFolder(String title) throws IOException {
-        if (selectedImageFile == null) return null;
+        if (selectedImageFile == null)
+            return null;
 
         String ext = selectedImageFile.getName().substring(selectedImageFile.getName().lastIndexOf("."));
         String newFileName = title.replace(" ", "_").toLowerCase() + ext;
@@ -193,7 +238,8 @@ public class ManageBooksController {
     }
 
     private void deleteOldImage(String fileName) {
-        if (fileName == null || fileName.isEmpty()) return;
+        if (fileName == null || fileName.isEmpty())
+            return;
 
         Path path = Paths.get("src/main/resources/com/example/bookstore/images/" + fileName);
         try {
@@ -204,7 +250,8 @@ public class ManageBooksController {
     }
 
     private String renameImageFile(String oldName, String newName) {
-        if (oldName == null || oldName.isEmpty()) return oldName;
+        if (oldName == null || oldName.isEmpty())
+            return oldName;
 
         Path oldPath = Paths.get("src/main/resources/com/example/bookstore/images/" + oldName);
         Path newPath = Paths.get("src/main/resources/com/example/bookstore/images/" + newName);
@@ -223,6 +270,8 @@ public class ManageBooksController {
         inputAuthor.clear();
         inputPrice.clear();
         inputStock.clear();
+        inputCategory.getSelectionModel().clearSelection();
+        inputDescription.clear();
         tableBooks.getSelectionModel().clearSelection();
     }
 
@@ -235,19 +284,24 @@ public class ManageBooksController {
     }
 
     private String extractFileName(String path) {
-        if (path == null || path.isBlank()) return "";
+        if (path == null || path.isBlank())
+            return "";
         int idx = path.lastIndexOf('/');
-        if (idx == -1) return path;
+        if (idx == -1)
+            return path;
         return path.substring(idx + 1);
     }
 
     private void fillForm(Book b) {
-        if (b == null) return;
+        if (b == null)
+            return;
 
         inputTitle.setText(b.getTitle());
         inputAuthor.setText(b.getAuthor());
         inputPrice.setText(String.valueOf(b.getPrice()));
         inputStock.setText(String.valueOf(b.getStock()));
+        inputCategory.setValue(b.getCategory());
+        inputDescription.setText(b.getDescription());
 
         if (b.getImgPath() != null && !b.getImgPath().isEmpty()) {
             labelImgName.setText(extractFileName(b.getImgPath()));

@@ -41,6 +41,7 @@ public class BookService {
         existing.setAuthor(updatedBook.getAuthor());
         existing.setPrice(updatedBook.getPrice());
         existing.setStock(updatedBook.getStock());
+        existing.setSoldCount(updatedBook.getSoldCount());
         existing.setImgPath("com/example/bookstore/images/" + extractFileName(updatedBook.getImgPath()));
 
         repo.saveAll(cache);

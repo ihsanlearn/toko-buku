@@ -131,6 +131,61 @@
       "status": "Dikemas",
       "shippingAddress": "gunkid",
       "courier": "POS"
+    },
+    {
+      "transactionId": 13,
+      "userId": 5,
+      "bookId": 2,
+      "quantity": 2,
+      "totalPrice": 216000.0,
+      "purchaseDate": "2025-11-30T18:01:00.8252901",
+      "status": "Dikemas",
+      "shippingAddress": "Kaliwaru",
+      "courier": "TIKI"
+    },
+    {
+      "transactionId": 14,
+      "userId": 5,
+      "bookId": 11,
+      "quantity": 7,
+      "totalPrice": 2450000.0,
+      "purchaseDate": "2025-11-30T18:01:44.1054715",
+      "status": "Dikemas",
+      "shippingAddress": "kono kui",
+      "courier": "POS"
+    },
+    {
+      "transactionId": 15,
+      "userId": 5,
+      "bookId": 7,
+      "quantity": 10,
+      "totalPrice": 475000.0,
+      "purchaseDate": "2025-11-30T18:24:23.6342586",
+      "status": "Dikemas",
+      "shippingAddress": "Gunkid",
+      "courier": "AnterAja"
+    },
+    {
+      "transactionId": 16,
+      "userId": 5,
+      "bookId": 7,
+      "quantity": 10,
+      "totalPrice": 475000.0,
+      "purchaseDate": "2025-11-30T18:27:03.9031044",
+      "status": "Dikemas",
+      "shippingAddress": "GUNKIDDD",
+      "courier": "POS"
+    },
+    {
+      "transactionId": 17,
+      "userId": 5,
+      "bookId": 4,
+      "quantity": 10,
+      "totalPrice": 450000.0,
+      "purchaseDate": "2025-11-30T18:31:41.872045",
+      "status": "Dikemas",
+      "shippingAddress": "GUNKIFFF",
+      "courier": "TIKI"
     }
   ]
 }

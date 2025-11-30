@@ -152,14 +152,18 @@
 /* ========================= PRODUCT GRID ========================== */
 
 .product-card {
-  -fx-background-color: white;
-  -fx-background-radius: 14;
-  -fx-border-radius: 14;
+  -fx-background-color: #1f2937;
+  -fx-background-radius: 16;
+  -fx-border-radius: 16;
   -fx-padding: 15;
   -fx-alignment: center;
-  -fx-max-width: 180;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.25, 0, 4);
-  -fx-transition: 0.2s;
+  -fx-pref-width: 230;
+  -fx-min-width: 230;
+  -fx-pref-height: 400;
+  -fx-min-height: 400;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.1, 0, 4);
+  -fx-border-color: rgba(255, 255, 255, 0.05);
+  -fx-border-width: 1;
 }
 
 .product-card:hover {
@@ -175,14 +179,15 @@
 }
 
 .product-name {
-  -fx-font-size: 16px;
+  -fx-font-size: 15px;
   -fx-font-weight: bold;
-  -fx-text-fill: #1a1a1a;
+  -fx-text-fill: #f3f4f6;
+  -fx-font-family: "Segoe UI", sans-serif;
 }
 
 .product-price {
-  -fx-font-size: 14px;
-  -fx-text-fill: #0051ff;
+  -fx-font-size: 16px;
+  -fx-text-fill: #38bdf8;
   -fx-font-weight: bold;
 }
 
@@ -233,7 +238,7 @@
 }
 
 .original-price {
-  -fx-text-fill: #7f8c8d;
+  -fx-fill: #ef4444;
   -fx-strikethrough: true;
   -fx-font-size: 12px;
 }

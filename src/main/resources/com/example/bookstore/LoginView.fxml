@@ -57,6 +57,9 @@
             <Label styleClass="register-text" text="Don't have an account?" textFill="WHITE" />
             <Hyperlink fx:id="goToRegisterLink" styleClass="register-link" text="Create Account" />
         </HBox>
+        
+        <Region prefHeight="5" />
+        <Button fx:id="btnBack" text="Back to Home" styleClass="link-button" style="-fx-background-color: transparent; -fx-text-fill: #94a3b8; -fx-cursor: hand;"/>
 
     </VBox>
 

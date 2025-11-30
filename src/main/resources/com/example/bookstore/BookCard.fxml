@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
 <VBox fx:id="cardRoot"
@@ -12,12 +13,12 @@
       styleClass="product-card">
 
     <StackPane>
-        <ImageView fx:id="bookImage" fitWidth="120" fitHeight="160" styleClass="product-image"/>
+        <ImageView fx:id="bookImage" fitWidth="200" fitHeight="280" styleClass="product-image"/>
         <Label fx:id="discountBadge" text="20% OFF" styleClass="discount-badge" visible="false" StackPane.alignment="TOP_RIGHT"/>
     </StackPane>
-    <Label fx:id="bookTitle" text="Nama Produk" styleClass="product-name"/>
+    <Label fx:id="bookTitle" text="Nama Produk" styleClass="product-name" wrapText="true" textAlignment="CENTER" prefHeight="50" prefWidth="210"/>
     <VBox alignment="CENTER" spacing="2">
-        <Label fx:id="originalPrice" text="Rp 100.000" styleClass="original-price" visible="false"/>
+        <Text fx:id="originalPrice" text="Rp 100.000" styleClass="original-price" visible="false"/>
         <Label fx:id="bookPrice" text="Harga" styleClass="product-price"/>
         <Label fx:id="soldCountLabel" text="Terjual: 0" style="-fx-font-size: 10px; -fx-text-fill: #7f8c8d;"/>
     </VBox>

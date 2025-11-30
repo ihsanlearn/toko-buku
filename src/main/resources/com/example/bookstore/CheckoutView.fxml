@@ -22,9 +22,6 @@
                 <Label text="Jasa Pengiriman" styleClass="label"/>
                 <ComboBox fx:id="courierCombo" prefWidth="300" styleClass="combo"/>
 
-                <Label text="Voucher / Diskon" styleClass="label"/>
-                <ComboBox fx:id="discountCombo" prefWidth="300" styleClass="combo"
-                          promptText="Pilih voucher (opsional)" />
             </VBox>
 
             <VBox spacing="15" alignment="TOP_LEFT" prefWidth="350" styleClass="card">

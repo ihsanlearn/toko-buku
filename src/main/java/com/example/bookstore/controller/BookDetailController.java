@@ -5,12 +5,10 @@ import com.example.bookstore.model.User;
 import com.example.bookstore.session.SessionManager;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
@@ -27,7 +25,7 @@ public class BookDetailController {
     @FXML
     private Label priceLabel;
     @FXML
-    private Label originalPriceLabel;
+    private Text originalPriceLabel;
     @FXML
     private Label stockLabel;
     @FXML
@@ -61,7 +59,7 @@ public class BookDetailController {
             originalPriceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
             originalPriceLabel.setVisible(true);
             originalPriceLabel.setManaged(true);
-            originalPriceLabel.setStyle("-fx-text-fill: #94a3b8; -fx-strikethrough: true; -fx-font-size: 14px;");
+            originalPriceLabel.getStyleClass().add("original-price");
         } else {
             priceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
             originalPriceLabel.setVisible(false);
@@ -126,17 +124,8 @@ public class BookDetailController {
 
     private void redirectToCheckout(Book book, int qty) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/CheckoutView.fxml"));
-            Parent root = loader.load();
-
-            CheckoutController controller = loader.getController();
-            controller.setOrderData(book, qty);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Checkout");
-            stage.show();
-
+            MainController.getInstance().showCheckoutPage(book, qty);
+            closeWindow();
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Gagal membuka halaman Checkout", e.getMessage());

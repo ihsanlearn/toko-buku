@@ -98,6 +98,39 @@
       "status": "Dikemas",
       "shippingAddress": "gk",
       "courier": "POS"
+    },
+    {
+      "transactionId": 10,
+      "userId": 2,
+      "bookId": 12,
+      "quantity": 1,
+      "totalPrice": 48000.0,
+      "purchaseDate": "2025-11-30T10:59:03.034970384",
+      "status": "Dikemas",
+      "shippingAddress": "gunkid",
+      "courier": "TIKI"
+    },
+    {
+      "transactionId": 11,
+      "userId": 2,
+      "bookId": 10,
+      "quantity": 1,
+      "totalPrice": 60000.0,
+      "purchaseDate": "2025-11-30T11:00:04.906433393",
+      "status": "Dikemas",
+      "shippingAddress": "gunkid",
+      "courier": "TIKI"
+    },
+    {
+      "transactionId": 12,
+      "userId": 2,
+      "bookId": 1,
+      "quantity": 1,
+      "totalPrice": 85000.0,
+      "purchaseDate": "2025-11-30T11:05:50.940283653",
+      "status": "Dikemas",
+      "shippingAddress": "gunkid",
+      "courier": "POS"
     }
   ]
 }

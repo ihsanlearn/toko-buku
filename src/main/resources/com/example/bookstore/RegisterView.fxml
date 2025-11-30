@@ -55,6 +55,7 @@
         <Button fx:id="registerBtn" prefHeight="38" prefWidth="180" styleClass="login-button" text="Register" />
 
         <Hyperlink fx:id="backToLogin" styleClass="link-text" text="Back to Login" />
+        <Button fx:id="btnBack" text="Back to Home" styleClass="link-button" style="-fx-background-color: transparent; -fx-text-fill: #94a3b8; -fx-cursor: hand;"/>
 
     </VBox>
 

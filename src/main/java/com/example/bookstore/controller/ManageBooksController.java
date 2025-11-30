@@ -39,6 +39,8 @@ public class ManageBooksController {
     @FXML
     private TableColumn<Book, String> colCategory;
     @FXML
+    private TableColumn<Book, Integer> colDiscount;
+    @FXML
     private TableColumn<Book, String> colImgPath;
 
     @FXML
@@ -49,6 +51,8 @@ public class ManageBooksController {
     private TextField inputPrice;
     @FXML
     private TextField inputStock;
+    @FXML
+    private TextField inputDiscount;
     @FXML
     private ComboBox<String> inputCategory;
     @FXML
@@ -71,6 +75,7 @@ public class ManageBooksController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         colImgPath.setCellValueFactory(new PropertyValueFactory<>("imgPath"));
 
         inputCategory.getItems().addAll("Novel", "Komik", "Teknologi", "Pelajaran", "Lainnya");
@@ -90,6 +95,15 @@ public class ManageBooksController {
             String author = inputAuthor.getText();
             int price = Integer.parseInt(inputPrice.getText());
             int stock = Integer.parseInt(inputStock.getText());
+            int discount = 0;
+            if (inputDiscount.getText() != null && !inputDiscount.getText().isEmpty()) {
+                discount = Integer.parseInt(inputDiscount.getText());
+            }
+            if (discount < 0 || discount > 100) {
+                showAlert("Error", "Diskon harus antara 0 - 100");
+                return;
+            }
+
             String category = inputCategory.getValue();
             if (category == null)
                 category = "Lainnya";
@@ -106,6 +120,7 @@ public class ManageBooksController {
             }
 
             Book newBook = new Book(title, author, price, stock, imgPath, category, description);
+            newBook.setDiscount(discount);
 
             bookService.addBook(newBook);
             bookList.add(newBook);
@@ -139,12 +154,10 @@ public class ManageBooksController {
 
                 String currentFileName = imageService.extractFileName(imgPath);
 
-                // If filename is different, delete old image (if not sample)
                 if (!newFileName.equals(currentFileName)) {
                     imageService.deleteImage(currentFileName);
                 }
 
-                // Save new image
                 newImgPath = imageService.saveImage(selectedImageFile, newFileName);
             }
 
@@ -152,6 +165,17 @@ public class ManageBooksController {
             selected.setAuthor(inputAuthor.getText());
             selected.setPrice(Integer.parseInt(inputPrice.getText()));
             selected.setStock(Integer.parseInt(inputStock.getText()));
+
+            int discount = 0;
+            if (inputDiscount.getText() != null && !inputDiscount.getText().isEmpty()) {
+                discount = Integer.parseInt(inputDiscount.getText());
+            }
+            if (discount < 0 || discount > 100) {
+                showAlert("Error", "Diskon harus antara 0 - 100");
+                return;
+            }
+            selected.setDiscount(discount);
+
             selected.setImgPath(newImgPath);
 
             String cat = inputCategory.getValue();
@@ -220,6 +244,7 @@ public class ManageBooksController {
         inputAuthor.clear();
         inputPrice.clear();
         inputStock.clear();
+        inputDiscount.clear();
         inputCategory.getSelectionModel().clearSelection();
         inputDescription.clear();
         tableBooks.getSelectionModel().clearSelection();
@@ -241,6 +266,7 @@ public class ManageBooksController {
         inputAuthor.setText(b.getAuthor());
         inputPrice.setText(String.valueOf(b.getPrice()));
         inputStock.setText(String.valueOf(b.getStock()));
+        inputDiscount.setText(String.valueOf(b.getDiscount()));
         inputCategory.setValue(b.getCategory());
         inputDescription.setText(b.getDescription());
 

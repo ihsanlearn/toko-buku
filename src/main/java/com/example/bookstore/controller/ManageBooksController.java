@@ -126,28 +126,23 @@ public class ManageBooksController {
         }
 
         try {
-            String oldImgPath = selected.getImgPath();
-            String newTitle = inputTitle.getText();
-            String newImg = oldImgPath;
+            String imgPath = selected.getImgPath();
+            String title = inputTitle.getText();
+            String newImgPath = imgPath;
+
+            System.out.println("imgPath: " + imgPath);
+            System.out.println("title: " + title);
 
             if (selectedImageFile != null) {
                 String ext = selectedImageFile.getName().substring(selectedImageFile.getName().lastIndexOf("."));
-                String newFileName = newTitle.replace(" ", "_").toLowerCase() + ext;
+                String newFileName = title.replace(" ", "_").toLowerCase() + ext;
 
-                if (!newFileName.equals(extractFileName(oldImgPath))) {
-                    if (extractFileName(oldImgPath) != null && !extractFileName(oldImgPath).isEmpty()) {
-                        deleteOldImage(extractFileName(oldImgPath));
+                if (!newFileName.equals(extractFileName(imgPath) + ext)) {
+                    if (extractFileName(imgPath) != null && !extractFileName(imgPath).isEmpty()) {
+                        deleteOldImage(extractFileName(imgPath) + ext);
                     }
 
-                    newImg = saveImageToFolder(newFileName, selectedImageFile);
-                }
-            } else if (existingImageFile != null) {
-
-                String ext = oldImgPath.substring(oldImgPath.lastIndexOf("."));
-                String expectedNewName = newTitle.replace(" ", "_").toLowerCase() + ext;
-
-                if (!expectedNewName.equals(extractFileName(oldImgPath))) {
-                    newImg = renameImageFile(extractFileName(oldImgPath), expectedNewName);
+                    newImgPath = saveImageToFolder(newFileName, selectedImageFile);
                 }
             }
 
@@ -155,7 +150,7 @@ public class ManageBooksController {
             selected.setAuthor(inputAuthor.getText());
             selected.setPrice(Integer.parseInt(inputPrice.getText()));
             selected.setStock(Integer.parseInt(inputStock.getText()));
-            selected.setImgPath(newImg);
+            selected.setImgPath(newImgPath);
 
             String cat = inputCategory.getValue();
             if (cat != null)
@@ -246,22 +241,6 @@ public class ManageBooksController {
             Files.deleteIfExists(path);
         } catch (IOException e) {
             System.out.println("Gagal menghapus gambar lama: " + e.getMessage());
-        }
-    }
-
-    private String renameImageFile(String oldName, String newName) {
-        if (oldName == null || oldName.isEmpty())
-            return oldName;
-
-        Path oldPath = Paths.get("src/main/resources/com/example/bookstore/images/" + oldName);
-        Path newPath = Paths.get("src/main/resources/com/example/bookstore/images/" + newName);
-
-        try {
-            Files.move(oldPath, newPath, StandardCopyOption.REPLACE_EXISTING);
-            return newName;
-        } catch (IOException e) {
-            System.out.println("Gagal rename file: " + e.getMessage());
-            return oldName;
         }
     }
 

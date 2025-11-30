@@ -23,6 +23,7 @@
             <Button fx:id="btnDashboard" text="Dashboard"/>
             <Button fx:id="btnManageBooks" text="Manage Books"/>
             <Button fx:id="btnManageUsers" text="Manage Users"/>
+            <Button fx:id="btnManageTransactions" text="Manage Transactions"/>
             <Button fx:id="btnReports" text="Reports"/>
 
             <!-- Spacer -->

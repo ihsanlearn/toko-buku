@@ -16,18 +16,32 @@ import javafx.stage.Stage;
 
 public class BookDetailController {
 
-    @FXML private ImageView bookImage;
-    @FXML private Label titleLabel;
-    @FXML private Label authorLabel;
-    @FXML private Label publisherLabel;
-    @FXML private Label priceLabel;
-    @FXML private Label stockLabel;
-    @FXML private TextFlow descriptionFlow;
-    @FXML private TextArea descriptionArea;
-    @FXML private Label isbnLabel;
-    @FXML private Button addCartBtn;
-    @FXML private Button buyNowBtn;
-    @FXML private Button closeBtn;
+    @FXML
+    private ImageView bookImage;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label authorLabel;
+    @FXML
+    private Label publisherLabel;
+    @FXML
+    private Label priceLabel;
+    @FXML
+    private Label originalPriceLabel;
+    @FXML
+    private Label stockLabel;
+    @FXML
+    private TextFlow descriptionFlow;
+    @FXML
+    private TextArea descriptionArea;
+    @FXML
+    private Label isbnLabel;
+    @FXML
+    private Button addCartBtn;
+    @FXML
+    private Button buyNowBtn;
+    @FXML
+    private Button closeBtn;
 
     private User currentUser;
     private Book selectedBook;
@@ -39,8 +53,27 @@ public class BookDetailController {
 
         titleLabel.setText(book.getTitle());
         authorLabel.setText("Penulis: " + book.getAuthor());
-        priceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
-        descriptionArea.setText("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet dolorum ad blanditiis, rerum maiores et nobis est fugiat voluptatum. Reprehenderit totam, assumenda quidem quos magni, voluptatem earum porro, consequuntur suscipit nostrum distinctio ipsam voluptatibus omnis. Rerum maxime ratione ducimus, mollitia quasi veniam, quis animi at labore, recusandae porro vitae corporis? Tempora illum est ducimus optio, illo expedita dicta, ipsam nostrum veritatis perferendis, nulla voluptatem dignissimos labore officia. Unde fugit aliquid dolore optio in accusamus, quaerat maxime impedit rem sint animi voluptas corrupti quas laboriosam voluptatibus totam quasi enim dicta iste eligendi! Praesentium harum dolorum ab voluptate soluta, sed distinctio reiciendis?");
+
+        if (book.getDiscount() > 0) {
+            double discountedPrice = book.getPrice() * (100 - book.getDiscount()) / 100.0;
+            priceLabel.setText("Rp " + String.format("%,d", (int) discountedPrice).replace(',', '.'));
+
+            originalPriceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
+            originalPriceLabel.setVisible(true);
+            originalPriceLabel.setManaged(true);
+            originalPriceLabel.setStyle("-fx-text-fill: #94a3b8; -fx-strikethrough: true; -fx-font-size: 14px;");
+        } else {
+            priceLabel.setText("Rp " + String.format("%,d", book.getPrice()).replace(',', '.'));
+            originalPriceLabel.setVisible(false);
+            originalPriceLabel.setManaged(false);
+        }
+
+        String desc = book.getDescription();
+        if (desc == null || desc.isEmpty()) {
+            desc = "Tidak ada deskripsi untuk buku ini.";
+        }
+        descriptionArea.setText(desc);
+
         stockLabel.setText(book.getStock() > 0 ? "Stok: " + book.getStock() : "Habis");
         isbnLabel.setText("ISBN: " + book.getId());
 
@@ -75,12 +108,14 @@ public class BookDetailController {
         quantityDialog.setContentText("Jumlah:");
 
         String qtyText = quantityDialog.showAndWait().orElse(null);
-        if (qtyText == null) return;
+        if (qtyText == null)
+            return;
 
         int quantity;
         try {
             quantity = Integer.parseInt(qtyText);
-            if (quantity <= 0) throw new NumberFormatException();
+            if (quantity <= 0)
+                throw new NumberFormatException();
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Input Tidak Valid", "Jumlah harus berupa angka positif");
             return;
@@ -107,7 +142,6 @@ public class BookDetailController {
             showAlert(Alert.AlertType.ERROR, "Gagal membuka halaman Checkout", e.getMessage());
         }
     }
-
 
     private void showAlert(Alert.AlertType type, String title, String msg) {
         Alert alert = new Alert(type);

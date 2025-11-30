@@ -40,7 +40,7 @@
       "quantity": 1,
       "totalPrice": 200000.0,
       "purchaseDate": "2025-11-27T09:34:33.7834416",
-      "status": "Dikemas",
+      "status": "Dikirim",
       "shippingAddress": "GUNKIDD",
       "courier": "JNE"
     },
@@ -87,6 +87,17 @@
       "status": "Dikemas",
       "shippingAddress": "nagasaki openheimer",
       "courier": "TIKI"
+    },
+    {
+      "transactionId": 9,
+      "userId": 2,
+      "bookId": 7,
+      "quantity": 2,
+      "totalPrice": 95000.0,
+      "purchaseDate": "2025-11-30T08:03:45.942364197",
+      "status": "Dikemas",
+      "shippingAddress": "gk",
+      "courier": "POS"
     }
   ]
 }

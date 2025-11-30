@@ -30,6 +30,8 @@ public class BookCardController {
     private Label discountBadge;
     @FXML
     private Label soldCountLabel;
+    @FXML
+    private Label outOfStockLabel;
 
     private Book book;
 
@@ -76,6 +78,11 @@ public class BookCardController {
                 e.printStackTrace();
             }
         });
+
+        if(book.getStock() <= 0) {
+            outOfStockLabel.setVisible(true);
+            cardRoot.setStyle("-fx-opacity: 0.5;");
+        }
     }
 
     private void onClick(MouseEvent event) throws Exception {

@@ -15,6 +15,14 @@
     <StackPane>
         <ImageView fx:id="bookImage" fitWidth="200" fitHeight="280" styleClass="product-image"/>
         <Label fx:id="discountBadge" text="20% OFF" styleClass="discount-badge" visible="false" StackPane.alignment="TOP_RIGHT"/>
+        <Label fx:id="outOfStockLabel" text="Habis" 
+        visible="false" StackPane.alignment="CENTER"
+         style="-fx-background-color: rgba(0,0,0,0.6);
+                  -fx-text-fill: white;
+                  -fx-font-size: 24px;
+                  -fx-font-weight: bold;
+                  -fx-padding: 10 20;
+                  -fx-background-radius: 5;"/>
     </StackPane>
     <Label fx:id="bookTitle" text="Nama Produk" styleClass="product-name" wrapText="true" textAlignment="CENTER" prefHeight="50" prefWidth="210"/>
     <VBox alignment="CENTER" spacing="2">

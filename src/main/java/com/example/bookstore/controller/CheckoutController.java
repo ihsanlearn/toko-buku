@@ -110,6 +110,7 @@ public class CheckoutController {
             transactionService.buyBook(currentUser.getId(), selectedBook.getId(), quantity, address, courier);
 
             selectedBook.setStock(selectedBook.getStock() - quantity);
+            selectedBook.setSoldCount(selectedBook.getSoldCount() + quantity);
             bookService.updateBook(selectedBook);
 
             int newBalance = currentUser.getBalance() - totalPrice;
@@ -133,6 +134,7 @@ public class CheckoutController {
     }
 
     private void closeCheckoutPage() {
+        MainController.getInstance().refreshView();
         MainController.getInstance().showDashboard();
     }
 

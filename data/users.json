@@ -4,7 +4,7 @@
       "id": 1,
       "username": "admin",
       "role": "admin",
-      "password": "admin",
+      "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
       "balance": 0
     },
     {
@@ -34,6 +34,13 @@
       "role": "user",
       "password": "db02752eb8fd47006a7bf740509c3ead8619be3e21f6737c7ebd0ac5882a10cc",
       "balance": 0
+    },
+    {
+      "id": 5,
+      "username": "IMars",
+      "role": "user",
+      "password": "d158be41db87d7055fa9548fe9c0e3cb685983fedb4f2d648d7a25c046d72d9d",
+      "balance": 1996469000
     }
   ]
 }

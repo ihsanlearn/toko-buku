@@ -221,12 +221,13 @@ public class MainController {
         }
     }
 
-    private void refreshView() {
+    void refreshView() {
         User currentUser = SessionManager.getCurrentUser();
         accountMenu.setText(currentUser.getUsername() + " | Saldo: " + currentUser.getBalance());
 
         books = bookService.getAllBooks();
         loadBooks(books);
+        loadSpecialOffers(books);
     }
 
     private void loadSpecialOffers(List<Book> books) {

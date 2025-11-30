@@ -27,23 +27,36 @@ import com.example.bookstore.session.SessionManager;
 
 public class MainController {
 
-    @FXML private HBox headerBar;
-    @FXML private FlowPane bookContainer;
-    @FXML private TextField searchField;
-    @FXML private Button btnSearch;
-    @FXML private ComboBox<String> categoryBox;
-    @FXML private Button btnLogin;
-    @FXML private MenuButton accountMenu;
-    @FXML private MenuItem menuLogout;
-    @FXML private MenuItem menuTopup;
-    @FXML private MenuItem menuProfile;
+    @FXML
+    private HBox headerBar;
+    @FXML
+    private FlowPane bookContainer;
+    @FXML
+    private HBox specialOffersContainer;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private ComboBox<String> categoryBox;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private MenuButton accountMenu;
+    @FXML
+    private MenuItem menuLogout;
+    @FXML
+    private MenuItem menuTopup;
+    @FXML
+    private MenuItem menuProfile;
 
     private final BookService bookService = new BookService();
     private List<Book> books;
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
         User currentUser = SessionManager.getCurrentUser();
-        
+
         if (currentUser == null) {
             btnLogin.setVisible(true);
             btnLogin.setManaged(true);
@@ -68,7 +81,7 @@ public class MainController {
                 ctrl.setOnTopUpSuccess(() -> {
                     refreshView();
                 });
-                
+
                 ctrl.setOnWithdrawSuccess(() -> {
                     refreshView();
                 });
@@ -84,7 +97,8 @@ public class MainController {
 
         menuProfile.setOnAction(e -> {
             try {
-                goTo(e, "UserProfile");;
+                goTo(e, "UserProfile");
+                ;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -102,10 +116,24 @@ public class MainController {
 
         books = bookService.getAllBooks();
 
+        boolean specialDay = true;
+        if (specialDay) {
+            for (Book b : books) {
+                if (b.getDiscount() == 0) {
+                    if (Math.random() < 0.3) {
+                        int discount = (int) (Math.random() * 4 + 1) * 10;
+                        b.setDiscount(discount);
+                    }
+                }
+            }
+        }
+
         categoryBox.getItems().addAll("Semua", "Novel", "Komik", "Teknologi", "Pelajaran");
         categoryBox.getSelectionModel().selectFirst();
+        categoryBox.setOnAction(e -> filterByCategory());
 
         loadBooks(books);
+        loadSpecialOffers(books);
 
         btnSearch.setOnAction(e -> searchProducts());
         btnLogin.setOnAction(e -> {
@@ -151,6 +179,24 @@ public class MainController {
         searchField.requestFocus();
     }
 
+    private void filterByCategory() {
+        String selectedCategory = categoryBox.getValue();
+        if (selectedCategory == null || selectedCategory.equals("Semua")) {
+            loadBooks(books);
+            return;
+        }
+
+        List<Book> filtered = new ArrayList<>();
+        for (Book b : books) {
+            String cat = b.getCategory();
+            if (cat != null && cat.equalsIgnoreCase(selectedCategory)) {
+                filtered.add(b);
+            }
+        }
+
+        loadBooks(filtered);
+    }
+
     private void goTo(ActionEvent event, String fxml) throws Exception {
         try {
             App.setRoot(fxml);
@@ -165,5 +211,25 @@ public class MainController {
 
         books = bookService.getAllBooks();
         loadBooks(books);
+    }
+
+    private void loadSpecialOffers(List<Book> books) {
+        specialOffersContainer.getChildren().clear();
+
+        for (Book b : books) {
+            if (b.getDiscount() > 0) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bookstore/BookCard.fxml"));
+                    VBox card = loader.load();
+
+                    BookCardController controller = loader.getController();
+                    controller.setData(b);
+
+                    specialOffersContainer.getChildren().add(card);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

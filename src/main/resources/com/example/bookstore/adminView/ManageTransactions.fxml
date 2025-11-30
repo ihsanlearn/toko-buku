@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.bookstore.controller.ManageTransactionsController"
+            style="-fx-padding: 20;">
+
+    <top>
+        <Label text="Manage Transactions"
+               style="-fx-font-size: 22px; 
+                    -fx-text-fill: #00e1ff;
+                    -fx-font-weight: bold;
+                    -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.6), 15, 0.2, 0, 0);"/>
+    </top>
+
+    <center>
+        <TableView fx:id="tableTransactions" prefHeight="350">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colUserId" text="User ID" prefWidth="70"/>
+                <TableColumn fx:id="colBookId" text="Book ID" prefWidth="70"/>
+                <TableColumn fx:id="colQty" text="Qty" prefWidth="50"/>
+                <TableColumn fx:id="colTotal" text="Total" prefWidth="100"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 15; -fx-background-color: #f2f2f2; -fx-border-color: #ccc;" alignment="CENTER_LEFT">
+            <Label text="Update Status:"/>
+            <ComboBox fx:id="comboStatus" prefWidth="150">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Dikemas"/>
+                        <String fx:value="Dikirim"/>
+                        <String fx:value="Selesai"/>
+                        <String fx:value="Dibatalkan"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Button fx:id="btnUpdateStatus" text="Update" style="-fx-background-color: #2196f3; -fx-text-fill: white;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

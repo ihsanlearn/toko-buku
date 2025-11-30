@@ -15,10 +15,20 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class BookCardController {
-    @FXML private VBox cardRoot;
-    @FXML private ImageView bookImage;
-    @FXML private Label bookTitle;
-    @FXML private Label bookPrice;
+    @FXML
+    private VBox cardRoot;
+    @FXML
+    private ImageView bookImage;
+    @FXML
+    private Label bookTitle;
+    @FXML
+    private Label bookPrice;
+    @FXML
+    private Label originalPrice;
+    @FXML
+    private Label discountBadge;
+    @FXML
+    private Label soldCountLabel;
 
     private Book book;
 
@@ -26,7 +36,27 @@ public class BookCardController {
         this.book = book;
 
         bookTitle.setText(book.getTitle());
-        bookPrice.setText(String.valueOf(book.getPrice()));
+
+        if (book.getDiscount() > 0) {
+            double discountedPrice = book.getPrice() * (100 - book.getDiscount()) / 100.0;
+            originalPrice.setText("Rp " + book.getPrice());
+            originalPrice.setVisible(true);
+            originalPrice.setManaged(true);
+
+            bookPrice.setText("Rp " + (int) discountedPrice);
+
+            discountBadge.setText(book.getDiscount() + "% OFF");
+            discountBadge.setVisible(true);
+        } else {
+            originalPrice.setVisible(false);
+            originalPrice.setManaged(false);
+            bookPrice.setText("Rp " + book.getPrice());
+            discountBadge.setVisible(false);
+        }
+
+        if (soldCountLabel != null) {
+            soldCountLabel.setText("Terjual: " + book.getSoldCount());
+        }
 
         try {
             if (book.getImgPath() == null || book.getImgPath().isEmpty()) {
@@ -42,28 +72,23 @@ public class BookCardController {
             try {
                 onClick(arg0);
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
     }
 
     private void onClick(MouseEvent event) throws Exception {
-        // Load FXML BookDetail
         FXMLLoader loader = App.loadFXML("BookDetail");
         Parent root = loader.load();
 
-        // Ambil controller detail
         BookDetailController controller = loader.getController();
 
-        // Kirim data Book sebelum window ditampilkan
         controller.setBookData(book);
 
-        // Tampilkan window baru
         Stage stage = new Stage();
         stage.setTitle(book.getTitle());
         stage.setScene(new Scene(root));
-        stage.initOwner(cardRoot.getScene().getWindow()); // parent window
+        stage.initOwner(cardRoot.getScene().getWindow());
         stage.show();
     }
 }

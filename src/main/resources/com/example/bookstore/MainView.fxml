@@ -11,10 +11,14 @@
 
     <!-- HEADER -->
     <top>
-        <HBox spacing="20" styleClass="header-bar" fx:id="headerBar">
-            <Label text="ONLINE BOOK STORE" styleClass="header-title"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <ComboBox fx:id="categoryBox" promptText="Kategori" prefWidth="120" styleClass="combo-box"/>
+        <HBox spacing="20" styleClass="header-bar" fx:id="headerBar" alignment="CENTER_LEFT">
+            <Label text="BOOKSTORE" styleClass="header-title"/>
+            
+            <HBox spacing="10" HBox.hgrow="ALWAYS" alignment="CENTER">
+                 <TextField fx:id="searchField" promptText="Search books..." styleClass="search-field" prefWidth="400"/>
+                 <Button text="Search" fx:id="btnSearch" styleClass="search-btn"/>
+            </HBox>
+
             <Button fx:id="btnLogin" text="Login" styleClass="header-button"/>
             <MenuButton text="User" fx:id="accountMenu" styleClass="userMenu">
                 <items>
@@ -28,26 +32,43 @@
 
     <!-- CONTENT -->
     <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+        <ScrollPane fitToWidth="true" styleClass="main-scroll">
+            <content>
+                <VBox spacing="30" style="-fx-padding: 0 0 30 0;">
+                    
+                    <!-- HERO BANNER -->
+                    <StackPane styleClass="hero-banner" prefHeight="300">
+                        <VBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 50;">
+                            <Label text="BIG SALE EVENT" styleClass="hero-title"/>
+                            <Label text="Get up to 50% off on selected books!" styleClass="hero-subtitle"/>
+                            <Button text="Shop Now" styleClass="hero-button"/>
+                        </VBox>
+                    </StackPane>
 
-            <!-- SEARCH BAR -->
-            <HBox spacing="10">
-                <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="Search..." styleClass="search-field"/>
-                <Button text="Search" fx:id="btnSearch" styleClass="search-btn"/>
-            </HBox>
+                    <VBox spacing="15" style="-fx-padding: 0 40 0 40;">
+                        
+                        <!-- SPECIAL OFFERS -->
+                        <Label text="Special Offers" styleClass="section-title"/>
+                        <ScrollPane vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" fitToHeight="true" styleClass="horizontal-scroll">
+                            <content>
+                                <HBox fx:id="specialOffersContainer" spacing="15" style="-fx-padding: 10;"/>
+                            </content>
+                        </ScrollPane>
 
-            <Label text="Book List" styleClass="section-title"/>
+                        <!-- CATEGORIES -->
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <Label text="Browse by Category:" style="-fx-font-size: 16px; -fx-text-fill: #555;"/>
+                            <ComboBox fx:id="categoryBox" promptText="All Categories" prefWidth="150" styleClass="combo-box"/>
+                        </HBox>
 
-            <!-- SCROLL + PRODUCT GRID -->
-            <ScrollPane fitToWidth="true" styleClass="scroll-pane">
-                <content>
-                    <FlowPane fx:id="bookContainer"
-                              vgap="20" hgap="20"
-                              prefWidth="800"
-                              styleClass="product-container"/>
-                </content>
-            </ScrollPane>
+                        <!-- ALL BOOKS -->
+                        <Label text="Featured Books" styleClass="section-title"/>
+                        <FlowPane fx:id="bookContainer" vgap="20" hgap="20" prefWidth="800" styleClass="product-container"/>
+                        
+                    </VBox>
 
-        </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
     </center>
 </BorderPane>

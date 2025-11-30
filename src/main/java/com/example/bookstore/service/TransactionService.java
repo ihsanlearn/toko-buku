@@ -25,10 +25,16 @@ public class TransactionService {
             throw new RuntimeException("Book not found");
         }
 
-        double totalPrice = book.getPrice() * quantity;
+        double pricePerUnit = book.getPrice();
+        if (book.getDiscount() > 0) {
+            pricePerUnit = book.getPrice() * (100 - book.getDiscount()) / 100.0;
+        }
+
+        double totalPrice = pricePerUnit * quantity;
 
         List<Transaction> transactions = transactionRepository.getAll();
-        if (transactions == null) transactions = new ArrayList<>();
+        if (transactions == null)
+            transactions = new ArrayList<>();
 
         int newId = transactions.size() + 1;
 
@@ -41,11 +47,14 @@ public class TransactionService {
                 LocalDateTime.now(),
                 "Dikemas",
                 address,
-                courier
-        );
+                courier);
 
         transactions.add(transaction);
         transactionRepository.saveAll(transactions);
+
+        book.setStock(book.getStock() - quantity);
+        book.setSoldCount(book.getSoldCount() + quantity);
+        bookRepository.saveAll(books);
     }
 
     public List<Transaction> getAllTransactions() {
@@ -57,5 +66,17 @@ public class TransactionService {
                 .stream()
                 .filter(t -> t.getUserId() == userId)
                 .toList();
+    }
+
+    public boolean updateTransactionStatus(int transactionId, String newStatus) {
+        List<Transaction> transactions = transactionRepository.getAll();
+        for (Transaction t : transactions) {
+            if (t.getTransactionId() == transactionId) {
+                t.setStatus(newStatus);
+                transactionRepository.saveAll(transactions);
+                return true;
+            }
+        }
+        return false;
     }
 }

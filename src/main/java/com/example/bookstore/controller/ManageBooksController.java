@@ -2,6 +2,7 @@ package com.example.bookstore.controller;
 
 import com.example.bookstore.model.Book;
 import com.example.bookstore.service.BookService;
+import com.example.bookstore.service.ImageService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,10 +20,6 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 public class ManageBooksController {
@@ -62,9 +59,9 @@ public class ManageBooksController {
 
     private ObservableList<Book> bookList;
     private final BookService bookService = new BookService();
+    private final ImageService imageService = new ImageService();
 
     private File selectedImageFile;
-    private File existingImageFile;
 
     public void initialize() {
 
@@ -101,19 +98,25 @@ public class ManageBooksController {
             if (description == null)
                 description = "";
 
-            String imgFileName = saveImageToFolder(title);
+            String imgPath = "com/example/bookstore/images/sample.jpeg";
+            if (selectedImageFile != null) {
+                String ext = imageService.getExtension(selectedImageFile);
+                String newFileName = title.replace(" ", "_").toLowerCase() + ext;
+                imgPath = imageService.saveImage(selectedImageFile, newFileName);
+            }
 
-            Book newBook = new Book(title, author, price, stock, "com/example/bookstore/images/" + imgFileName,
-                    category, description);
+            Book newBook = new Book(title, author, price, stock, imgPath, category, description);
 
             bookService.addBook(newBook);
-            ;
-            ;
             bookList.add(newBook);
 
             showAlert("Success", "sipp buku dah ditambahin syg.");
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Input harga/stok harus angka ya.");
+        } catch (IOException e) {
+            showAlert("Error", "Gagal simpan gambar: " + e.getMessage());
         } catch (Exception e) {
-            showAlert("Error", "buku gagal ditambahin syg");
+            showAlert("Error", "buku gagal ditambahin syg: " + e.getMessage());
         }
     }
 
@@ -130,20 +133,19 @@ public class ManageBooksController {
             String title = inputTitle.getText();
             String newImgPath = imgPath;
 
-            System.out.println("imgPath: " + imgPath);
-            System.out.println("title: " + title);
-
             if (selectedImageFile != null) {
-                String ext = selectedImageFile.getName().substring(selectedImageFile.getName().lastIndexOf("."));
+                String ext = imageService.getExtension(selectedImageFile);
                 String newFileName = title.replace(" ", "_").toLowerCase() + ext;
 
-                if (!newFileName.equals(extractFileName(imgPath) + ext)) {
-                    if (extractFileName(imgPath) != null && !extractFileName(imgPath).isEmpty()) {
-                        deleteOldImage(extractFileName(imgPath) + ext);
-                    }
+                String currentFileName = imageService.extractFileName(imgPath);
 
-                    newImgPath = saveImageToFolder(newFileName, selectedImageFile);
+                // If filename is different, delete old image (if not sample)
+                if (!newFileName.equals(currentFileName)) {
+                    imageService.deleteImage(currentFileName);
                 }
+
+                // Save new image
+                newImgPath = imageService.saveImage(selectedImageFile, newFileName);
             }
 
             selected.setTitle(inputTitle.getText());
@@ -165,6 +167,10 @@ public class ManageBooksController {
 
             showAlert("Success", "buku berhasil diupdate ygy");
 
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Input harga/stok harus angka ya.");
+        } catch (IOException e) {
+            showAlert("Error", "Gagal simpan gambar: " + e.getMessage());
         } catch (Exception e) {
             showAlert("Error", "yang bener ajg: " + e.getMessage());
         }
@@ -179,7 +185,7 @@ public class ManageBooksController {
         }
 
         bookService.deleteBook(selected.getId());
-        deleteOldImage(extractFileName(selected.getImgPath()));
+        imageService.deleteImage(selected.getImgPath());
 
         bookList.remove(selected);
         clearForm();
@@ -209,41 +215,6 @@ public class ManageBooksController {
         }
     }
 
-    private String saveImageToFolder(String title) throws IOException {
-        if (selectedImageFile == null)
-            return null;
-
-        String ext = selectedImageFile.getName().substring(selectedImageFile.getName().lastIndexOf("."));
-        String newFileName = title.replace(" ", "_").toLowerCase() + ext;
-
-        Path destPath = Paths.get("src/main/resources/com/example/bookstore/images/" + newFileName);
-        Files.copy(selectedImageFile.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
-        return newFileName;
-    }
-
-    private String saveImageToFolder(String newFileName, File sourceFile) {
-        try {
-            Path dest = Paths.get("src/main/resources/com/example/bookstore/images/" + newFileName);
-            Files.copy(sourceFile.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
-            return newFileName;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private void deleteOldImage(String fileName) {
-        if (fileName == null || fileName.isEmpty())
-            return;
-
-        Path path = Paths.get("src/main/resources/com/example/bookstore/images/" + fileName);
-        try {
-            Files.deleteIfExists(path);
-        } catch (IOException e) {
-            System.out.println("Gagal menghapus gambar lama: " + e.getMessage());
-        }
-    }
-
     private void clearForm() {
         inputTitle.clear();
         inputAuthor.clear();
@@ -262,15 +233,6 @@ public class ManageBooksController {
         a.showAndWait();
     }
 
-    private String extractFileName(String path) {
-        if (path == null || path.isBlank())
-            return "";
-        int idx = path.lastIndexOf('/');
-        if (idx == -1)
-            return path;
-        return path.substring(idx + 1);
-    }
-
     private void fillForm(Book b) {
         if (b == null)
             return;
@@ -283,13 +245,9 @@ public class ManageBooksController {
         inputDescription.setText(b.getDescription());
 
         if (b.getImgPath() != null && !b.getImgPath().isEmpty()) {
-            labelImgName.setText(extractFileName(b.getImgPath()));
-
-            String imgPath = "src/main/resources/" + b.getImgPath();
-            existingImageFile = new File(imgPath);
+            labelImgName.setText(imageService.extractFileName(b.getImgPath()));
         } else {
             labelImgName.setText("No file selected");
-            existingImageFile = null;
         }
 
         selectedImageFile = null;

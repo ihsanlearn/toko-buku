@@ -34,16 +34,15 @@ public class UserService {
     }
 
     public boolean update(
-        int id,
-        String fullName,
-        String username,
-        String email,
-        String phone,
-        String address,
-        String city,
-        String postalCode,
-        String favoriteGenre
-    ) {
+            int id,
+            String fullName,
+            String username,
+            String email,
+            String phone,
+            String address,
+            String city,
+            String postalCode,
+            String favoriteGenre) {
         List<User> users = repo.getAll();
 
         boolean usernameUsed = users.stream()
@@ -55,10 +54,10 @@ public class UserService {
         }
 
         boolean emailUsed = users.stream()
-        .anyMatch(u -> email != null &&
-                u.getEmail() != null &&
-                u.getEmail().equalsIgnoreCase(email) &&
-                u.getId() != id);
+                .anyMatch(u -> email != null &&
+                        u.getEmail() != null &&
+                        u.getEmail().equalsIgnoreCase(email) &&
+                        u.getId() != id);
 
         if (emailUsed) {
             System.out.println("email dah digunakan");
@@ -107,6 +106,33 @@ public class UserService {
         }
 
         return null;
+    }
+
+    public List<User> getAllUsers() {
+        return repo.getAll();
+    }
+
+    public boolean deleteUser(int id) {
+        List<User> users = repo.getAll();
+        boolean removed = users.removeIf(u -> u.getId() == id);
+        if (removed) {
+            repo.saveAll(users);
+        }
+        return removed;
+    }
+
+    public boolean updateUserCredentials(int id, String username, String password, String role) {
+        List<User> users = repo.getAll();
+        for (User u : users) {
+            if (u.getId() == id) {
+                u.setUsername(username);
+                u.setPassword(password);
+                u.setRole(role);
+                repo.saveAll(users);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

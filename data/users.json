@@ -19,7 +19,7 @@
       "favoriteGenre": "Fantasy",
       "role": "user",
       "password": "ihsangoat",
-      "balance": 0
+      "balance": 1900000
     },
     {
       "id": 3,
@@ -27,13 +27,6 @@
       "role": "user",
       "password": "mars",
       "balance": 49015000
-    },
-    {
-      "id": 4,
-      "username": "ihsangk",
-      "role": "user",
-      "password": "ihsangk",
-      "balance": 50000
     }
   ]
 }

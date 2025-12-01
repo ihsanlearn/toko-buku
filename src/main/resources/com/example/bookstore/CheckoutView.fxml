@@ -19,7 +19,7 @@
                 <Label text="Alamat Pengiriman" styleClass="label"/>
                 <VBox spacing="10">
                     <ComboBox fx:id="addressCombo" prefWidth="450" promptText="Pilih alamat tersimpan..."/>
-                    <CheckBox fx:id="chkSaveAddress" text="Simpan alamat ini untuk pengiriman selanjutnya" visible="false" managed="false"/>
+                    <CheckBox fx:id="chkSaveAddress" style="-fx-text-fill: #e2e8f0;" text="Simpan alamat ini untuk pengiriman selanjutnya" visible="false" managed="false"/>
                     <GridPane fx:id="newAddressPane" hgap="10" vgap="10" visible="false" managed="false">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />

@@ -17,7 +17,34 @@
                 <Label text="Checkout" styleClass="title" />
 
                 <Label text="Alamat Pengiriman" styleClass="label"/>
-                <TextArea fx:id="addressField" styleClass="text-area" prefRowCount="4" wrapText="true"/>
+                <VBox spacing="10">
+                    <ComboBox fx:id="addressCombo" prefWidth="450" promptText="Pilih alamat tersimpan..."/>
+                    <CheckBox fx:id="chkSaveAddress" text="Simpan alamat ini untuk pengiriman selanjutnya" visible="false" managed="false"/>
+                    <GridPane fx:id="newAddressPane" hgap="10" vgap="10" visible="false" managed="false">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        
+                        <Label text="Label (Optional):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtLabel" promptText="e.g. Rumah, Kantor" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <Label text="Alamat Lengkap:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="txtAddress" prefRowCount="2" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <Label text="Kota:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtCity" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <Label text="Kode Pos:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtPostalCode" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </VBox>
 
                 <Label text="Jasa Pengiriman" styleClass="label"/>
                 <ComboBox fx:id="courierCombo" prefWidth="300" styleClass="combo"/>

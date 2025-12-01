@@ -1,48 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/25"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.bookstore.controller.user.SettingsController"
-      spacing="20">
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookstore.controller.user.SettingsController">
     <padding>
-        <Insets top="20" bottom="20" left="20" right="20"/>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
     </padding>
 
-    <Label text="Account Settings" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Label text="Account Settings" textFill="#e0e0e0">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+   <Separator prefWidth="200.0" />
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Username:" prefWidth="120"/>
-        <TextField fx:id="txtUsername" promptText="Change username"/>
-    </HBox>
+    <GridPane hgap="20.0" vgap="15.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+            <ColumnConstraints hgrow="NEVER" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Email:" prefWidth="120"/>
-        <TextField fx:id="txtEmail" promptText="Change email"/>
-    </HBox>
+        <!-- Username -->
+        <Label text="Username:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <Text fx:id="lblUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="username_placeholder" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Button fx:id="btnEditUsername" onAction="#handleEditUsername" style="-fx-background-color: transparent; -fx-cursor: hand;" text="✎" textFill="#00eaff" GridPane.columnIndex="2" GridPane.rowIndex="0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-    <Separator/>
+        <!-- Email -->
+        <Label text="Email:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <Text fx:id="lblEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="(email not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Text>
+        <Button fx:id="btnEditEmail" onAction="#handleEditEmail" style="-fx-background-color: transparent; -fx-cursor: hand;" text="✎" textFill="#00eaff" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-    <Label text="Change Password" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <!-- Phone -->
+        <Label text="Phone:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <Text fx:id="lblPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="(phone not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Text>
+        <Button fx:id="btnEditPhone" onAction="#handleEditPhone" style="-fx-background-color: transparent; -fx-cursor: hand;" text="✎" textFill="#00eaff" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Old Password:" prefWidth="120"/>
-        <PasswordField fx:id="txtOldPassword"/>
-    </HBox>
+        <!-- Address -->
+        <Label text="Address:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <Text fx:id="lblAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="(address not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Text>
+        <Button fx:id="btnEditAddress" onAction="#handleEditAddress" style="-fx-background-color: transparent; -fx-cursor: hand;" text="✎" textFill="#00eaff" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="New Password:" prefWidth="120"/>
-        <PasswordField fx:id="txtNewPassword"/>
-    </HBox>
-
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Confirm Password:" prefWidth="120"/>
-        <PasswordField fx:id="txtConfirmPassword"/>
-    </HBox>
-
-    <Button fx:id="btnSave" text="Save Changes" style="-fx-padding: 8 20; -fx-font-size: 14px;"/>
+        <!-- Password -->
+        <Label text="Password:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+        <Text text="********" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+        <Button fx:id="btnEditPassword" onAction="#handleEditPassword" style="-fx-background-color: transparent; -fx-cursor: hand;" text="✎" textFill="#00eaff" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+    </GridPane>
 
 </VBox>

@@ -8,13 +8,28 @@ import com.example.bookstore.service.UserService;
 import com.example.bookstore.session.SessionManager;
 import com.example.bookstore.util.PasswordUtil;
 
+import com.example.bookstore.model.DeliveryAddress;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 public class CheckoutController {
 
     @FXML
-    private TextArea addressField;
+    private ComboBox<DeliveryAddress> addressCombo;
+    @FXML
+    private CheckBox chkSaveAddress;
+    @FXML
+    private GridPane newAddressPane;
+    @FXML
+    private TextField txtLabel;
+    @FXML
+    private TextArea txtAddress;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField txtPostalCode;
+
     @FXML
     private ComboBox<String> courierCombo;
 
@@ -59,18 +74,77 @@ public class CheckoutController {
 
         courierCombo.getItems().addAll("JNE", "TIKI", "POS", "SiCepat", "AnterAja");
 
+        addressCombo.getItems().clear();
+        if (currentUser.getDeliveryAddresses() != null) {
+            addressCombo.getItems().addAll(currentUser.getDeliveryAddresses());
+        }
+
+        DeliveryAddress newAddressOption = new DeliveryAddress("Tambah Alamat Baru", "", "", "");
+        addressCombo.getItems().add(newAddressOption);
+
+        addressCombo.setOnAction(e -> {
+            DeliveryAddress selected = addressCombo.getValue();
+            if (selected == newAddressOption) {
+                newAddressPane.setVisible(true);
+                newAddressPane.setManaged(true);
+                chkSaveAddress.setVisible(true);
+                chkSaveAddress.setManaged(true);
+                clearNewAddressFields();
+            } else if (selected != null) {
+                newAddressPane.setVisible(false);
+                newAddressPane.setManaged(false);
+                chkSaveAddress.setVisible(false);
+                chkSaveAddress.setManaged(false);
+            }
+        });
+
+        if (!currentUser.getDeliveryAddresses().isEmpty()) {
+            addressCombo.getSelectionModel().selectFirst();
+        }
+
         confirmBtn.setOnAction(e -> handleConfirm());
         cancelBtn.setOnAction(e -> closeCheckoutPage());
     }
 
-    private void handleConfirm() {
-        String address = addressField.getText().trim();
-        String courier = courierCombo.getValue();
+    private void clearNewAddressFields() {
+        txtLabel.clear();
+        txtAddress.clear();
+        txtCity.clear();
+        txtPostalCode.clear();
+    }
 
-        if (address.isEmpty() || courier == null) {
-            showAlert(Alert.AlertType.ERROR, "Data belum lengkap",
-                    "Alamat dan jasa pengiriman wajib diisi.");
+    private void handleConfirm() {
+        DeliveryAddress selectedAddress = addressCombo.getValue();
+        String courier = courierCombo.getValue();
+        String finalAddressString = "";
+
+        if (selectedAddress == null || courier == null) {
+            showAlert(Alert.AlertType.ERROR, "Data belum lengkap", "Silakan pilih alamat dan jasa pengiriman.");
             return;
+        }
+
+        if (selectedAddress.getLabel().equals("Tambah Alamat Baru")) {
+            if (txtAddress.getText().trim().isEmpty() || txtCity.getText().trim().isEmpty()
+                    || txtPostalCode.getText().trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Data belum lengkap", "Alamat, Kota, dan Kode Pos wajib diisi.");
+                return;
+            }
+
+            DeliveryAddress newAddress = new DeliveryAddress(
+                    txtLabel.getText().trim(),
+                    txtAddress.getText().trim(),
+                    txtCity.getText().trim(),
+                    txtPostalCode.getText().trim());
+
+            finalAddressString = newAddress.toString();
+
+            if (chkSaveAddress.isSelected()) {
+                currentUser.addDeliveryAddress(newAddress);
+                // Save user with new address
+                userService.saveUser(currentUser);
+            }
+        } else {
+            finalAddressString = selectedAddress.toString();
         }
 
         if (currentUser.getBalance() < totalPrice) {
@@ -107,7 +181,8 @@ public class CheckoutController {
         }
 
         try {
-            transactionService.buyBook(currentUser.getId(), selectedBook.getId(), quantity, address, courier);
+            transactionService.buyBook(currentUser.getId(), selectedBook.getId(), quantity, finalAddressString,
+                    courier);
 
             selectedBook.setStock(selectedBook.getStock() - quantity);
             selectedBook.setSoldCount(selectedBook.getSoldCount() + quantity);

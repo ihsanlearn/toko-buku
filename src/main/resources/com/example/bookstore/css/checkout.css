@@ -2,114 +2,114 @@
    ROOT CHECKOUT LAYOUT
 ================================ */
 .checkout-root {
-    -fx-padding: 30;
-    -fx-background-color: #0d1117;
+  -fx-padding: 30;
+  -fx-background-color: #0d1117;
 }
 
 /* ================================
    CARD CONTAINER (Glass Panel)
 ================================ */
 .card {
-    -fx-background-color: rgba(255, 255, 255, 0.05);
-    -fx-background-radius: 14;
-    -fx-padding: 25;
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 255, 0.25), 15, 0.25, 0, 4);
+  -fx-background-color: rgba(255, 255, 255, 0.05);
+  -fx-background-radius: 14;
+  -fx-padding: 25;
+  -fx-effect: dropshadow(gaussian, rgba(0, 255, 255, 0.25), 15, 0.25, 0, 4);
 }
 
 /* ================================
    TITLES
 ================================ */
 .title {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #00eaff;
+  -fx-font-size: 22px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #00eaff;
 }
 
 /* ================================
    LABELS
 ================================ */
 .label {
-    -fx-font-size: 14px;
-    -fx-text-fill: #d0d0d0;
-    -fx-font-weight: 600;
+  -fx-font-size: 14px;
+  -fx-text-fill: #d0d0d0;
+  -fx-font-weight: 600;
 }
 
 /* ================================
    TEXT AREA (Address)
 ================================ */
 .text-area {
-    -fx-background-color: #111827;
-    -fx-text-fill: #000000;
-    -fx-background-radius: 10;
-    -fx-padding: 10;
-    -fx-border-color: rgba(0, 255, 255, 0.35);
-    -fx-border-width: 1.2;
-    -fx-border-radius: 10;
+  -fx-background-color: #111827;
+  -fx-text-fill: #e0e0e0;
+  -fx-background-radius: 10;
+  -fx-padding: 10;
+  -fx-border-color: rgba(0, 255, 255, 0.35);
+  -fx-border-width: 1.2;
+  -fx-border-radius: 10;
 }
 
 .text-area:focused {
-    -fx-border-color: #00eaff;
+  -fx-border-color: #00eaff;
 }
 
 /* ================================
    COMBOBOX (Courier, Discount)
 ================================ */
 .combo {
-    -fx-background-color: #111827;
-    -fx-background-radius: 10;
-    -fx-border-color: rgba(0, 255, 255, 0.3);
-    -fx-border-radius: 10;
-    -fx-border-width: 1.2;
-    -fx-text-fill: #ffffff;
+  -fx-background-color: #111827;
+  -fx-background-radius: 10;
+  -fx-border-color: rgba(0, 255, 255, 0.3);
+  -fx-border-radius: 10;
+  -fx-border-width: 1.2;
+  -fx-text-fill: #ffffff;
 }
 
 .combo .list-cell {
-    -fx-text-fill: white;
-    -fx-background-color: #111827;
+  -fx-text-fill: white;
+  -fx-background-color: #111827;
 }
 
 .combo:hover {
-    -fx-border-color: #00eaff;
+  -fx-border-color: #00eaff;
 }
 
 /* ================================
    PAYMENT SUMMARY LABEL
 ================================ */
 .summary {
-    -fx-font-size: 14px;
-    -fx-text-fill: #c7c7c7;
-    -fx-padding: 10 0 10 0;
+  -fx-font-size: 14px;
+  -fx-text-fill: #c7c7c7;
+  -fx-padding: 10 0 10 0;
 }
 
 /* ================================
    BUTTONS
 ================================ */
 .btn-cancel {
-    -fx-background-color: rgba(255, 70, 70, 0.15);
-    -fx-text-fill: #ff4d4d;
-    -fx-background-radius: 8;
-    -fx-font-weight: 600;
+  -fx-background-color: rgba(255, 70, 70, 0.15);
+  -fx-text-fill: #ff4d4d;
+  -fx-background-radius: 8;
+  -fx-font-weight: 600;
 }
 
 .btn-cancel:hover {
-    -fx-background-color: rgba(255, 70, 70, 0.25);
+  -fx-background-color: rgba(255, 70, 70, 0.25);
 }
 
 .btn-confirm {
-    -fx-background-color: rgba(0, 255, 255, 0.2);
-    -fx-text-fill: #00eaff;
-    -fx-background-radius: 8;
-    -fx-font-weight: 600;
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 255, 0.35), 10, 0.3, 0, 2);
+  -fx-background-color: rgba(0, 255, 255, 0.2);
+  -fx-text-fill: #00eaff;
+  -fx-background-radius: 8;
+  -fx-font-weight: 600;
+  -fx-effect: dropshadow(gaussian, rgba(0, 255, 255, 0.35), 10, 0.3, 0, 2);
 }
 
 .btn-confirm:hover {
-    -fx-background-color: rgba(0, 255, 255, 0.35);
+  -fx-background-color: rgba(0, 255, 255, 0.35);
 }
 
 /* ================================
    SEPARATOR
 ================================ */
 .separator *.line {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
+  -fx-background-color: rgba(255, 255, 255, 0.15);
 }

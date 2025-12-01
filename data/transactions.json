@@ -186,6 +186,28 @@
       "status": "Dikemas",
       "shippingAddress": "GUNKIFFF",
       "courier": "TIKI"
+    },
+    {
+      "transactionId": 18,
+      "userId": 2,
+      "bookId": 17,
+      "quantity": 1,
+      "totalPrice": 250000.0,
+      "purchaseDate": "2025-12-01T10:37:47.400913869",
+      "status": "Dikemas",
+      "shippingAddress": "Rumah: Jl baron, Wonosari 55851",
+      "courier": "TIKI"
+    },
+    {
+      "transactionId": 19,
+      "userId": 2,
+      "bookId": 19,
+      "quantity": 1,
+      "totalPrice": 420000.0,
+      "purchaseDate": "2025-12-01T10:39:24.58819818",
+      "status": "Dikemas",
+      "shippingAddress": "Kantor: Jl slamet riyadi, Surakarta 56428",
+      "courier": "JNE"
     }
   ]
 }

@@ -13,13 +13,24 @@
       "username": "ihsangoat",
       "email": "ihsangoat@gmail.com",
       "phone": "087730301987",
-      "address": "Jl. Baron Km.8 Karangasem",
-      "city": "Wonosari",
-      "postalCode": "55851",
       "favoriteGenre": "Fantasy",
       "role": "user",
       "password": "634c76b2d3e9c1953903b3c02a2f06273b2712f62e9ff0b770c495606911fe6f",
-      "balance": 1707000
+      "balance": 1213000,
+      "deliveryAddresses": [
+        {
+          "label": "Rumah",
+          "address": "Jl baron",
+          "city": "Wonosari",
+          "postalCode": "55851"
+        },
+        {
+          "label": "Kantor",
+          "address": "Jl slamet riyadi",
+          "city": "Surakarta",
+          "postalCode": "56428"
+        }
+      ]
     },
     {
       "id": 3,

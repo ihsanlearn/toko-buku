@@ -18,7 +18,7 @@
                 <Label text="👤" style="-fx-font-size: 40;" />
                 <VBox>
                     <Label text="Customer Profile" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-                    <Label text="Manage your personal information" style="-fx-font-size: 12px; -fx-text-fill: gray;" />
+                    <Label text="Manage your personal information" style="-fx-font-size: 12px; -fx-text-fill: #b0b0b0;" />
                 </VBox>
             </HBox>
 

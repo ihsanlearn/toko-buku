@@ -40,9 +40,6 @@ public class UserService {
             String username,
             String email,
             String phone,
-            String address,
-            String city,
-            String postalCode,
             String favoriteGenre) {
         List<User> users = repo.getAll();
 
@@ -72,9 +69,6 @@ public class UserService {
                 u.setUsername(username);
                 u.setEmail(email);
                 u.setPhone(phone);
-                u.setAddress(address);
-                u.setCity(city);
-                u.setPostalCode(postalCode);
                 u.setFavoriteGenre(favoriteGenre);
 
                 repo.saveAll(users);
@@ -136,4 +130,14 @@ public class UserService {
         return false;
     }
 
+    public void saveUser(User user) {
+        List<User> users = repo.getAll();
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == user.getId()) {
+                users.set(i, user);
+                repo.saveAll(users);
+                return;
+            }
+        }
+    }
 }

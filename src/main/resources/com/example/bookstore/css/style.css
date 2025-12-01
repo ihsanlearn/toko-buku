@@ -269,3 +269,19 @@
 .horizontal-scroll > .viewport {
   -fx-background-color: transparent;
 }
+
+/* ========================= INPUT FIELDS ========================== */
+.text-field, .text-area {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #9ca3af;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-border-color: #00e1ff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 225, 255, 0.2), 10, 0, 0, 0);
+}

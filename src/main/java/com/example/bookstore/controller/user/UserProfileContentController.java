@@ -12,16 +12,25 @@ import javafx.scene.control.TextField;
 
 public class UserProfileContentController {
 
-    @FXML private TextField txtFullName;
-    @FXML private TextField txtUsername;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtPhone;
-    @FXML private TextField txtAddress;
-    @FXML private TextField txtCity;
-    @FXML private TextField txtPostalCode;
+    @FXML
+    private TextField txtFullName;
+    @FXML
+    private TextField txtUsername;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtPhone;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField txtPostalCode;
 
-    @FXML private Button btnSaveProfile;
-    @FXML private ChoiceBox<String> cbFavoriteGenre;
+    @FXML
+    private Button btnSaveProfile;
+    @FXML
+    private ChoiceBox<String> cbFavoriteGenre;
 
     private UserService userService = new UserService();
     private User currentUser;
@@ -35,20 +44,24 @@ public class UserProfileContentController {
         txtUsername.setText(currentUser.getUsername());
         txtEmail.setText(currentUser.getEmail());
         txtPhone.setText(currentUser.getPhone());
-        txtAddress.setText(currentUser.getAddress());
-        txtCity.setText(currentUser.getCity());
-        txtPostalCode.setText(currentUser.getPostalCode());
+
+        if (!currentUser.getDeliveryAddresses().isEmpty()) {
+            com.example.bookstore.model.DeliveryAddress addr = currentUser.getDeliveryAddresses().get(0);
+            txtAddress.setText(addr.getAddress());
+            txtCity.setText(addr.getCity());
+            txtPostalCode.setText(addr.getPostalCode());
+        } else {
+            txtAddress.setText("");
+            txtCity.setText("");
+            txtPostalCode.setText("");
+        }
 
         cbFavoriteGenre.getItems().addAll(
                 "Fiction", "Romance", "Horror", "Sci-Fi",
-                "Fantasy", "Mystery", "Non-fiction"
-        );
+                "Fantasy", "Mystery", "Non-fiction");
 
         cbFavoriteGenre.setValue(
-                currentUser.getFavoriteGenre() != null ?
-                        currentUser.getFavoriteGenre() :
-                        "Fiction"
-        );
+                currentUser.getFavoriteGenre() != null ? currentUser.getFavoriteGenre() : "Fiction");
 
         btnSaveProfile.setOnAction(e -> saveProfile());
     }
@@ -63,22 +76,13 @@ public class UserProfileContentController {
         String postalCode = txtPostalCode.getText();
         String favoriteGenre = cbFavoriteGenre.getValue();
 
-        // if (fullName.isEmpty() || username.isEmpty() || email.isEmpty()) {
-        //     showError("Full name, username, dan email wajib diisi.");
-        //     return;
-        // }
-
         boolean success = userService.update(
                 currentUser.getId(),
                 fullName,
                 username,
                 email,
                 phone,
-                address,
-                city,
-                postalCode,
-                favoriteGenre
-        );
+                favoriteGenre);
 
         if (!success) {
             showError("Update gagal! Username atau email mungkin sudah dipakai.");
@@ -89,10 +93,21 @@ public class UserProfileContentController {
         currentUser.setUsername(username);
         currentUser.setEmail(email);
         currentUser.setPhone(phone);
-        currentUser.setAddress(address);
-        currentUser.setCity(city);
-        currentUser.setPostalCode(postalCode);
         currentUser.setFavoriteGenre(favoriteGenre);
+
+        // Update first address if fields are not empty
+        if (!address.isEmpty() || !city.isEmpty() || !postalCode.isEmpty()) {
+            if (currentUser.getDeliveryAddresses().isEmpty()) {
+                currentUser.addDeliveryAddress(
+                        new com.example.bookstore.model.DeliveryAddress("Main", address, city, postalCode));
+            } else {
+                com.example.bookstore.model.DeliveryAddress addr = currentUser.getDeliveryAddresses().get(0);
+                addr.setAddress(address);
+                addr.setCity(city);
+                addr.setPostalCode(postalCode);
+            }
+            userService.saveUser(currentUser);
+        }
 
         SessionManager.setCurrentUser(currentUser);
 

@@ -17,7 +17,7 @@
         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
     </padding>
 
-    <Label text="Account Settings" textFill="#e0e0e0">
+    <Label text="Account Settings" textFill="#e2e8f0">
         <font>
             <Font name="System Bold" size="24.0" />
         </font>
@@ -40,7 +40,7 @@
         </rowConstraints>
 
         <!-- Username -->
-        <Label text="Username:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label text="Username" textFill="#e2e8f0" GridPane.columnIndex="0" GridPane.rowIndex="0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
@@ -54,11 +54,11 @@
          </font></Button>
 
         <!-- Email -->
-        <Label text="Email:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="Email" textFill="#e2e8f0" GridPane.columnIndex="0" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-        <Text fx:id="lblEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="(email not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Text fx:id="lblEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="(email not already set)" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
             <Font name="System Italic" size="14.0" />
          </font></Text>
@@ -68,11 +68,11 @@
          </font></Button>
 
         <!-- Phone -->
-        <Label text="Phone:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label text="Phone" textFill="#e2e8f0" GridPane.columnIndex="0" GridPane.rowIndex="2">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-        <Text fx:id="lblPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="(phone not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Text fx:id="lblPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="(phone not already set)" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font name="System Italic" size="14.0" />
          </font></Text>
@@ -82,11 +82,11 @@
          </font></Button>
 
         <!-- Address -->
-        <Label text="Address:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <Label text="Address" textFill="#e2e8f0" GridPane.columnIndex="0" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-        <Text fx:id="lblAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="(address not already set)" fill="#999999" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <Text fx:id="lblAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="(address not already set)" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font name="System Italic" size="14.0" />
          </font></Text>
@@ -96,11 +96,11 @@
          </font></Button>
 
         <!-- Password -->
-        <Label text="Password:" textFill="#b0b0b0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+        <Label text="Password" textFill="#e2e8f0" GridPane.columnIndex="0" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-        <Text text="********" fill="#e0e0e0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Text text="********" fill="#e2e8f0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font size="14.0" />
          </font></Text>
